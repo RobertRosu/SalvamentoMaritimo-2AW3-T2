@@ -1,0 +1,8 @@
+@import '../scss/colors';
+
+:host{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
