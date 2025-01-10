@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('rescued_people', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->string('country');
+            $table->date('birth_date');
+            $table->foreignId('rescue_id');
+            $table->string('photo_src');
         });
     }
 

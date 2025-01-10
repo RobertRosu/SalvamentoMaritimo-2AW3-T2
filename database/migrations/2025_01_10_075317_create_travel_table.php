@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('travel', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('origen');
+            $table->string('destino');
+            $table->foreignId('medico_id');
+            $table->foreignId('tripulante_id');
+
         });
     }
 
