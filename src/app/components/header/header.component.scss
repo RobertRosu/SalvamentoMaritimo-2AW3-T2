@@ -2,7 +2,9 @@
 
 :host {
     display: flex;
-    position: relative;
+    position: sticky;
+    top:0;
+    z-index: 1;
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -95,7 +97,8 @@
                     border-radius: 0;
                     padding: 15px 10px;
 
-                    &:hover {
+                    &:hover,
+                    &.active {
                         background-color: $header-bg;
                     }
                 }
