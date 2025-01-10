@@ -72,7 +72,7 @@
 @media (max-width: 600px) {
     :host {
         .flex-cont ul {
-            display: none; /* Se oculta por defecto */
+            display: none;
             flex-direction: column;
             position: absolute;
             top: 100%;
@@ -82,11 +82,11 @@
             column-gap: 0;
 
             &.opened {
-                display: flex; /* Solo se muestra cuando tiene la clase "opened" */
+                display: flex;
             }
 
             li {
-                display: flex; /* Se asegura que los <li> se muestren solo cuando "opened" está activado */
+                display: flex;
                 width: 100%;
 
                 a {
@@ -95,7 +95,7 @@
                     padding: 15px 10px;
 
                     &:hover {
-                        background-color: $header-bg; /* Cambio de fondo cuando se pasa el mouse */
+                        background-color: $header-bg;
                     }
                 }
             }
