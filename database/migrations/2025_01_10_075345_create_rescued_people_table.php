@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('birth_date');
             $table->foreignId('rescue_id');
             $table->string('photo_src');
+            $table->timestamps();
+
         });
     }
 

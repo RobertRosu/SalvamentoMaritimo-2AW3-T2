@@ -3,9 +3,15 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Doctor;
+use App\Models\CrewMember;
+use App\Models\RescuedPerson;
+use App\Models\Rescue;
+use App\Models\Travel;
+
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Seeder\DoctorSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,8 +20,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-        Doctor::factory(10)->create();
+        User::factory(22)->create();
+        Doctor::factory(14)->create();
+        CrewMember::factory(40)->create();
+        Travel::factory(18)->create();
+        Rescue::factory(26)->create();
+        RescuedPerson::factory(100)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

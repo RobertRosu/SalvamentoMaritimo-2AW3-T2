@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Travel;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Rescue>
@@ -17,7 +18,8 @@ class RescueFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'travel_id' => Travel::inRandomOrder()->first()->id,  
+            'numero_rescatados' => fake()->numberBetween(1, 100),     
         ];
     }
 }

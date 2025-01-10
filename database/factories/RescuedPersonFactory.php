@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\Rescue;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +18,10 @@ class RescuedPersonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),  
+            'country' => fake()->country(), 
+            'birth_date' => fake()->date(),  
+            'rescue_id' => Rescue::inRandomOrder()->first()->id,            'photo_src' => fake()->imageUrl(),         
         ];
     }
 }

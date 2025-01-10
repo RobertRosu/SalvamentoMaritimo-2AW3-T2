@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('rescues', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignId('travel_id');
             $table->integer('numero_rescatados');
+            $table->timestamps();
+
         });
     }
 
