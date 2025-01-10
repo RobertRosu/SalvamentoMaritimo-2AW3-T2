@@ -3,13 +3,13 @@
         <img src="assets/images/logo.png" alt="logo">
     </a>
     
-    <ul [class]="isMenuOpened ? 'opened' : ''">
+    <ul [class]="!isMenuOpened ? '' : 'opened'">
         <li><a href="#">Nor gara</a></li>
         <li><a href="#">Ibilbidea</a></li>
         <li><a href="#">Erreskatatuak</a></li>
     </ul>
 </div>
 
-<mat-icon id="menu"aria-hidden="false" aria-label="Example home icon" [fontIcon]="isMenuOpened ? 'close' : 'menu'" (click)="toggleIsMenuOpened()"></mat-icon>
+<mat-icon id="menu" aria-hidden="false" aria-label="Example home icon" [fontIcon]="isMenuOpened ? 'close' : 'menu'" (click)="toggleIsMenuOpened()"></mat-icon>
 
-<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="account_circle"></mat-icon>
+<mat-icon id="user" aria-hidden="false" aria-label="Example home icon" fontIcon="account_circle"></mat-icon>

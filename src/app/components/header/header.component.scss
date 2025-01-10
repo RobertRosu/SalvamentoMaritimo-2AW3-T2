@@ -1,6 +1,6 @@
 @import './../../../scss/colors';
 
-:host{
+:host {
     display: flex;
     position: relative;
     flex-direction: row;
@@ -9,65 +9,70 @@
     background-color: $header-bg;
     padding: 10px;
 
-    .flex-cont{
+    .flex-cont {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         width: 100%;
 
-        .logo{
+        .logo {
             text-decoration: none;
-    
-            img{
+
+            img {
                 width: 150px;
             }
         }
-    
-        ul{
+
+        ul {
             display: flex;
             list-style-type: none;
             column-gap: 20px;
-    
-            li{
-                a{
-                    color:$text-color-dark;
+            margin-right: 20px;
+
+            li {
+                a {
+                    color: $text-color-dark;
                     text-decoration: none;
                     padding: 10px;
                     border-radius: 10px;
                     transition: .2s;
                     font-size: 16px;
-    
-                    &:hover{
-                        background-color: $button-bg-primary-hover;
+
+                    &:hover {
+                        background-color: $header-elemets-sm-bg;
                     }
                 }
             }
-        }    
+        }
     }
 
-    mat-icon{
+    #user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
         width: 50px;
         height: 50px;
         font-size: 50px;
         color: white;
-        cursor:pointer;
+        cursor: pointer;
     }
 
-    #menu{
+    #menu {
         display: none;
         width: 50px;
         height: 50px;
         font-size: 50px;
         color: white;
-        cursor:pointer;
+        cursor: pointer;
     }
 }
 
-@media(width < 600px){
-    :host{
-        ul{
-            display: none;
+@media (max-width: 600px) {
+    :host {
+        .flex-cont ul {
+            display: none; /* Se oculta por defecto */
             flex-direction: column;
             position: absolute;
             top: 100%;
@@ -76,28 +81,29 @@
             background-color: $header-elemets-sm-bg;
             column-gap: 0;
 
-            &.opened{
-                display: flex;
+            &.opened {
+                display: flex; /* Solo se muestra cuando tiene la clase "opened" */
             }
 
-            li{
-                display: flex;
+            li {
+                display: flex; /* Se asegura que los <li> se muestren solo cuando "opened" está activado */
                 width: 100%;
 
-                a{
+                a {
                     width: 100%;
-                    padding: 15px 10px;
                     border-radius: 0;
+                    padding: 15px 10px;
 
-                    &:hover{
-                        background-color: $header-bg;
+                    &:hover {
+                        background-color: $header-bg; /* Cambio de fondo cuando se pasa el mouse */
                     }
                 }
             }
         }
 
-        #menu{
+        #menu {
             display: flex;
+            margin-right: 10px;
         }
     }
 }
