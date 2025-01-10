@@ -7,12 +7,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { NorGaraComponent } from './components/nor-gara/nor-gara.component';
+import { IbilbideaComponent } from './ibilbidea/ibilbidea.component';
+import { ErreskatatuakComponent } from './erreskatatuak/erreskatatuak.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NorGaraComponent
+    NorGaraComponent,
+    IbilbideaComponent,
+    ErreskatatuakComponent
   ],
   imports: [
     BrowserModule,

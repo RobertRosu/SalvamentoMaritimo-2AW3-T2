@@ -4,9 +4,21 @@
     </a>
     
     <ul [class]="!isMenuOpened ? '' : 'opened'">
-        <li><a href="#">Nor gara</a></li>
-        <li><a href="#">Ibilbidea</a></li>
-        <li><a href="#">Erreskatatuak</a></li>
+        <li>
+            <a href="#" 
+            routerLink="/nor-gara" 
+            [class]="activeRoute == 'nor-gara' ? 'active' : ''">Nor gara</a>
+        </li>
+        <li>
+            <a href="#" 
+            routerLink="/ibilbidea"
+            [class]="activeRoute == 'ibilbidea' ? 'active' : ''">Ibilbidea</a>
+        </li>
+        <li>
+            <a href="#" 
+            routerLink="/erreskatatuak"
+            [class]="activeRoute == 'erreskatatuak' ? 'active' : ''">Erreskatatuak</a>
+        </li>
     </ul>
 </div>
 
