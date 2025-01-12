@@ -6,22 +6,30 @@
     <ul [class]="!isMenuOpened ? '' : 'opened'">
         <li>
             <a href="#" 
+            draggable="false"
             routerLink="/nor-gara" 
             [class]="activeRoute == 'nor-gara' ? 'active' : ''">Nor gara</a>
         </li>
         <li>
-            <a href="#" 
+            <a href="#"
+            draggable="false"
             routerLink="/ibilbidea"
             [class]="activeRoute == 'ibilbidea' ? 'active' : ''">Ibilbidea</a>
         </li>
         <li>
             <a href="#" 
+            draggable="false"
             routerLink="/erreskatatuak"
             [class]="activeRoute == 'erreskatatuak' ? 'active' : ''">Erreskatatuak</a>
         </li>
     </ul>
 </div>
 
-<mat-icon id="menu" aria-hidden="false" aria-label="Example home icon" [fontIcon]="isMenuOpened ? 'close' : 'menu'" (click)="toggleIsMenuOpened()"></mat-icon>
+<i 
+id="menu" 
+[class]="['bi', !isMenuOpened ? 'bi-list' : 'bi-x']" 
+(click)="toggleIsMenuOpened()"></i>
 
-<mat-icon id="user" aria-hidden="false" aria-label="Example home icon" fontIcon="account_circle"></mat-icon>
+<i 
+id="user" 
+class="bi bi-person-circle"></i>

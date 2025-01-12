@@ -1,0 +1,1 @@
+{"version":3,"sources":["footer.component.scss","../../../scss/_colors.scss","footer.component.css"],"names":[],"mappings":"AAEA;EACI,aAAA;EACA,mBAAA;EACA,sBAAA;EACA,WAAA;EACA,yBCPQ;EDQR,aAAA;AEDJ;AFGI;EACI,aAAA;EACA,eAAA;EACA,qBAAA;EACA,qBAAA;OAAA,gBAAA;AEDR;AFGQ;EACI,eAAA;EACA,kBAAA;EACA,mBAAA;EACA,gBAAA;AEDZ;AFGY;EACI,yBCtBO;EDuBP,YCrBW;ACoB3B","file":"footer.component.css"}

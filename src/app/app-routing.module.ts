@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NorGaraComponent } from './components/nor-gara/nor-gara.component';
-import { IbilbideaComponent } from './ibilbidea/ibilbidea.component';
-import { ErreskatatuakComponent } from './erreskatatuak/erreskatatuak.component';
+import { IbilbideaComponent } from './components/ibilbidea/ibilbidea.component';
+import { ErreskatatuakComponent } from './components/erreskatatuak/erreskatatuak.component';
 
 const routes: Routes = [
   {path:'nor-gara', component:NorGaraComponent},

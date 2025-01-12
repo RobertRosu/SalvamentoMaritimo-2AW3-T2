@@ -32,6 +32,29 @@ $SMH-2AW3-T2-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($SMH-2AW3-T2-theme);
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import './scss/colors';
+
+.bi{
+  color:$text-color-dark;
+}
+
+.logo {
+  text-decoration: none;
+
+  img {
+      width: 150px;
+  }
+}
+
+a, img{
+  user-select: none; /* Para navegadores modernos */
+  user-drag: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none; /* Compatibilidad con WebKit */
+  -moz-user-select: none; /* Compatibilidad con Firefox */
+  -ms-user-select: none; /* Compatibilidad con Internet Explorer/Edge */
+}
 
 :root{
     font-family: "Open Sans", serif;
@@ -41,6 +64,7 @@ $SMH-2AW3-T2-theme: mat.define-light-theme((
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -49,5 +73,3 @@ body{
     flex-direction: column;
     width: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

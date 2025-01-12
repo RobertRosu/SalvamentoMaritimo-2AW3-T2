@@ -1,0 +1,101 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+}
+:host #video_container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  height: 90vh;
+}
+:host #video_container video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+:host #video_container #video_overlay {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+:host #video_container #video_overlay .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 25%;
+  height: 90vh;
+  padding: 15px 10px;
+  margin-left: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+:host #video_container #video_overlay .info h1 {
+  font-size: 34px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+:host #video_container #video_overlay .info .info_paragraphs {
+  margin-top: 40px;
+}
+:host #video_container #video_overlay .info .info_paragraphs p {
+  font-size: 20px;
+}
+:host #video_container #video_overlay .info .info_paragraphs p:first-child {
+  font-weight: bold;
+}
+:host #video_container #video_overlay .info .info_paragraphs p:last-child {
+  margin-top: 20px;
+}
+:host #card_container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 80%;
+  margin-top: 80px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+}
+:host #card_container .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid #415a77;
+  color: #415a77;
+  width: 100%;
+}
+:host #card_container .card h2 {
+  margin-top: 10px;
+}
+:host .ish_info {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 60px;
+  padding: 30px 0;
+}
+:host .ish_info p {
+  margin-top: 20px;
+  font-size: 20px;
+}
+:host .ish_info p span {
+  font-weight: bold;
+}
+:host .ish_info h1 {
+  color: #1b263b;
+}/*# sourceMappingURL=nor-gara.component.css.map */
