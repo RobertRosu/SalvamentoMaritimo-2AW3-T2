@@ -36,17 +36,17 @@
 :host #video_container #video_overlay .info {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 25%;
   height: 90vh;
-  padding: 15px 10px;
+  padding: 15px 20px;
   margin-left: 50px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 :host #video_container #video_overlay .info h1 {
   font-size: 34px;
   letter-spacing: 1px;
-  text-align: center;
 }
 :host #video_container #video_overlay .info .info_paragraphs {
   margin-top: 40px;
@@ -78,6 +78,7 @@
   border: 2px solid #415a77;
   color: #415a77;
   width: 100%;
+  border-radius: 10px;
 }
 :host #card_container .card h2 {
   margin-top: 10px;
@@ -95,7 +96,36 @@
 }
 :host .ish_info p span {
   font-weight: bold;
+  color: #0d1b2a;
 }
-:host .ish_info h1 {
-  color: #1b263b;
+:host .ish_info .section_title {
+  font-size: 35px;
+  color: #415a77;
+}
+
+@media (max-width: 600px) {
+  :host #video_container video {
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  :host #video_container #video_overlay .info {
+    width: 100%;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  :host #video_container #video_overlay .info .info_paragraphs {
+    font-size: 10px;
+  }
+  :host #card_container {
+    flex-direction: column;
+    -moz-column-gap: 0;
+         column-gap: 0;
+    row-gap: 30px;
+  }
+  :host .ish_info {
+    width: 90%;
+  }
+  :host .ish_info p {
+    font-size: 18px;
+  }
 }/*# sourceMappingURL=nor-gara.component.css.map */
