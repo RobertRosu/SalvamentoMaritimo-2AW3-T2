@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 use App\Models\Rescue;
+use App\Models\Travel;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,20 @@ class RescuedPersonFactory extends Factory
             'country' => fake()->randomElement(['Chad', 'Senegal', 'Senegal', 'Mali', 'Eritrea', 'Mauritania', 'Sudan', 'Libia']),
             'genre' => fake()->randomElement(['Hombre', 'Hombre', 'Hombre', 'Mujer', 'Mujer', 'Mujer', 'Otro']),
             'birth_date' => fake()->date(),  
-            'rescue_id' => Rescue::inRandomOrder()->first()->id,            
+            'rescue_id' => Rescue::inRandomOrder()->first()->id, 
+            'doctor_id' => function (array $attributes) {
+                // Recuperar el rescue que tiene el travel_id
+                $rescue = Rescue::find($attributes['rescue_id']);
+                
+                // Recuperar el doctor_id de la tabla travel usando el travel_id de la tabla rescue
+                if ($rescue && $rescue->travel_id) {
+                    $travel = Travel::find($rescue->travel_id);
+                    return $travel ? $travel->doctor_id : null;
+                }
+                
+                return null; // En caso de que no haya un travel_id o doctor_id
+            },
+            'diagnostic' => fake()->randomElement(['Deshidratazioa', 'Desnutrizioa', 'Osasuntsu']),
             'photo_src' => fake()->imageUrl(),         
         ];
     }
