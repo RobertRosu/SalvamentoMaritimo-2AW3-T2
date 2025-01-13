@@ -19,7 +19,9 @@ class RescueFactory extends Factory
     {
         return [
             'travel_id' => Travel::inRandomOrder()->first()->id,  
-            'numero_rescatados' => fake()->numberBetween(1, 100),     
+            'numero_rescatados' => fake()->numberBetween(1, 100),
+            'start_time' => $start_time = fake()->time('H:i'),
+            'end_time' => \Carbon\Carbon::parse($start_time)->addMinutes(fake()->numberBetween(40, 180))->format('H:i'),     
         ];
     }
 }

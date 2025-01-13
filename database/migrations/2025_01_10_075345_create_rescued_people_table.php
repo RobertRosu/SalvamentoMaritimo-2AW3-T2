@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('country');
+            $table->string('genre');
             $table->date('birth_date');
             $table->foreignId('rescue_id');
             $table->string('photo_src');

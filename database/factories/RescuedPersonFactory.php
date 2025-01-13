@@ -19,9 +19,11 @@ class RescuedPersonFactory extends Factory
     {
         return [
             'name' => fake()->name(),  
-            'country' => fake()->country(), 
+            'country' => fake()->randomElement(['Chad', 'Senegal', 'Senegal', 'Mali', 'Eritrea', 'Mauritania', 'Sudan', 'Libia']),
+            'genre' => fake()->randomElement(['Hombre', 'Hombre', 'Hombre', 'Mujer', 'Mujer', 'Mujer', 'Otro']),
             'birth_date' => fake()->date(),  
-            'rescue_id' => Rescue::inRandomOrder()->first()->id,            'photo_src' => fake()->imageUrl(),         
+            'rescue_id' => Rescue::inRandomOrder()->first()->id,            
+            'photo_src' => fake()->imageUrl(),         
         ];
     }
 }

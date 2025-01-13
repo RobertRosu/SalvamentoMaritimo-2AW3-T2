@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
+            $table->string('rol');
+            $table->date('start_date');
+            $table->string('status');
+            $table->date('stop_date')->nullable();
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }

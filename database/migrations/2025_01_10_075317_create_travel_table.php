@@ -16,9 +16,16 @@ return new class extends Migration
             $table->string('origen');
             $table->string('destino');
             $table->foreignId('doctor_id');
-            $table->foreignId('crewmember_id');
+            $table->foreignId('kapitaina_id');
+            $table->foreignId('makinen_arduraduna_id');
+            $table->foreignId('mekanikoa_id');
+            $table->foreignId('zubiko_ofiziala_id');
+            $table->foreignId('marinela_1_id');
+            $table->foreignId('marinela_2_id');
+            $table->foreignId('marinela_3_id');
+            $table->foreignId('erizaina_id');
+            $table->date('start_date');
             $table->timestamps();
-
         });
     }
 

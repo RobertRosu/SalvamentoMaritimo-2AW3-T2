@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(22)->create();
         Doctor::factory(14)->create();
-        CrewMember::factory(40)->create();
+        CrewMember::factory(80)->create();
         Travel::factory(18)->create();
         Rescue::factory(26)->create();
-        RescuedPerson::factory(100)->create();
+        RescuedPerson::factory(127)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

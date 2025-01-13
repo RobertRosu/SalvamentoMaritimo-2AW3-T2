@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('travel_id');
             $table->integer('numero_rescatados');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
 
         });

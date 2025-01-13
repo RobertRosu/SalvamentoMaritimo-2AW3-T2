@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('rol');
+            $table->date('start_date');
+            $table->string('status');
+            $table->date('stop_date')->nullable();
+            $table->string('reason')->nullable();
             $table->timestamps();
         });
     }
