@@ -1,10 +1,10 @@
 <section id="filters">
-    <form (ngSubmit)="filtroakAplikatu()">
+    <form>
         <input type="text" id="search" placeholder="Izenaren arabera bilatu" [(ngModel)]="filtroak.izena" [ngModelOptions]="{standalone: true}">        
         <div id="filters_container">
             <div class="filter">
                 <label for="sexua"><h1>Sexua</h1></label>
-                <select id="sexua" #sexua>
+                <select id="sexua" #sexua [(ngModel)]="filtroak.sexua" [ngModelOptions]="{standalone: true}">
                     <option value="0">Sexu bat aukeratu</option>
                     <option value="emakumea">Emakumea</option>
                     <option value="gizona">Gizona</option>
@@ -14,12 +14,12 @@
     
             <div class="filter">
                 <label for="adina"><h1>Adina</h1></label>
-                <input id="adina" type="number" value="0" #adina>
+                <input id="adina" type="number" value="0" #adina [(ngModel)]="filtroak.adina" [ngModelOptions]="{standalone: true}">
             </div>
         
             <div class="filter">
                 <label for="naziotasuna"><h1>Naziotasuna</h1></label>
-                <select id="naziotasuna" #naziotasuna>
+                <select id="naziotasuna" #naziotasuna [(ngModel)]="filtroak.naziotasuna" [ngModelOptions]="{standalone: true}">
                     <option value="0">Aukeratu naziotasun bat</option>
                     <option value="senegal">Senegal</option>
                     <option value="nigeria">Nigeria</option>
@@ -29,8 +29,7 @@
             </div>
         </div>
         <div id="button_container">
-            <button (click)="$event.preventDefault();filtroakAplikatu()">Aplikatu</button>
-            <button type="reset">Berrezarri</button>    
+            <button type="reset" (click)="berrezarriFiltroak()">Berrezarri</button>    
         </div>
     </form>
 </section>

@@ -2,23 +2,24 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Errefuxiatua } from '../models/Errefuxiatua';
 
 @Pipe({
-  name: 'filterErrefuxiatuak'
+  name: 'filterErrefuxiatuak',
+  pure: false // Aldaketa bat dagoen bakoitzean `transform()` metodoa exekutatuko du
 })
 export class FilterErrefuxiatuakPipe implements PipeTransform {
 
-  transform(
-    errefuxiatuak: Errefuxiatua[], 
-    filtroak: { izena: string; adina: number; sexua: string; naziotasuna: string }
-  ): Errefuxiatua[] {
-    if (!errefuxiatuak) return [];
+  transform(errefuxiatuak: Errefuxiatua[], filtroak: any): Errefuxiatua[] {
+    if (!errefuxiatuak || !filtroak) {
+      return errefuxiatuak;
+    }
 
     return errefuxiatuak.filter(errefuxiatua => {
-      const izenaMatches = errefuxiatua.izena.toLowerCase().includes(filtroak.izena.toLowerCase());
-      const adinaMatches = filtroak.adina === 0 || errefuxiatua.adina === filtroak.adina;
-      const sexuaMatches = filtroak.sexua === '0' || errefuxiatua.sexua === filtroak.sexua;
-      const naziotasunaMatches = filtroak.naziotasuna === '0' || errefuxiatua.naziotasuna === filtroak.naziotasuna;
 
-      return izenaMatches && adinaMatches && sexuaMatches && naziotasunaMatches;
+      const izenaFiltroa = !filtroak.izena || errefuxiatua.izena.toLowerCase().includes(filtroak.izena.toLowerCase());
+      const sexuaFiltroa = filtroak.sexua === '0' || errefuxiatua.sexua === filtroak.sexua;
+      const adinaFiltroa = !filtroak.adina || errefuxiatua.adina === filtroak.adina;
+      const naziotasunaFiltroa = filtroak.naziotasuna === '0' || errefuxiatua.naziotasuna === filtroak.naziotasuna;
+
+      return izenaFiltroa && sexuaFiltroa && adinaFiltroa && naziotasunaFiltroa;
     });
   }
 

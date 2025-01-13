@@ -20,20 +20,20 @@ export class ErreskatatuakComponent {
     return errefuxiatua.id
   }
 
-  @ViewChild('sexua') sexuaElement!: ElementRef;
-  @ViewChild('adina') adinaElement!: ElementRef;
-  @ViewChild('naziotasuna') naziotasunaElement!: ElementRef;
-
-  filtroak: {izena: string, adina: number, sexua: string, naziotasuna: string} = {
+  filtroak = {
     izena: '',
-    adina: 0,
     sexua: '0',
+    adina: 0,
     naziotasuna: '0'
-  }
+  };
 
-  filtroakAplikatu() {
-    this.filtroak.sexua = this.sexuaElement.nativeElement.value;
-    this.filtroak.adina = Number(this.adinaElement.nativeElement.value);
-    this.filtroak.naziotasuna = this.naziotasunaElement.nativeElement.value;
+  berrezarriFiltroak() {
+    this.filtroak = {
+      izena: '',
+      sexua: '0',
+      adina: 0,
+      naziotasuna: '0',
+    };
   }
+  
 }

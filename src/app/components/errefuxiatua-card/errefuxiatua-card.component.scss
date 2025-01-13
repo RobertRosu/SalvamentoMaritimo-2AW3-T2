@@ -14,13 +14,21 @@
         width: 100px;
         height: 100;
         border-radius: 50%;
+        border: 2px solid $header-elemets-sm-bg;
     }
 
     .info{
         width: 100%;
         margin-left: 20px;
+
         h2{
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        p{
+            span{
+                font-weight: 700;
+            }
         }
     }
 }
