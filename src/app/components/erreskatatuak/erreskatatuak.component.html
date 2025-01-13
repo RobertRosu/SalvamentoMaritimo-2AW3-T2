@@ -1,41 +1,44 @@
 <section id="filters">
-    <input type="text" id="search" placeholder="Izenaren arabera bilatu">
-    <form action="">
-    <div id="filters_container">
-        <div class="filter">
-            <label for="sexua"><h1>Sexua</h1></label>
-            <select id="sexua" #sexua>
-                <option value="0">Sexu bat aukeratu</option>
-                <option value="emakumea">Emakumea</option>
-                <option value="gizona">Gizona</option>
-                <option value="beste-bat">Beste bat</option>
-            </select>
-        </div>
+    <form (ngSubmit)="filtroakAplikatu()">
+        <input type="text" id="search" placeholder="Izenaren arabera bilatu" [(ngModel)]="filtroak.izena" [ngModelOptions]="{standalone: true}">        
+        <div id="filters_container">
+            <div class="filter">
+                <label for="sexua"><h1>Sexua</h1></label>
+                <select id="sexua" #sexua>
+                    <option value="0">Sexu bat aukeratu</option>
+                    <option value="emakumea">Emakumea</option>
+                    <option value="gizona">Gizona</option>
+                    <option value="beste-bat">Beste bat</option>
+                </select>
+            </div>
     
-        <div class="filter">
-            <label for="adina"><h1>Adina</h1></label>
-            <input id="adina" type="number" value="0" #adina>
+            <div class="filter">
+                <label for="adina"><h1>Adina</h1></label>
+                <input id="adina" type="number" value="0" #adina>
+            </div>
+        
+            <div class="filter">
+                <label for="naziotasuna"><h1>Naziotasuna</h1></label>
+                <select id="naziotasuna" #naziotasuna>
+                    <option value="0">Aukeratu naziotasun bat</option>
+                    <option value="senegal">Senegal</option>
+                    <option value="nigeria">Nigeria</option>
+                    <option value="maroko">Maroko</option>
+                    <option value="N/A">N/A</option>
+                </select>
+            </div>
         </div>
-    
-        <div class="filter">
-            <label for="naziotasuna"><h1>Naziotasuna</h1></label>
-            <select id="naziotasuna" #naziotasuna>
-                <option value="0">Aukeratu naziotasun bat</option>
-                <option value="senegal">Senegal</option>
-                <option value="nigeria">Nigeria</option>
-                <option value="maroko">Maroko</option>
-                <option value="N/A">N/A</option>
-            </select>
+        <div id="button_container">
+            <button (click)="$event.preventDefault();filtroakAplikatu()">Aplikatu</button>
+            <button type="reset">Berrezarri</button>    
         </div>
-    </div>
-    <div id="button_container">
-        <button (click)="$event.preventDefault()">Aplikatu</button>
-        <button type="reset">Berrezarri</button>    
-    </div>
-</form>
+    </form>
 </section>
+
 <section id="card_container">
-    <ng-container *ngFor="let errefuxiatua of errefuxiatuak; trackBy:getId">
+    <ng-container *ngFor="let errefuxiatua of errefuxiatuak | filterErrefuxiatuak: filtroak; trackBy:getId">
         <app-errefuxiatua-card [datuak]="errefuxiatua"/>
     </ng-container>
 </section>
+
+<app-footer />

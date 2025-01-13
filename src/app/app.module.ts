@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -11,6 +12,7 @@ import { IbilbideaComponent } from './components/ibilbidea/ibilbidea.component';
 import { ErreskatatuakComponent } from './components/erreskatatuak/erreskatatuak.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ErrefuxiatuaCardComponent } from './components/errefuxiatua-card/errefuxiatua-card.component';
+import { FilterErrefuxiatuakPipe } from './pipes/filter-errefuxiatuak.pipe';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { ErrefuxiatuaCardComponent } from './components/errefuxiatua-card/errefu
     IbilbideaComponent,
     ErreskatatuakComponent,
     FooterComponent,
-    ErrefuxiatuaCardComponent
+    ErrefuxiatuaCardComponent,
+    FilterErrefuxiatuakPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

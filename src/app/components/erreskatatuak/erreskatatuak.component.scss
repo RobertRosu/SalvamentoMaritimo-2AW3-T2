@@ -71,12 +71,11 @@
 
     #card_container{
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap:15px;
         width: 100%;
         min-height: 50vh;
         height: auto;
-        
         background-color: $secondary-bg;
         padding: 20px 10px;
     }

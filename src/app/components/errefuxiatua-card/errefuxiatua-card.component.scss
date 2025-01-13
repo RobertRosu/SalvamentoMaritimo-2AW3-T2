@@ -3,13 +3,24 @@
 
 :host{
     display: flex;
-    align-items: start;
-    flex-direction: column;
+    align-items: center;
     border: 2px solid $header-elemets-sm-bg;
     border-radius: 10px;
+    overflow: hidden;
+    height: fit-content;
     padding: 10px;
 
-    h1{
-        margin-bottom: 20px;
+    img{
+        width: 100px;
+        height: 100;
+        border-radius: 50%;
+    }
+
+    .info{
+        width: 100%;
+        margin-left: 20px;
+        h2{
+            margin-bottom: 20px;
+        }
     }
 }
