@@ -8,16 +8,7 @@
                 <option value="0">Sexu bat aukeratu</option>
                 <option value="emakumea">Emakumea</option>
                 <option value="gizona">Gizona</option>
-            </select>
-        </div>
-    
-        <div class="filter">
-            <label for="babeslekua"><h1>Babeslekua</h1></label>
-            <select id="babeslekua" #babeslekua>
-                <option value="0">N/A</option>
-                <option value="babesleku 1">Babesleku 1</option>
-                <option value="babesleku 2">Babesleku 2</option>
-                <option value="babesleku 3">Babesleku 3</option>
+                <option value="beste-bat">Beste bat</option>
             </select>
         </div>
     
@@ -29,10 +20,11 @@
         <div class="filter">
             <label for="naziotasuna"><h1>Naziotasuna</h1></label>
             <select id="naziotasuna" #naziotasuna>
-                <option value="0">N/A</option>
+                <option value="0">Aukeratu naziotasun bat</option>
                 <option value="senegal">Senegal</option>
                 <option value="nigeria">Nigeria</option>
                 <option value="maroko">Maroko</option>
+                <option value="N/A">N/A</option>
             </select>
         </div>
     </div>
@@ -42,4 +34,8 @@
     </div>
 </form>
 </section>
-<section id="card_container"></section>
+<section id="card_container">
+    <ng-container *ngFor="let errefuxiatua of errefuxiatuak; trackBy:getId">
+        <app-errefuxiatua-card [datuak]="errefuxiatua"/>
+    </ng-container>
+</section>

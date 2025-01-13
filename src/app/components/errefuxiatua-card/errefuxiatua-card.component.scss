@@ -1,0 +1,15 @@
+@import './../../../scss/colors';
+@import './../../../scss/mediaqueries';
+
+:host{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    border: 2px solid $header-elemets-sm-bg;
+    border-radius: 10px;
+    padding: 10px;
+
+    h1{
+        margin-bottom: 20px;
+    }
+}

@@ -10,6 +10,7 @@ import { NorGaraComponent } from './components/nor-gara/nor-gara.component';
 import { IbilbideaComponent } from './components/ibilbidea/ibilbidea.component';
 import { ErreskatatuakComponent } from './components/erreskatatuak/erreskatatuak.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ErrefuxiatuaCardComponent } from './components/errefuxiatua-card/errefuxiatua-card.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NorGaraComponent,
     IbilbideaComponent,
     ErreskatatuakComponent,
-    FooterComponent
+    FooterComponent,
+    ErrefuxiatuaCardComponent
   ],
   imports: [
     BrowserModule,
