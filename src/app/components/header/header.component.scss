@@ -24,6 +24,7 @@
             list-style-type: none;
             column-gap: 20px;
             margin-right: 20px;
+            margin-bottom: 0;
 
             li {
                 a {
@@ -77,6 +78,7 @@
             width: 100%;
             background-color: $header-elemets-sm-bg;
             column-gap: 0;
+            padding-left: 0;
 
             &.opened {
                 display: flex;

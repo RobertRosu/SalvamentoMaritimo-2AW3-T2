@@ -14,7 +14,7 @@
         position:relative;
         flex-direction: column;
         width: 100%;
-        height: 90vh;
+        height: calc(100vh - 74px);
 
         video{
             width: 100%;
