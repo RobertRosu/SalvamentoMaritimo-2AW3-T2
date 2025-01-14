@@ -13,7 +13,7 @@ class CrewMemberController extends Controller
      */
     public function index()
     {
-        //
+        return view('crewMember.index');
     }
 
     /**
