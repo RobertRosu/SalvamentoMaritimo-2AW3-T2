@@ -1,0 +1,95 @@
+@import '../../../scss/colors';
+
+.timeline {
+  border-left: 3px solid $button-bg-secondary;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  background: #fefefee2;
+  margin: 0 auto;
+  letter-spacing: 0.2px;
+  position: relative;
+  line-height: 1.4em;
+  font-size: 1.03em;
+  padding: 50px;
+  list-style: none;
+  text-align: left;
+  max-width: 50%;
+
+  // Responsividad para pantallas pequeñas
+  @media (max-width: 991px) {
+    max-width: 98%;
+    padding: 25px;
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .event {
+    border-bottom: 1px dashed $button-bg-secondary;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    position: relative;
+
+    // Responsividad para pantallas pequeñas
+    @media (max-width: 991px) {
+      padding-top: 30px;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border: none;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      display: block;
+      top: 0;
+    }
+
+    &::before {
+      left: -170px;
+      top: -4px;
+      content: attr(data-date);
+      text-align: center;
+      font-size: 0.8em;
+      min-width: 120px;
+      color: #fff;
+      background-color: $button-bg-secondary;
+      border-bottom: 3px solid $button-bg-secondary;
+      border-radius: 7px 0 0 7px;
+
+      // Responsividad para pantallas pequeñas
+      @media (max-width: 991px) {
+        left: 0;
+        text-align: left;
+        border: none;
+        top: -2px;
+        color: rgb(70, 70, 70);
+        background-color: transparent;
+        font-size: 1em;
+      }
+    }
+
+    &::after {
+      -webkit-box-shadow: 0 0 0 3px $button-bg-secondary;
+      box-shadow: 0 0 0 3px $button-bg-secondary;
+      background: #fff;
+      left: -56px;
+      border-radius: 50%;
+      height: 9px;
+      width: 9px;
+      content: "";
+      top: 5px;
+
+      // Responsividad para pantallas pequeñas
+      @media (max-width: 991px) {
+        left: -31px;
+        
+      }
+    }
+  }
+}

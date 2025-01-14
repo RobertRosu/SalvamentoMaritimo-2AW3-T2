@@ -1,1 +1,12 @@
-<p>ibilbidea works!</p>
+<div class="container">
+    <ul class="timeline">
+    <li
+        *ngFor="let event of events; let i = index"
+        class="event"
+        [attr.data-date]="event.date"
+    >
+        <h3>{{ event.title }}</h3>
+        <p>{{ event.description }}</p>
+    </li>
+    </ul>
+</div>
