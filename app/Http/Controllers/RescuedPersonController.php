@@ -13,7 +13,8 @@ class RescuedPersonController extends Controller
      */
     public function index()
     {
-        //
+        $rescued_people = RescuedPerson::all();
+        return view('rescued_people.index', compact('rescued_people')); 
     }
 
     /**
@@ -21,7 +22,7 @@ class RescuedPersonController extends Controller
      */
     public function create()
     {
-        //
+        // return view('rescued_person.form');
     }
 
     /**
@@ -61,6 +62,7 @@ class RescuedPersonController extends Controller
      */
     public function destroy(RescuedPerson $rescuedPerson)
     {
-        //
+        $rescued_person=RescuedPerson::where('id',$id)->delete();
+        // return redirect()->route('rescued_people.index');
     }
 }
