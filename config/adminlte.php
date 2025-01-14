@@ -333,7 +333,7 @@ return [
         ],
         [
             'text' => 'Erreskatatuak',
-            'url' => '#',
+            'url' => 'erreskatatuak',
             'icon' => 'fas fa-universal-access',
         ],
         // ['header' => 'labels'],

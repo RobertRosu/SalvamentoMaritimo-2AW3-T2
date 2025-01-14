@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrewMemberController;
+use App\Http\Controllers\RescuedPersonController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,3 +29,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('langileak', CrewMemberController::class)->middleware('auth');
+Route::resource('erreskatatuak', RescuedPersonController::class)->middleware('auth');
