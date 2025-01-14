@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
@@ -44,9 +45,12 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Doctor $doctor)
+    public function edit($id)
     {
-        //
+        $doctor = Doctor::findOrFail($id);
+        $doctor->start_date = Carbon::parse($doctor->start_date);
+        $doctor->stop_date = Carbon::parse($doctor->stop_date);
+        return view('doctor.form', compact('doctor'));
     }
 
     /**
