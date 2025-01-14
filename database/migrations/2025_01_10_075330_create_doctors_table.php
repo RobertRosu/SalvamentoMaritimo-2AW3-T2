@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('rol');
+            $table->string('rol')->default('Medikua');
             $table->date('start_date');
             $table->string('status');
             $table->date('stop_date')->nullable();

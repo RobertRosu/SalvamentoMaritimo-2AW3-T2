@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
+// use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
@@ -56,9 +57,22 @@ class DoctorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDoctorRequest $request, Doctor $doctor)
+    public function update(UpdateDoctorRequest $request, int $id)
     {
-        //
+        $doctor = Doctor::find($id);
+
+        $doctor->name = $request->name;
+        $doctor->email = $request->email;
+        $doctor->start_date = $request->start_date;
+        $doctor->stop_date = $request->stop_date;
+        $doctor->status = $request->status;
+        $doctor->reason = $request->reason;
+
+        // $doctor aldagaiaren datuak aldatu diren egiaztatzen du
+        if($doctor->isDirty()){
+            $doctor->save();
+        }
+        return redirect()->route('medikuak.index');
     }
 
     /**

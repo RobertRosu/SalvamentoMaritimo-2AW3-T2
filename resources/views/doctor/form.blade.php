@@ -18,37 +18,34 @@
         <input type="text" class="form-control" id="name" name="name" value="{{ $doctor->name }}" required>
     </div>
 
-    <!-- Campo País -->
+    <!-- Campo Email -->
     <div class="form-group">
-        <label for="country">Herrialdea</label>
-        <input type="text" class="form-control" id="country" name="country" value="{{ $doctor->country }}" required>
+        <label for="email">Email-a</label>
+        <input type="text" class="form-control" id="email" name="email" value="{{ $doctor->email }}" required>
     </div>
 
-    <!-- Campo Género -->
+    <!-- Campo Fecha de inicio -->
     <div class="form-group">
-        <label for="genre">Sexua</label>
-        <input type="text" class="form-control" id="genre" name="genre" value="{{ $doctor->genre }}" required>
-    </div>
-
-    <!-- Campo Fecha de nacimiento -->
-    <div class="form-group">
-        <label for="birth_date">Jaiotze-data</label>
-        <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ \Carbon\Carbon::parse($doctor->birth_date)->toDateString() }}" required>
+        <label for="start_date">Hasiera data</label>
+        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ \Carbon\Carbon::parse($doctor->start_date)->toDateString() }}" required readonly>
         </div>
 
-    <!-- Campo Diagnóstico -->
+    <!-- Campo Fecha de fin -->
     <div class="form-group">
-        <label for="diagnostic">Diagnostikoa</label>
-        <input type="text" class="form-control" id="diagnostic" name="diagnostic" value="{{ $doctor->diagnostic }}" required>
+        <label for="stop_date">Amaiera data</label>
+        <input type="date" class="form-control" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($doctor->stop_date)->toDateString() }}" required>
     </div>
 
-    <!-- Campo Foto -->
+    <!-- Campo Estado -->
     <div class="form-group">
-        <label for="photo_src">Argazkia</label>
-        <input type="file" class="form-control-file" id="photo_src" name="photo_src">
-        @if ($doctor->photo_src)
-            <img src="{{ asset('storage/' . $doctor->photo_src) }}" alt="Foto actual" width="100">
-        @endif
+        <label for="status">Egoera</label>
+        <input type="text" class="form-control" id="status" name="status" value="{{ $doctor->status }}">
+    </div>
+
+    <!-- Campo Razon -->
+    <div class="form-group">
+        <label for="reason">Arrazoia</label>
+        <input type="text" class="form-control" id="reason" name="reason" value="{{ $doctor->reason }}">
     </div>
 
     <!-- Botón para enviar el formulario y guardar los cambios -->

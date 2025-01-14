@@ -28,7 +28,6 @@ class DoctorFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'rol' => 'Medikua',
             'start_date' => $start_date,  
             'status' => $status,
             'stop_date' => $stop_date,
