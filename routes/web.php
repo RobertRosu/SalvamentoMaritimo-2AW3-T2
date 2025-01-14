@@ -3,8 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrewMemberController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\RescuedPersonController;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Route::get('/langileak', [App\Http\Controllers\CrewMemberController::class, 'langileak'])->name('langileak');
+    Route::resource('langileak', CrewMemberController::class);
+    Route::resource('medikuak', DoctorController::class);
+    Route::resource('erreskatatuak', RescuedPersonController::class);
 });
 
 require __DIR__.'/auth.php';
@@ -27,6 +30,3 @@ require __DIR__.'/auth.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::resource('langileak', CrewMemberController::class)->middleware('auth');
-Route::resource('erreskatatuak', RescuedPersonController::class)->middleware('auth');

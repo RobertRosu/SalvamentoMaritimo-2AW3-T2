@@ -110,14 +110,14 @@ return [
     */
 
     'preloader' => [
-        'enabled' => false,
-        'mode' => 'fullscreen',
+        'enabled' => true,
+        'mode' => 'cwrapper',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/logo_bgless.png',
+            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'SMH Preloader Image',
-            'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'effect' => '',
+            'width' => 100,
+            'height' => 100,
         ],
     ],
 
@@ -328,7 +328,7 @@ return [
         ],
         [
             'text' => 'Medikuak',
-            'url' => '#',
+            'url' => 'medikuak',
             'icon' => 'fas fa-star-of-life',
         ],
         [

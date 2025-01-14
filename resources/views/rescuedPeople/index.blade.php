@@ -2,6 +2,11 @@
 
 @section('title', 'Erreskatatuak')
 
+@section('preloader')
+    <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
+    <h4 class="mt-4 text-dark">Kargatzen...</h4>
+@stop
+
 @section('content')
 <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
