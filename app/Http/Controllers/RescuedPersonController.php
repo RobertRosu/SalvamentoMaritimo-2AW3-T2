@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Http\Requests\StoreRescuedPersonRequest;
 use App\Http\Requests\UpdateRescuedPersonRequest;
 use App\Models\RescuedPerson;
@@ -44,9 +45,11 @@ class RescuedPersonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RescuedPerson $rescuedPerson)
+    public function edit($id)
     {
-        //
+        $rescuedPerson = RescuedPerson::findOrFail($id);
+        $rescuedPerson->birth_date = Carbon::parse($rescuedPerson->birth_date);
+        return view('rescuedPeople.form', compact('rescuedPerson'));
     }
 
     /**
@@ -60,9 +63,9 @@ class RescuedPersonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RescuedPerson $rescuedPerson)
+    public function destroy($id)
     {
-        $rescued_person=RescuedPerson::where('id',$id)->delete();
-        return redirect()->route('rescued_people.index');
+        $rescuedPerson=RescuedPerson::where('id',$id)->delete();
+        return redirect()->route('erreskatatuak.index');
     }
 }

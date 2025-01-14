@@ -21,7 +21,7 @@ class RescuedPersonFactory extends Factory
         return [
             'name' => fake()->name(),  
             'country' => fake()->randomElement(['Chad', 'Senegal', 'Senegal', 'Mali', 'Eritrea', 'Mauritania', 'Sudan', 'Libia']),
-            'genre' => fake()->randomElement(['Hombre', 'Hombre', 'Hombre', 'Mujer', 'Mujer', 'Mujer', 'Otro']),
+            'genre' => fake()->randomElement(['Gizona', 'Gizona', 'Gizona', 'Emakumea', 'Emakumea', 'Emakumea', 'Beste bat']),
             'birth_date' => fake()->date(),  
             'rescue_id' => Rescue::inRandomOrder()->first()->id, 
             'doctor_id' => function (array $attributes) {
