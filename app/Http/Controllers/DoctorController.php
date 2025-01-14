@@ -60,8 +60,9 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Doctor $doctor)
+    public function destroy($id)
     {
-        //
+        Doctor::where('id', $id)->delete();
+        return redirect()->route('medikuak.index');
     }
 }
