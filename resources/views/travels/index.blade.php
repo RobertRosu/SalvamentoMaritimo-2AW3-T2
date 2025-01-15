@@ -36,7 +36,7 @@
                                 <td>
                                 <a href="{{ route('bidaiak.show', ['bidaiak' => $travel->id]) }}" class="btn btn-secondary">Xehetasunak</a>
 
-                                <a href="{{ route('bidaiak.edit', ['bidaiak' => $travel->id]) }}" class="btn btn-primary">Aldatu</a>
+                                <a href="{{ route('bidaiak.edit', $travel->id) }}" class="btn btn-primary">Aldatu</a>
 
                                     <form action="{{ route('bidaiak.destroy', ['bidaiak' => $travel->id]) }}" method="POST" style="display: inline;">
                                         @csrf

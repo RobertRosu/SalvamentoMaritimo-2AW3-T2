@@ -8,42 +8,50 @@
 @stop
 @section('content')
 <!-- Formulario de edición -->
-<form action="{{ route('medikuak.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('bidaiak.update', $travel) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
     <!-- Campo Nombre -->
     <div class="form-group">
-        <label for="name">Izena</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ $doctor->name }}" required>
+        <label for="origen">Irteera</label>
+        <input type="text" class="form-control" id="origen" name="origen" value="{{ $travel->origen }}" required>
     </div>
 
     <!-- Campo Email -->
     <div class="form-group">
-        <label for="email">Email-a</label>
-        <input type="text" class="form-control" id="email" name="email" value="{{ $doctor->email }}" required>
+        <label for="destino">Helmuga</label>
+        <input type="text" class="form-control" id="destino" name="destino" value="{{ $travel->destino }}" required>
     </div>
 
     <!-- Campo Fecha de fin -->
     <div class="form-group">
-        <label for="stop_date">Amaiera data</label>
-        <input type="date" class="form-control" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($doctor->stop_date)->toDateString() }}" required>
+        <label for="doctor_id">ID Doktorea</label>
+        <select name="doctor_id" id="doctor_id" class="form-control">
+            @foreach($doctors as $doctor)
+                <option value="{{$doctor['id']}}">{{$doctor['id']}} - {{$doctor['name']}}</option>
+            @endforeach
+        </select>
     </div>
 
     <!-- Campo Estado -->
     <div class="form-group">
-        <label for="status">Egoera</label>
-        <select class="form-control" id="status" name="status">
-            <option value="Aktibo">Aktibo</option>
-            <option value="Aktibo">Inaktibo</option>
-            <option value="Aktibo">Bajan</option>
+        <label for="kapitaina_id">ID Kapitaina</label>
+        <select class="form-control" id="kapitaina_id" name="kapitaina_id">
+            @foreach($captains as $captain)
+                <option value="{{$captain['id']}}">{{$captain['id']}} - {{$captain['name']}}</option>
+            @endforeach
         </select>
     </div>
 
-    <!-- Campo Razon -->
+    <!-- Campo Estado -->
     <div class="form-group">
-        <label for="reason">Arrazoia</label>
-        <input type="text" class="form-control" id="reason" name="reason" value="{{ $doctor->reason }}">
+        <label for="makinen_arduraduna_id">ID Makinen arduraduna</label>
+        <select class="form-control" id="makinen_arduraduna_id" name="makinen_arduraduna_id">
+            @foreach($machine_managers as $machine_manager)
+                <option value="{{$machine_manager['id']}}">{{$machine_manager['id']}} - {{$machine_manager['name']}}</option>
+            @endforeach
+        </select>
     </div>
 
     <!-- Botón para enviar el formulario y guardar los cambios -->

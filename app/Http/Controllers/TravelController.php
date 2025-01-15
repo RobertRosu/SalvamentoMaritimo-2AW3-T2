@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTravelRequest;
 use App\Http\Requests\UpdateTravelRequest;
 use App\Models\Travel;
+use App\Models\Doctor;
+use App\Models\CrewMember;
 
 class TravelController extends Controller
 {
@@ -44,9 +46,13 @@ class TravelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Travel $travel)
+    public function edit(int $id)
     {
-        //
+        $travel = Travel::findOrFail($id);
+        $doctors = Doctor::select('id', 'name')->get();
+        $captains = CrewMember::select('id', 'name')->where('rol', 'Kapitaina')->get();
+        $machine_managers = CrewMember::select('id', 'name')->where('rol', 'Makinen arduraduna')->get();
+        return view('travels.form_edit', compact('travel', 'doctors', 'captains', 'machine_managers'));
     }
 
     /**
@@ -63,6 +69,6 @@ class TravelController extends Controller
     public function destroy(int $id)
     {
         Travel::where('id', $id)->delete();
-        return redirect()->route('bidaiak.index');
+        return view('travels.form_edit');
     }
 }
