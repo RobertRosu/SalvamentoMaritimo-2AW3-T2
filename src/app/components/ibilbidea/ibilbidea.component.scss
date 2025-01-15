@@ -2,8 +2,7 @@
 
 .timeline {
   border-left: 3px solid $button-bg-secondary;
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
+  border-right: 3px solid $button-bg-secondary;
   background: #fefefee2;
   margin: 0 auto;
   letter-spacing: 0.2px;
@@ -12,7 +11,6 @@
   font-size: 1.03em;
   padding: 50px;
   list-style: none;
-  text-align: left;
   max-width: 50%;
 
   // Responsividad para pantallas pequeñas
@@ -60,7 +58,6 @@
       color: #fff;
       background-color: $button-bg-secondary;
       border-bottom: 3px solid $button-bg-secondary;
-      border-radius: 7px 0 0 7px;
 
       // Responsividad para pantallas pequeñas
       @media (max-width: 991px) {
@@ -91,5 +88,45 @@
         
       }
     }
+
+    @media (min-width: 992px) { // Responsividad para pantallas grandes, solo alterna de lado en grande
+      &.left {
+        .title {
+          text-align: left;
+          margin-left: 0;
+          margin-right: auto;
+        }
+  
+        &::before {
+          left: -170px; // Posición a la izquierda
+          border-radius: 7px 0 0 7px;
+        }
+  
+        &::after {
+          left: -56px; // Punto en la línea para eventos a la izquierda
+        }
+      }
+  
+      &.right {
+        .title {
+          text-align: right;
+          margin-right: 0;
+          margin-left: auto;
+        }
+  
+        &::before {
+          left: auto;
+          right: -170px; // Posición a la derecha
+          border-radius: 0 7px 7px 0;
+        }
+  
+        &::after {
+          left: auto;
+          right: -56px; // Punto en la línea para eventos a la derecha
+        }
+      }
+      
+    }
+
   }
 }
