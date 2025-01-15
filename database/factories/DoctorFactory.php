@@ -16,7 +16,7 @@ class DoctorFactory extends Factory
      */
     public function definition(): array
     {
-        $status = fake()->randomElement(['Aktibo', 'Aktibo', 'Inaktibo', 'Bajan']);
+        $status = fake()->randomElement(['Aktibo', 'Inaktibo', 'Bajan']);
         $start_date = fake()->date();
 
 
@@ -28,7 +28,6 @@ class DoctorFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'rol' => 'Medikua',
             'start_date' => $start_date,  
             'status' => $status,
             'stop_date' => $stop_date,

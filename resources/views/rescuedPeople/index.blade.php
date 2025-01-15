@@ -8,43 +8,68 @@
 @stop
 
 @section('content')
-<x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('ERRESKATATUAK') }}     
-            <a href="{{route('erreskatatuak.create')}}">
-            <button type="button"  class="ml-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create new note</button>
-            </a>
-        </h2>
-    </x-slot>
+<section id="erreskatatuak" class="taula">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Izena</th>
+                                <th class="d-none d-md-table-cell">Herrialdea</th>
+                                <th>Sexua</th>
+                                <th class="d-none d-md-table-cell">Jaiotze-data</th>
+                                <th>Diagnostikoa</th>
+                                <th><button type="button" class="btn btn-info">Erregistro berria sortu</button></th>
 
-    @forelse ($rescued_people as $rescued_person)
-    <div class="py-2">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <strong><h3>{{$rescued_person->id}} - {{$rescued_person->name}}</h3></strong><p>{{$rescued_person->country}}</p>
-                    <button type="button" class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update</button>
-                        <form action="" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="mt-4 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-                    </form>
-                   
-                   
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="emaitzaErreskatatuak">
+                            <!-- ILARAK HEMEN AGERTUKO DIRA -->
+
+
+                            @forelse ($rescued_people as $rescued_person)
+                            <tr>
+                                <td>{{$rescued_person->id}}</td>
+                                <td>{{$rescued_person->name}}</td>
+                                <td>{{$rescued_person->country}}</td>
+                                <td>{{$rescued_person->genre}}</td>
+                                <td>{{$rescued_person->birth_date}}</td>
+                                <td>{{$rescued_person->diagnostic}}</td>
+                                <td>
+                                <a href="{{ route('erreskatatuak.edit', ['erreskatatuak' => $rescued_person->id]) }}" class="btn btn-primary">Aldatu</a>
+                                    <!-- <form action="{{ route('erreskatatuak.update', ['erreskatatuak' => $rescued_person->id]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-primary">Aldatu</button>
+                                    </form> -->
+
+                                    <form action="{{ route('erreskatatuak.destroy', ['erreskatatuak' => $rescued_person->id]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Ezabatu</button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                            @empty
+                            <div class="py-12">
+                                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                                        <div class="p-6 text-gray-900 dark:text-gray-100">
+                                            {{ __("No hay registros.") }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforelse
+
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-    </div>    
-    @empty
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("No hay registros.") }}
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforelse
+            </section>
+
+
 
 @endsection

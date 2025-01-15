@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
+// use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
@@ -13,7 +15,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return view("doctor.index");
+        $doctors = Doctor::all();
+        return view("doctor.index", compact('doctors'));
     }
 
     /**
@@ -21,7 +24,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view("doctor.form_create");
     }
 
     /**
@@ -29,7 +32,15 @@ class DoctorController extends Controller
      */
     public function store(StoreDoctorRequest $request)
     {
-        //
+        $doctor = new Doctor;
+        $doctor->name = $request->name;
+        $doctor->email = $request->email;
+        $doctor->start_date = Carbon::parse(Carbon::now());
+        $doctor->stop_date = $request->stop_date;
+
+        $doctor->save();
+
+        return redirect()->route('medikuak.index');
     }
 
     /**
@@ -43,24 +54,41 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Doctor $doctor)
+    public function edit($id)
     {
-        //
+        $doctor = Doctor::findOrFail($id);
+        $doctor->start_date = Carbon::parse($doctor->start_date);
+        $doctor->stop_date = Carbon::parse($doctor->stop_date);
+        return view('doctor.form_edit', compact('doctor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDoctorRequest $request, Doctor $doctor)
+    public function update(UpdateDoctorRequest $request, int $id)
     {
-        //
+        $doctor = Doctor::find($id);
+
+        $doctor->name = $request->name;
+        $doctor->email = $request->email;
+        $doctor->start_date = $doctor->start_date;
+        $doctor->stop_date = $request->stop_date;
+        $doctor->status = $request->status;
+        $doctor->reason = $request->reason;
+
+        // $doctor aldagaiaren datuak aldatu diren egiaztatzen du
+        if($doctor->isDirty()){
+            $doctor->save();
+        }
+        return redirect()->route('medikuak.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Doctor $doctor)
+    public function destroy($id)
     {
-        //
+        Doctor::where('id', $id)->delete();
+        return redirect()->route('medikuak.index');
     }
 }
