@@ -60,8 +60,9 @@ class CrewMemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CrewMember $crewMember)
+    public function destroy($id)
     {
-        //
+        $crew_member=CrewMember::where('id',$id)->delete();
+        return redirect()->route('langileak.index');
     }
 }

@@ -60,8 +60,9 @@ class RescueController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rescue $rescue)
+    public function destroy($id)
     {
-        //
+        $rescue=Rescue::where('id',$id)->delete();
+        return redirect()->route('erreskateak.index');
     }
 }
