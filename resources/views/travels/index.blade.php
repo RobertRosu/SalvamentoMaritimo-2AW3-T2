@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Langileak')
+@section('title', 'Bidaiak')
 
 @section('preloader')
     <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
@@ -8,39 +8,37 @@
 @stop
 
 @section('content')
-<section id="langileak" class="taula">
+<section id="bidaiak" class="taula">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Izena</th>
-                                <th class="d-none d-md-table-cell">E-mail</th>
-                                <th>Rol-a</th>
-                                <th class="d-none d-md-table-cell">Hasiera-data</th>
-                                <th>Egoera</th>
+                                <th>Irteera</th>
+                                <th class="d-none d-md-table-cell">Helmuga</th>
+                                <th>Data</th>
                                 <th><button type="button" class="btn btn-info">Erregistro berria sortu</button></th>
 
 
 
                             </tr>
                         </thead>
-                        <tbody id="emaitzaLangileak">
+                        <tbody id="emaitzaBidaiak">
                             <!-- ILARAK HEMEN AGERTUKO DIRA -->
 
 
-                            @forelse ($crew_members as $crew_member)
+                            @forelse ($travels as $travel)
                             <tr>
-                                <td>{{$crew_member->id}}</td>
-                                <td>{{$crew_member->name}}</td>
-                                <td>{{$crew_member->email}}</td>
-                                <td>{{$crew_member->rol}}</td>
-                                <td>{{$crew_member->start_date}}</td>
-                                <td>{{$crew_member->status}}</td>
+                                <td>{{$travel->id}}</td>
+                                <td>{{$travel->origen}}</td>
+                                <td>{{$travel->destino}}</td>
+                                <td>{{$travel->start_date}}</td>
                                 <td>
-                                <a href="{{ route('langileak.edit', ['langileak' => $crew_member->id]) }}" class="btn btn-primary">Aldatu</a>
+                                <a href="{{ route('bidaiak.show', ['bidaiak' => $travel->id]) }}" class="btn btn-secondary">Xehetasunak</a>
 
-                                    <form action="{{ route('langileak.destroy', ['langileak' => $crew_member->id]) }}" method="POST" style="display: inline;">
+                                <a href="{{ route('bidaiak.edit', ['bidaiak' => $travel->id]) }}" class="btn btn-primary">Aldatu</a>
+
+                                    <form action="{{ route('bidaiak.destroy', ['bidaiak' => $travel->id]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
@@ -64,7 +62,6 @@
                     </table>
                 </div>
             </section>
-
 
 
 @endsection

@@ -329,7 +329,17 @@ return [
         [
             'text' => 'Medikuak',
             'url' => 'medikuak',
-            'icon' => 'fas fa-star-of-life',
+            'icon' => 'fas fa-stethoscope',
+        ],
+        [
+            'text' => 'Bidaiak',
+            'url' => 'bidaiak',
+            'icon' => 'fas fa-ship',
+        ],
+        [
+            'text' => 'Erreskateak',
+            'url' => 'erreskateak',
+            'icon' => 'fas fa-first-aid',
         ],
         [
             'text' => 'Erreskatatuak',

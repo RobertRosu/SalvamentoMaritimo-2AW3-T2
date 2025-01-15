@@ -65,7 +65,7 @@
             <div class="form-group">
                 <label for="photo">Argazkia</label>
                 @if ($rescuedPerson->photo_src)
-                    <img src="{{ asset('storage/img/' . $rescuedPerson->photo_src) }}" alt="argazkia" width="200">
+                    <img src="{{ asset('storage/app/public/img/' . $rescuedPerson->photo_src) }}" alt="argazkia" width="200">
                 @else
                     <p>No hay foto disponible</p>
                 @endif
