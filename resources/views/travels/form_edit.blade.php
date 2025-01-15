@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Medikuak')
+@section('title', 'Bidaiak')
 
 @section('preloader')
     <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
