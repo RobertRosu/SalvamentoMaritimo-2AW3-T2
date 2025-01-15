@@ -60,8 +60,9 @@ class TravelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Travel $travel)
+    public function destroy($id)
     {
-        //
+        $bidaia=Travel::where('id',$id)->delete();
+        return redirect()->route('bidaiak.index');
     }
 }
