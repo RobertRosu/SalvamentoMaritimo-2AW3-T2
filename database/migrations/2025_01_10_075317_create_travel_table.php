@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignId('marinela_3_id');
             $table->foreignId('erizaina_id');
             $table->date('start_date');
+            $table->string('description', 1000);
             $table->timestamps();
         });
     }
