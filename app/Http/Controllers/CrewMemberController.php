@@ -13,7 +13,8 @@ class CrewMemberController extends Controller
      */
     public function index()
     {
-        return view('crewMember.index');
+        $crew_members = CrewMember::all();
+        return view('crewMember.index', compact('crew_members'));     
     }
 
     /**

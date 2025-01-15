@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CrewMemberController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\RescuedPersonController;
+use App\Http\Controllers\RescueController;
+use App\Http\Controllers\TravelController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('langileak', CrewMemberController::class);
     Route::resource('medikuak', DoctorController::class);
     Route::resource('erreskatatuak', RescuedPersonController::class);
+    Route::resource('erreskateak', RescueController::class);
+    Route::resource('bidaiak', TravelController::class);
+
 });
 
 require __DIR__.'/auth.php';

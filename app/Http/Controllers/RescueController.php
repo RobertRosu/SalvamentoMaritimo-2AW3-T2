@@ -13,7 +13,8 @@ class RescueController extends Controller
      */
     public function index()
     {
-        //
+        $rescues = Rescue::all();
+        return view('rescues.index', compact('rescues')); 
     }
 
     /**
