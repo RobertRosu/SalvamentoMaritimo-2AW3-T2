@@ -12,6 +12,8 @@
   padding: 50px;
   list-style: none;
   max-width: 50%;
+  background-image: url("../../../assets/svg/background.svg");
+  background-attachment: fixed;
 
   // Responsividad para pantallas pequeñas
   @media (max-width: 991px) {
@@ -22,6 +24,10 @@
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 10px;
+  }
+
+  p{
+    text-align: justify;
   }
 
   .event {
