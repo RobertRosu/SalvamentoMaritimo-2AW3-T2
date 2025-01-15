@@ -24,7 +24,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view("doctor.form_create");
     }
 
     /**
@@ -32,7 +32,15 @@ class DoctorController extends Controller
      */
     public function store(StoreDoctorRequest $request)
     {
-        //
+        $doctor = new Doctor;
+        $doctor->name = $request->name;
+        $doctor->email = $request->email;
+        $doctor->start_date = Carbon::parse(Carbon::now());
+        $doctor->stop_date = $request->stop_date;
+
+        $doctor->save();
+
+        return redirect()->route('medikuak.index');
     }
 
     /**
@@ -51,7 +59,7 @@ class DoctorController extends Controller
         $doctor = Doctor::findOrFail($id);
         $doctor->start_date = Carbon::parse($doctor->start_date);
         $doctor->stop_date = Carbon::parse($doctor->stop_date);
-        return view('doctor.form', compact('doctor'));
+        return view('doctor.form_edit', compact('doctor'));
     }
 
     /**
@@ -63,7 +71,7 @@ class DoctorController extends Controller
 
         $doctor->name = $request->name;
         $doctor->email = $request->email;
-        $doctor->start_date = $request->start_date;
+        $doctor->start_date = $doctor->start_date;
         $doctor->stop_date = $request->stop_date;
         $doctor->status = $request->status;
         $doctor->reason = $request->reason;

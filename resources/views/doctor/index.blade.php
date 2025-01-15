@@ -21,7 +21,7 @@
                                 <th>Amaiera data</th>
                                 <th class="d-none d-md-table-cell">Egoera</th>
                                 <th>Arrazoia</th>
-                                <th><button type="button" class="btn btn-info">Erregistro berria sortu</button></th>
+                                <th><a href="{{ route('medikuak.create') }}" type="submit" class="btn btn-info">Erregistro berria sortu</a></th>
 
 
 

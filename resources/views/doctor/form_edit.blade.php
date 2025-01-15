@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Erreskatatuak')
+@section('title', 'Medikuak')
 
 @section('preloader')
     <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
@@ -24,12 +24,6 @@
         <input type="text" class="form-control" id="email" name="email" value="{{ $doctor->email }}" required>
     </div>
 
-    <!-- Campo Fecha de inicio -->
-    <div class="form-group">
-        <label for="start_date">Hasiera data</label>
-        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ \Carbon\Carbon::parse($doctor->start_date)->toDateString() }}" required readonly>
-        </div>
-
     <!-- Campo Fecha de fin -->
     <div class="form-group">
         <label for="stop_date">Amaiera data</label>
@@ -39,7 +33,11 @@
     <!-- Campo Estado -->
     <div class="form-group">
         <label for="status">Egoera</label>
-        <input type="text" class="form-control" id="status" name="status" value="{{ $doctor->status }}">
+        <select class="form-control" id="status" name="status">
+            <option value="Aktibo">Aktibo</option>
+            <option value="Aktibo">Inaktibo</option>
+            <option value="Aktibo">Bajan</option>
+        </select>
     </div>
 
     <!-- Campo Razon -->
