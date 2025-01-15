@@ -17,7 +17,7 @@
                                 <th>Irteera</th>
                                 <th class="d-none d-md-table-cell">Helmuga</th>
                                 <th>Data</th>
-                                <th><button type="button" class="btn btn-info">Erregistro berria sortu</button></th>
+                                <th><a href="{{ route('bidaiak.create') }}" type="button" class="btn btn-info">Erregistro berria sortu</a></th>
 
 
 
