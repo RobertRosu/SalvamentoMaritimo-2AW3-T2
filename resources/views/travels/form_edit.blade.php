@@ -24,6 +24,12 @@
         <input type="text" class="form-control" id="destino" name="destino" value="{{ $travel->destino }}" required>
     </div>
 
+    <!-- Campo Email -->
+    <div class="form-group">
+        <label for="description">Deskripzioa</label>
+        <textarea class="form-control" id="description" name="description" required>{{ $travel->description }}</textarea>
+    </div>
+
     <!-- Campo Fecha de fin -->
     <div class="form-group">
         <label for="doctor_id">ID Doktorea</label>

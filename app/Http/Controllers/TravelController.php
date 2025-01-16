@@ -34,6 +34,13 @@ class TravelController extends Controller
     public function store(StoreTravelRequest $request)
     {
         $lastTravel = Travel::latest('start_date')->first();
+
+        $excludedSailorIds = [
+            $lastTravel['marinela_1_id'],
+            $lastTravel['marinela_2_id'],
+            $lastTravel['marinela_3_id']
+        ];
+
         $travel = new Travel;
 
         $travel->origen = $request->origen;
@@ -43,11 +50,18 @@ class TravelController extends Controller
         $travel->makinen_arduraduna_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Makinen arduraduna')->where('id', '!=', $lastTravel['makinen_arduraduna_id'])->inRandomOrder()->value('id');
         $travel->mekanikoa_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Mekanikoa')->where('id', '!=', $lastTravel['mekanikoa_id'])->inRandomOrder()->value('id');
         $travel->zubiko_ofiziala_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Zubiko ofiziala')->where('id', '!=', $lastTravel['zubiko_ofiziala_id'])->inRandomOrder()->value('id');
-        $travel->marinela_1_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', [$lastTravel['marinela_1_id'], $lastTravel['marinela_2_id'], $lastTravel['marinela_3_id']])->inRandomOrder()->value('id');
-        $travel->marinela_2_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', [$lastTravel['marinela_1_id'], $lastTravel['marinela_2_id'], $lastTravel['marinela_3_id'], $travel->marinela_1_id])->inRandomOrder()->value('id');
-        $travel->marinela_3_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', [$lastTravel['marinela_1_id'], $lastTravel['marinela_2_id'], $lastTravel['marinela_3_id'], $travel->marinela_1_id, $travel->marinela_2_id])->inRandomOrder()->value('id');
+
+        $travel->marinela_1_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
+        $excludedSailorIds[] = $travel->marinela_1_id;
+
+        $travel->marinela_2_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
+        $excludedSailorIds[] = $travel->marinela_2_id;
+
+        $travel->marinela_3_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
+        
         $travel->erizaina_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Erizaina')->where('id', '!=', $lastTravel['erizaina_id'])->inRandomOrder()->value('id');
         $travel->start_date = Carbon::parse(Carbon::now());
+        $travel->description = $request->description;
 
         $travel->save();
         return redirect()->route('bidaiak.index');
@@ -97,12 +111,10 @@ class TravelController extends Controller
         $mechanics = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Mekanikoa')->where('id' , '!=', $lastTravel['mekanikoa_id'])->get(['id', 'name']);
         $bridge_officers = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Zubiko ofiziala')->where('id' , '!=', $lastTravel['zubiko_ofiziala_id'])->get(['id', 'name']);
         $sailors = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', [$lastTravel['marinela_1_id'], $lastTravel['marinela_2_id'], $lastTravel['marinela_3_id']])->get(['id', 'name']);
-        $nurses = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Erizaina')->where('id' , '!=', $lastTravel['erizaina_id'])->get(['id', 'name']);
+        $nurses = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Erizaina')->whereNotIn('id', [$lastTravel['erizaina_id']])->get(['id', 'name']);
 
         return view('travels.form_edit', compact(
-            'travel', 'doctors', 'captains', 'machine_managers', 'mechanics', 'bridge_officers', 'sailors', 'nurses'
-            // ,'currentDoctor', 'currentCaptain', 'currentMachineManager', 'currentMechanic', 'currentBridgeOfficer', 'currentSailor_1'
-        ));
+            'travel', 'doctors', 'captains', 'machine_managers', 'mechanics', 'bridge_officers', 'sailors', 'nurses'));
     }
 
     /**

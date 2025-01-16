@@ -20,6 +20,18 @@
     <input readonly type="text" class="form-control" id="destino" name="destino" value="{{ $travel->destino }}">
 </div>
 
+<!-- Campo Estado -->
+<div class="form-group">
+    <label for="start_date">Hasiera data</label>
+    <input readonly type="text" class="form-control" id="start_date" value="{{$travel->start_date}}">
+</div>
+
+<!-- Campo Estado -->
+<div class="form-group">
+    <label for="description">Hasiera data</label>
+    <textarea readonly type="text" class="form-control" id="description">{{$travel->description}}</textarea>
+</div>
+
 <!-- Campo Fecha de fin -->
 <div class="form-group">
     <label for="doctor_id">ID Doktorea</label>

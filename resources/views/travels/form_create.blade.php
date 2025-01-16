@@ -24,6 +24,12 @@
         <input type="text" class="form-control" id="destino" name="destino" required>
     </div>
 
+    <!-- Campo Email -->
+    <div class="form-group">
+        <label for="description">Deskripzioa</label>
+        <textarea class="form-control" id="description" name="description" required></textarea>
+    </div>
+
     <!-- Botón para enviar el formulario y guardar los cambios -->
     <button type="submit" class="btn btn-primary">Aldaketak gorde</button>
 </form>

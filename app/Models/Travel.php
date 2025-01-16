@@ -21,6 +21,7 @@ class Travel extends Model
         'marinela_1_id',
         'marinela_2_id',
         'marinela_3_id',
-        'erizaina_id'
+        'erizaina_id',
+        'description'
     ];
 }
