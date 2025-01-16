@@ -22,7 +22,15 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(22)->create();
         Doctor::factory(14)->create();
-        CrewMember::factory(80)->create();
+
+        CrewMember::factory(20)->create();
+        $roles = CrewMember::select('rol')->distinct()->pluck('rol');
+        foreach($roles as $role){
+            CrewMember::factory(40)->create([
+                "rol" => $role
+            ]);
+        }
+        
         Travel::factory(18)->create();
         Rescue::factory(26)->create();
         RescuedPerson::factory(127)->create();
