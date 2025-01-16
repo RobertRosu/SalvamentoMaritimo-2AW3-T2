@@ -57,9 +57,21 @@ class TravelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Travel $travel)
+    public function show(int $id)
     {
-        //
+        $travel = Travel::find($id);
+
+        $doctor = Doctor::find($travel->doctor_id, ['id', 'name']);
+        $captain = CrewMember::findOrFail($travel->kapitaina_id, ['id', 'name']);
+        $machine_manager = CrewMember::find($travel->makinen_arduraduna_id, ['id', 'name']);
+        $mechanic = CrewMember::find($travel->mekanikoa_id, ['id', 'name']);
+        $bridge_officer = CrewMember::find($travel->zubiko_ofiziala_id, ['id', 'name']);
+        $sailor_1 = CrewMember::find($travel->marinela_1_id, ['id', 'name']);
+        $sailor_2 = CrewMember::find($travel->marinela_2_id, ['id', 'name']);
+        $sailor_3 = CrewMember::find($travel->marinela_3_id, ['id', 'name']);
+        $nurse = CrewMember::find($travel->erizaina_id, ['id', 'name']);
+
+        return view('travels.details', compact('travel', 'doctor', 'captain', 'machine_manager', 'mechanic', 'bridge_officer', 'sailor_1', 'sailor_2', 'sailor_3', 'nurse'));
     }
 
     /**
@@ -96,9 +108,24 @@ class TravelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTravelRequest $request, Travel $travel)
+    public function update(UpdateTravelRequest $request, int $id)
     {
-        //
+        $travel = Travel::findOrFail($id);
+
+        if($travel->marinela_1_id == $travel->marinela_2_id && $travel->marinela_1_id == $travel->marinela_3_id){
+            $travel->marinela_1_id = CrewMember::where('rol', 'Marinela')->whereNotIn('status', ['Aktibo', 'Bajan'])->inRandomOrder()->first()->value('id');
+        }
+
+        if($travel->marinela_2_id == $travel->marinela_1_id && $travel->marinela_2_id == $travel->marinela_3_id){
+            $travel->marinela_2_id = CrewMember::where('rol', 'Marinela')->whereNotIn('status', ['Aktibo', 'Bajan'])->inRandomOrder()->first()->value('id');
+        }
+
+        if($travel->marinela_3_id == $travel->marinela_1_id && $travel->marinela_3_id == $travel->marinela_2_id){
+            $travel->marinela_3_id = CrewMember::where('rol', 'Marinela')->whereNotIn('status', ['Aktibo', 'Bajan'])->inRandomOrder()->first()->value('id');
+        }
+        
+        $travel->update($request->validated());
+        return redirect()->route('bidaiak.index');
     }
 
     /**

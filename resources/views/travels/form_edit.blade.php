@@ -8,7 +8,7 @@
 @stop
 @section('content')
 <!-- Formulario de edición -->
-<form action="{{ route('bidaiak.update', $travel) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('bidaiak.update', $travel->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 

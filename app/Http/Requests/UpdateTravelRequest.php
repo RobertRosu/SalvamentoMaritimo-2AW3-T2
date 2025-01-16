@@ -26,7 +26,7 @@ class UpdateTravelRequest extends FormRequest
             "destino" => "required",
             "doctor_id" => "required",
             "kapitaina_id" => "required",
-            "makinen_arduradun" => "required",
+            "makinen_arduraduna_id" => "required",
             "mekanikoa_id" => "required",
             "zubiko_ofiziala_id" => "required",
             "marinela_1_id" => "required",
