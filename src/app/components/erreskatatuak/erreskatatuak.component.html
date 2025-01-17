@@ -1,41 +1,63 @@
-<section id="filters">
-    <form>
+<div *ngIf="!isAuthenticated" class="auth-container">
+    <section id="password-protect">
+      <h1>Sartu pasahitza</h1>
+      <div *ngIf="showError" class="error-message">Pasahitza ez da zuzena! Saiatu berriro.</div>
+      <form (ngSubmit)="validatePassword()">
+        <input 
+          type="password" 
+          [(ngModel)]="password" 
+          name="password" 
+          placeholder="Pasahitza" 
+          required 
+          class="password-input" 
+        />
+        <button type="submit" class="login-button">Bidali</button>
+      </form>
+    </section>
+  </div>
+  
+  <div class="w-100" *ngIf="isAuthenticated">
+    <button class="logout-button" (click)="logout()">Itxi saioa</button> <!-- Botón para cerrar sesión -->
+  
+    <section id="filters">
+      <form>
         <input type="text" id="search" placeholder="Izenaren arabera bilatu" [(ngModel)]="filtroak.izena" [ngModelOptions]="{standalone: true}">        
         <div id="filters_container">
-            <div class="filter">
-                <label for="sexua"><h1>Sexua</h1></label>
-                <select id="sexua" #sexua [(ngModel)]="filtroak.sexua" [ngModelOptions]="{standalone: true}">
-                    <option value="0">Sexu bat aukeratu</option>
-                    <option value="emakumea">Emakumea</option>
-                    <option value="gizona">Gizona</option>
-                    <option value="beste-bat">Beste bat</option>
-                </select>
-            </div>
-    
-            <div class="filter">
-                <label for="adina"><h1>Adina</h1></label>
-                <input id="adina" type="number" value="0" #adina [(ngModel)]="filtroak.adina" [ngModelOptions]="{standalone: true}">
-            </div>
-        
-            <div class="filter">
-                <label for="naziotasuna"><h1>Naziotasuna</h1></label>
-                <select id="naziotasuna" #naziotasuna [(ngModel)]="filtroak.naziotasuna" [ngModelOptions]="{standalone: true}">
-                    <option value="0">Aukeratu naziotasun bat</option>
-                    <option value="senegal">Senegal</option>
-                    <option value="nigeria">Nigeria</option>
-                    <option value="maroko">Maroko</option>
-                    <option value="N/A">N/A</option>
-                </select>
-            </div>
+          <div class="filter">
+            <label for="sexua"><h1>Sexua</h1></label>
+            <select id="sexua" #sexua [(ngModel)]="filtroak.sexua" [ngModelOptions]="{standalone: true}">
+              <option value="0">Sexu bat aukeratu</option>
+              <option value="emakumea">Emakumea</option>
+              <option value="gizona">Gizona</option>
+              <option value="beste-bat">Beste bat</option>
+            </select>
+          </div>
+      
+          <div class="filter">
+            <label for="adina"><h1>Adina</h1></label>
+            <input id="adina" type="number" value="0" #adina [(ngModel)]="filtroak.adina" [ngModelOptions]="{standalone: true}">
+          </div>
+          
+          <div class="filter">
+            <label for="naziotasuna"><h1>Naziotasuna</h1></label>
+            <select id="naziotasuna" #naziotasuna [(ngModel)]="filtroak.naziotasuna" [ngModelOptions]="{standalone: true}">
+              <option value="0">Aukeratu naziotasun bat</option>
+              <option value="senegal">Senegal</option>
+              <option value="nigeria">Nigeria</option>
+              <option value="maroko">Maroko</option>
+              <option value="N/A">N/A</option>
+            </select>
+          </div>
         </div>
         <div id="button_container">
-            <button type="reset" (click)="berrezarriFiltroak()">Berrezarri</button>    
+          <button type="reset" (click)="berrezarriFiltroak()">Berrezarri</button>    
         </div>
-    </form>
-</section>
-
-<section id="card_container">
-    <ng-container *ngFor="let errefuxiatua of errefuxiatuak | filterErrefuxiatuak: filtroak; trackBy:getId">
-        <app-errefuxiatua-card [datuak]="errefuxiatua"/>
-    </ng-container>
-</section>
+      </form>
+    </section>
+  
+    <section id="card_container">
+      <ng-container *ngFor="let errefuxiatua of errefuxiatuak | filterErrefuxiatuak: filtroak; trackBy:getId">
+        <app-errefuxiatua-card [datuak]="errefuxiatua"></app-errefuxiatua-card>
+      </ng-container>
+    </section>
+  </div>

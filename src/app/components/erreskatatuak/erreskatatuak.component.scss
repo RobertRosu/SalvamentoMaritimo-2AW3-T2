@@ -1,6 +1,7 @@
 @import './../../../scss/colors';
 @import './../../../scss/mediaqueries';
 
+// ESTILOS DE LA PÁGINA DE ERRESKATUAK
 :host{
     display: flex;
     align-items: center;
@@ -90,3 +91,102 @@
         }
     }
 }
+
+// ESTILOS DE LA PÁGINA DE LOGIN
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 74px - 148px);
+    min-height: 270px;
+    width: 100%;
+    
+  }
+  
+  #password-protect {
+    text-align: center;
+    background: $secondary-bg;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%; /* Responsive: ocupa el 90% de la pantalla en dispositivos pequeños */
+  }
+  
+  #password-protect h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333333;
+  }
+  
+  .password-input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho */
+  }
+  
+  .password-input:focus {
+    outline: none;
+    border-color: $button-bg-primary;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    animation: pulse .5s;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: $button-bg-primary;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: $button-bg-primary-hover;
+  }
+  
+  .logout-button {
+    margin: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #c82333;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0px #007bff; }
+    70% { box-shadow: 0 0 10px #007bff; }
+    100% { box-shadow: 0 0 0px #007bff; }
+  }
+
+  .error-message {
+    color: #dc3545; /* Rojo para resaltar el error */
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    margin-bottom: 0.6rem; /* Espacio entre el campo de entrada y el mensaje */
+    animation: fadeIn 0.3s ease-in-out; /* Animación para un efecto visual */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
