@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\RescuedPerson;
+use App\Models\Rescue;
 
-class RescuedPersonController extends Controller
+class RescueController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $rescued = RescuedPerson::all();
-        return response()->json($rescued);
+        $rescues = RescuedPerson::all();
+        return response()->json($rescues);
     }
 
     /**

@@ -50,6 +50,6 @@ class CommonController extends Controller
 
     public function public_numbers(){
         $rescued = RescuedPerson::all();
-        return json_encode($rescued);
+        return response()->json($rescued);
     }
 }
