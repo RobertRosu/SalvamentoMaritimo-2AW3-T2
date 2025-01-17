@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Http\Requests\StoreCrewMemberRequest;
 use App\Http\Requests\UpdateCrewMemberRequest;
 use App\Models\CrewMember;
@@ -22,7 +23,7 @@ class CrewMemberController extends Controller
      */
     public function create()
     {
-        //
+        return view("crewMember.form_create");
     }
 
     /**
@@ -30,7 +31,14 @@ class CrewMemberController extends Controller
      */
     public function store(StoreCrewMemberRequest $request)
     {
-        //
+        $crewMember = new CrewMember;
+        $crewMember->name = $request->name;
+        $crewMember->email = $request->email;
+        $crewMember->rol = $request->rol;
+
+        $crewMember->save();
+
+        return redirect()->route('langileak.index');
     }
 
     /**
@@ -44,17 +52,30 @@ class CrewMemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CrewMember $crewMember)
+    public function edit($id)
     {
-        //
+        $crewMember = CrewMember::findOrFail($id);
+        $crewMember->start_date = Carbon::parse($crewMember->start_date);
+        $crewMember->stop_date = Carbon::parse($crewMember->stop_date);
+        return view('crewMember.form_edit', compact('crewMember'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCrewMemberRequest $request, CrewMember $crewMember)
+    public function update(UpdateCrewMemberRequest $request, int $id)
     {
-        //
+        $crewMember = crewMember::find($id);
+
+        $crewMember->name = $request->name;
+        $crewMember->email = $request->email;
+        $crewMember->start_date = $crewMember->start_date;
+        $crewMember->stop_date = $request->stop_date;
+        $crewMember->status = $request->status;
+        $crewMember->reason = $request->reason;
+
+        $crewMember->save();
+        return redirect()->route('langileak.index');
     }
 
     /**

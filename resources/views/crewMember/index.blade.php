@@ -19,7 +19,7 @@
                                 <th>Rol-a</th>
                                 <th class="d-none d-md-table-cell">Hasiera-data</th>
                                 <th>Egoera</th>
-                                <th><button type="button" class="btn btn-info">Erregistro berria sortu</button></th>
+                                <th><a href="{{ route('langileak.create') }}" type="submit" class="btn btn-info">Erregistro berria sortu</a></th>
 
 
 
