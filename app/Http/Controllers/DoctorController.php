@@ -76,10 +76,7 @@ class DoctorController extends Controller
         $doctor->status = $request->status;
         $doctor->reason = $request->reason;
 
-        // $doctor aldagaiaren datuak aldatu diren egiaztatzen du
-        if($doctor->isDirty()){
-            $doctor->save();
-        }
+        $doctor->save();
         return redirect()->route('medikuak.index');
     }
 

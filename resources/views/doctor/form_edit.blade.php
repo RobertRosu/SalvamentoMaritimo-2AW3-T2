@@ -34,9 +34,9 @@
     <div class="form-group">
         <label for="status">Egoera</label>
         <select class="form-control" id="status" name="status">
-            <option value="Aktibo">Aktibo</option>
-            <option value="Aktibo">Inaktibo</option>
-            <option value="Aktibo">Bajan</option>
+            <option value="Aktibo" {{$doctor->status == 'Aktibo' ? 'selected' : ''}}>Aktibo</option>
+            <option value="Inaktibo" {{$doctor->status == 'Inaktibo' ? 'selected' : ''}}>Inaktibo</option>
+            <option value="Bajan" {{$doctor->status == 'Bajan' ? 'selected' : ''}}>Bajan</option>
         </select>
     </div>
 
