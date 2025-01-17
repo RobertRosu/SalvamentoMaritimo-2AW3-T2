@@ -11,7 +11,7 @@ class UpdateTravelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class UpdateTravelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "origen" => "required",
+            "destino" => "required",
+            "doctor_id" => "required",
+            "kapitaina_id" => "required",
+            "makinen_arduraduna_id" => "required",
+            "mekanikoa_id" => "required",
+            "zubiko_ofiziala_id" => "required",
+            "marinela_1_id" => "required",
+            "marinela_2_id" => "required",
+            "marinela_3_id" => "required",
+            "erizaina_id" => "required"
         ];
     }
 }

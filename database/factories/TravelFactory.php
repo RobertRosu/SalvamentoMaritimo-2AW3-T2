@@ -18,6 +18,11 @@ class TravelFactory extends Factory
      */
     public function definition(): array
     {
+
+        $marinela_1_id = CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->inRandomOrder()->first()->id;
+        $marinela_2_id = CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->whereNotIn('id', [$marinela_1_id])->inRandomOrder()->first()->id;
+        $marinela_3_id = CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->whereNotIn('id', [$marinela_1_id, $marinela_2_id])->inRandomOrder()->first()->id;
+
         return [
             'origen' => fake()->city(),
             'destino' => fake()->city(),
@@ -27,20 +32,9 @@ class TravelFactory extends Factory
             'makinen_arduraduna_id' => CrewMember::where('rol', 'Makinen arduraduna')->where('status', 'Aktibo')->inRandomOrder()->first()->id,
             'mekanikoa_id' => CrewMember::where('rol', 'Mekanikoa')->where('status', 'Aktibo')->inRandomOrder()->first()->id,
             'zubiko_ofiziala_id' => CrewMember::where('rol', 'Zubiko ofiziala')->where('status', 'Aktibo')->inRandomOrder()->first()->id,
-            'marinela_1_id' => function () {
-                return CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->inRandomOrder()->first()->id;
-            },
-            'marinela_2_id' => function () {
-                return CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->whereNotIn('id', [
-                    CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->inRandomOrder()->first()->id,
-                ])->inRandomOrder()->first()->id;
-            },
-            'marinela_3_id' => function () {
-                return CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->whereNotIn('id', [
-                    CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->inRandomOrder()->first()->id,
-                    CrewMember::where('rol', 'Marinela')->where('status', 'Aktibo')->inRandomOrder()->first()->id,
-                ])->inRandomOrder()->first()->id;
-            },
+            'marinela_1_id' => $marinela_1_id,
+            'marinela_2_id' => $marinela_2_id,
+            'marinela_3_id' => $marinela_3_id,
             'erizaina_id' => CrewMember::where('rol', 'Erizaina')->where('status', 'Aktibo')->inRandomOrder()->first()->id,
             'description' => fake()->randomElement([
                 'Tripulazioko kideek azaldu dutenez, herenegun arratsaldean nabigatzen ari zirela egurrezko txalupa bat ikusi zuten, eta laguntzera joan ziren. Bertan zeuden 55 lagunak erreskatatu zituzten. Erreskate hura egiten ari zirela, abisu bat jaso zuten esateko inguruan beste txalupa bat zegoela noraezean. Bertara joatea erabaki zuten. Itxaso txarra zegoen, eta erreskatea «konplikatu xamarra» izan bazen ere, lortu zuten 57 pertsona salbatzea.',

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Medikuak')
+@section('title', 'Bidaiak')
 
 @section('preloader')
     <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
@@ -8,26 +8,26 @@
 @stop
 @section('content')
 <!-- Formulario de edición -->
-<form action="{{ route('medikuak.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('bidaiak.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('POST')
 
     <!-- Campo Nombre -->
     <div class="form-group">
-        <label for="name">Izena</label>
-        <input type="text" class="form-control" id="name" name="name" required>
+        <label for="origen">Irteera</label>
+        <input type="text" class="form-control" id="origen" name="origen" required>
     </div>
 
     <!-- Campo Email -->
     <div class="form-group">
-        <label for="email">Email-a</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <label for="destino">Helmuga</label>
+        <input type="text" class="form-control" id="destino" name="destino" required>
     </div>
 
-    <!-- Campo Fecha de fin -->
+    <!-- Campo Email -->
     <div class="form-group">
-        <label for="stop_date">Amaiera data</label>
-        <input type="date" class="form-control" id="stop_date" name="stop_date" required>
+        <label for="description">Deskripzioa</label>
+        <textarea class="form-control" id="description" name="description" required></textarea>
     </div>
 
     <!-- Botón para enviar el formulario y guardar los cambios -->
