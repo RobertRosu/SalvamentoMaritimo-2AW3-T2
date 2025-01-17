@@ -24,7 +24,7 @@
 </div>
 
 <div class="form-group">
-    <label for="description">Hasiera data</label>
+    <label for="description">Deskribapena</label>
     <textarea readonly type="text" class="form-control" id="description">{{$travel->description}}</textarea>
 </div>
 
