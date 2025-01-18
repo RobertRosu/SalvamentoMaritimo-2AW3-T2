@@ -11,7 +11,7 @@ Route::get('/user', function (Request $request) {
 
 
 
-Route::apiResource('erreskatatuak', RescuedPersonController::class);
-    Route::get('/common/public-numbers', [CommonController::class, 'public_numbers']);
+Route::apiResource('rescued-people', RescuedPersonController::class);
+Route::get('/common/public-numbers', [CommonController::class, 'public_numbers'])->name('common');
 
 

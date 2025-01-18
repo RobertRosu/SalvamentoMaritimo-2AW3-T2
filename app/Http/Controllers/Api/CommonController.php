@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RescuedPerson;
+use App\Models\CrewMember;
+use App\Models\Rescue;
 
 class CommonController extends Controller
 {
@@ -49,7 +51,13 @@ class CommonController extends Controller
     }
 
     public function public_numbers(){
-        $rescued = RescuedPerson::all();
-        return response()->json($rescued);
+
+        $public_numbers = [
+            "rescues" => Rescue::count(),
+            "rescued_people" => RescuedPerson::count(),
+            "crew_members" => CrewMember::count()
+        ];
+
+        return response()->json($public_numbers);
     }
 }

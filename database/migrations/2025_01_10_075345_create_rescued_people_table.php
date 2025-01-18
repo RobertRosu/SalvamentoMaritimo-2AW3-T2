@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('rescue_id');
             $table->foreignId('doctor_id');
             $table->string('diagnostic');
-            $table->string('photo_src');
+            $table->string('photo_src')->nullable();
             $table->timestamps();
 
         });
