@@ -28,9 +28,28 @@ class RescuedPersonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
+        $rescued = ResquedPerson::find($id);
+
+        if(!$rescued){
+            return response()->json(
+                [
+                    "status" => "ERROR", 
+                    "message" => "Person not found", 
+                    "status_code" => 404
+                ]
+            );
+        }
+        
+        return response()->json(
+            [
+                "status" => 'OK', 
+                "message" => "Person information retrieved successfully", 
+                "status_code" => 200, 
+                "response" => $rescued
+            ]
+        );
     }
 
     /**
@@ -46,6 +65,34 @@ class RescuedPersonController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $rescued = ResquedPersona::find($id);
+
+            if(!$rescued){
+                return response()->json(
+                    [
+                        "status" => "ERROR", 
+                        "message" => "Person not found", 
+                        "status_code" => 404
+                    ]
+                );
+            }
+
+            return response()->json(
+                [
+                    "status" => 'OK', 
+                    "message" => "The person has been deleted successfully", 
+                    "status_code" => 200
+                ]
+            );
+        }catch(\Exception $e){
+            return response()->json(
+                [
+                    "status" => "ERROR", 
+                    "message" => $e, 
+                    "status_code" => 500
+                ]
+            );
+        }
     }
 }

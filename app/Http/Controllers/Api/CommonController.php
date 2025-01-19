@@ -51,13 +51,29 @@ class CommonController extends Controller
     }
 
     public function public_numbers(){
+        try{
+            $public_numbers = [
+                "rescues" => Rescue::count(),
+                "rescued_people" => RescuedPerson::count(),
+                "workers" => CrewMember::count()
+            ];
 
-        $public_numbers = [
-            "rescues" => Rescue::count(),
-            "rescued_people" => RescuedPerson::count(),
-            "crew_members" => CrewMember::count()
-        ];
-
-        return response()->json($public_numbers);
+            return response()->json(
+                [
+                    "status" => "OK",
+                    "message" => "Numbers retrieved successfully",
+                    "status_code" => 200,
+                    "response" => $public_numbers
+                ]
+            );
+        }catch(\Exception $e){
+            return response()->json(
+                [
+                    "status" => "ERROR",
+                    "message" => "Error: $e",
+                    "status_code" => 500,
+                ]
+            );
+        }
     }
 }
