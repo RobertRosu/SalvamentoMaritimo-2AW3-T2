@@ -8,9 +8,9 @@ import { ApiService } from '../../services/api.service';
 })
 export class NorGaraComponent implements OnInit {
 
-  rescues: any = 0;
-  rescued_people: any = 0;
-  workers: any = 0;
+  rescues: any = 'N/A';
+  rescued_people: any = 'N/A';
+  workers: any = 'N/A';
   error: string | null = null;
 
   constructor(private apiService: ApiService) { }
