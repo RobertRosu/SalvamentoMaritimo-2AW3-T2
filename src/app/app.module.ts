@@ -13,6 +13,7 @@ import { ErreskatatuakComponent } from './components/erreskatatuak/erreskatatuak
 import { FooterComponent } from './components/footer/footer.component';
 import { ErrefuxiatuaCardComponent } from './components/errefuxiatua-card/errefuxiatua-card.component';
 import { FilterErrefuxiatuakPipe } from './pipes/filter-errefuxiatuak.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FilterErrefuxiatuakPipe } from './pipes/filter-errefuxiatuak.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
