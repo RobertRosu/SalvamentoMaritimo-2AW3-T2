@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('country');
             $table->string('genre');
             $table->date('birth_date');
-            $table->foreignId('rescue_id');
-            $table->foreignId('doctor_id');
+            $table->foreignId('rescue_id')->constrained()->onDelete('cascade');
+            $table->foreignId('doctor_id')->constrained()->onDelete('cascade');
             $table->string('diagnostic');
             $table->string('photo_src')->nullable();
             $table->timestamps();

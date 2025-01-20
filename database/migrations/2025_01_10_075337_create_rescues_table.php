@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('rescues', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('travel_id');
+            $table->foreignId('travel_id')->constrained()->onDelete('cascade');
             $table->integer('numero_rescatados');
             $table->time('start_time');
             $table->time('end_time');
