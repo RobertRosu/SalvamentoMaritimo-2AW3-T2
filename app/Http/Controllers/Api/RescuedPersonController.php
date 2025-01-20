@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RescuedPerson;
+use App\Models\Doctor;
+use App\Models\Rescue;
+use App\Models\Travel;
 
 class RescuedPersonController extends Controller
 {
@@ -13,8 +16,26 @@ class RescuedPersonController extends Controller
      */
     public function index()
     {
-        $rescued = RescuedPerson::all();
-        return response()->json($rescued);
+        try{
+            $rescued = RescuedPerson::all();
+            return response()->json(
+                [
+                    "status" => "OK",
+                    "message" => "Rescued people data retrieved successfully",
+                    "status_code" => 200,
+                    "response" => $rescued                    
+                ]
+            );
+
+        }catch(\Exception $e){
+            return response()->json(
+                [
+                    "status" => "ERROR",
+                    "message" => $e,
+                    "status_code" => 500,                   
+                ]
+            );
+        }
     }
 
     /**
@@ -22,7 +43,36 @@ class RescuedPersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $lastTravel = Travel::latest('start_date')->first();
+
+            $resqued = RescuedPerson::create(
+                [
+                    "name" => $request->name,
+                    "country" => $request->country,
+                    "birth_date" => $request->birth_date,
+                    "doctor_id" => Doctor::where('id', '!=', $lastTravel->doctor_id)->first()->id,
+                    "rescue_id" => Rescue::where('id', '!=', $lastTravel->rescue_id)->first()->id
+                ]
+            );
+
+            return response()->json(
+                [
+                    "status" => 'OK', 
+                    "message" => "Person created successfully", 
+                    "status_code" => 200,
+                ]
+            );
+        }catch(\Exception $e){
+            return response()->json(
+                [
+                    "status" => 'ERROR', 
+                    "message" => $e, 
+                    "status_code" => 500,
+                ]
+            );
+        }
+        
     }
 
     /**
@@ -30,26 +80,7 @@ class RescuedPersonController extends Controller
      */
     public function show(int $id)
     {
-        $rescued = ResquedPerson::find($id);
-
-        if(!$rescued){
-            return response()->json(
-                [
-                    "status" => "ERROR", 
-                    "message" => "Person not found", 
-                    "status_code" => 404
-                ]
-            );
-        }
         
-        return response()->json(
-            [
-                "status" => 'OK', 
-                "message" => "Person information retrieved successfully", 
-                "status_code" => 200, 
-                "response" => $rescued
-            ]
-        );
     }
 
     /**
@@ -57,7 +88,33 @@ class RescuedPersonController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $resqued = RescuedPerson::create(
+                [
+                    "name" => $request->name,
+                    "country" => $request->country,
+                    "birth_date" => $request->birth_date,
+                    "doctor_id" => $request->doctor_id,
+                    "rescue_id" => $request->rescue_id
+                ]
+            );
+
+            return response()->json(
+                [
+                    "status" => 'OK', 
+                    "message" => "Person updated successfully", 
+                    "status_code" => 200,
+                ]
+            );
+        }catch(\Exception $e){
+            return response()->json(
+                [
+                    "status" => 'ERROR', 
+                    "message" => $e, 
+                    "status_code" => 500,
+                ]
+            );
+        }
     }
 
     /**
