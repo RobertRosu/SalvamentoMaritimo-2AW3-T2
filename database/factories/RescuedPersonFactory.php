@@ -37,7 +37,21 @@ class RescuedPersonFactory extends Factory
                 return null; // En caso de que no haya un travel_id o doctor_id
             },
             'diagnostic' => fake()->randomElement(['Deshidratazioa', 'Desnutrizioa', 'Osasuntsu']),
-            'photo_src' => fake()->imageUrl(),         
+            'photo_src' => function (array $attributes) {
+                
+                $endpoint = '';
+                
+                if($attributes['genre'] == 'Gizona'){
+                    $endpoint = 'boy';
+                }
+
+                if($attributes['genre'] == 'Emakumea'){
+                    $endpoint = 'girl';
+                }
+
+                // %40ko probabilitatea du argazkirik ez izatea
+                return fake()->optional(0.4, null)->randomElement(["https://avatar.iran.liara.run/public/$endpoint"]);
+            },         
         ];
     }
 }
