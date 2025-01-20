@@ -113,8 +113,8 @@ return [
         'enabled' => true,
         'mode' => 'cwrapper',
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'SMH Preloader Image',
+            'path' => '',
+            'alt' => '',
             'effect' => '',
             'width' => 100,
             'height' => 100,
