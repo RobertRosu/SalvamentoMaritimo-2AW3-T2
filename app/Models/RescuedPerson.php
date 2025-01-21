@@ -15,7 +15,7 @@ class RescuedPerson extends Model
     use HasFactory;
 
     public function rescue(){
-        return $this->hasOne(Rescue::class);
+        return $this->belongsTo(Rescue::class);
     }
 
     public function doctor(){

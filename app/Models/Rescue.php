@@ -18,10 +18,10 @@ class Rescue extends Model
     use HasFactory;
 
     public function travel(){
-        return $this->hasOne(Travel::class);
+        return $this->belongsTo(Travel::class);
     }
 
     public function rescued_persons(){
-        return $this->belongsTo(RescuedPerson::class);
+        return $this->hasMany(RescuedPerson::class);
     }
 }

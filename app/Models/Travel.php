@@ -34,43 +34,43 @@ class Travel extends Model
 
     // Travel <--> Doctor
     public function doctor(){
-        return $this->hasOne(Doctor::class, 'doctor_id');
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 
     public function rescue(){
-        return $this->belongsTo(Rescue::class);
+        return $this->hasMany(Rescue::class);
     }
 
     // Travel <--> CrewMember
     public function kapitaina(){
-        return $this->hasOne(CrewMember::class, 'kapitaina_id');
+        return $this->belongsTo(CrewMember::class, 'kapitaina_id');
     }
 
     public function makinen_arduraduna(){
-        return $this->hasOne(CrewMember::class, 'makinen_arduraduna_id');
+        return $this->belongsTo(CrewMember::class, 'makinen_arduraduna_id');
     }
 
     public function mekanikoa(){
-        return $this->hasOne(CrewMember::class, 'mekanikoa_id');
+        return $this->belongsTo(CrewMember::class, 'mekanikoa_id');
     }
 
     public function zubiko_ofiziala(){
-        return $this->hasOne(CrewMember::class, 'zubiko_ofiziala_id');
+        return $this->belongsTo(CrewMember::class, 'zubiko_ofiziala_id');
     }
 
     public function marinela_1(){
-        return $this->hasOne(CrewMember::class, 'marinela_1_id');
+        return $this->belongsTo(CrewMember::class, 'marinela_1_id');
     }
 
     public function marinela_2(){
-        return $this->hasOne(CrewMember::class, 'marinela_2_id');
+        return $this->belongsTo(CrewMember::class, 'marinela_2_id');
     }
 
     public function marinela_3(){
-        return $this->hasOne(CrewMember::class, 'marinela_3_id');
+        return $this->belongsTo(CrewMember::class, 'marinela_3_id');
     }
 
     public function erizaina(){
-        return $this->hasOne(CrewMember::class, 'erizaina_id');
+        return $this->belongsTo(CrewMember::class, 'erizaina_id');
     }
 }
