@@ -14,6 +14,18 @@ use Illuminate\Database\Eloquent\Relations\BelongstTo;
 
 class Rescue extends Model
 {
+
+    protected $fillable = [
+        "travel_id",
+        "numero_rescatados",
+        "start_time",
+        "end_time"
+    ];
+
+    protected $guarded = [
+        "id"
+    ];
+
     /** @use HasFactory<\Database\Factories\RescueFactory> */
     use HasFactory;
 
