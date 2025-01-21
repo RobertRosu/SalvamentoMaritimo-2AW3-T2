@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Errefuxiatua } from 'src/app/models/Errefuxiatua';
 import { ApiService } from '../../services/api.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-erreskatatuak',
@@ -70,7 +71,9 @@ export class ErreskatatuakComponent implements OnInit{
   showError: boolean = false;
   selectedErrefuxiatua: any;
 
-  
+  storeErrefuxiatua(){
+    Swal.fire("SweetAlert2 is working!");
+  }
 
   editErrefuxiatua(errefuxiatua: Errefuxiatua) {
     this.selectedErrefuxiatua = errefuxiatua;
