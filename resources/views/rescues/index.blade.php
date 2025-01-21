@@ -18,7 +18,7 @@
                                 <th class="d-none d-md-table-cell">Erreskatatu kopurua</th>
                                 <th>Hasiera</th>
                                 <th>Amaiera</th>
-                                <th><button type="button" class="btn btn-info">Erregistro berria sortu</button></th>
+                                <th><a href="{{route('erreskateak.create')}}" class="btn btn-info">Erregistro berria sortu</a></th>
 
 
 
@@ -36,7 +36,7 @@
                                 <td>{{$rescue->start_time}}</td>
                                 <td>{{$rescue->end_time}}</td>
                                 <td>
-                                <a href="{{ route('erreskateak.edit', ['erreskateak' => $rescue->id]) }}" class="btn btn-primary">Aldatu</a>
+                                <a href="{{ route('erreskateak.edit', $rescue->id) }}" class="btn btn-primary">Aldatu</a>
 
                                     <form action="{{ route('erreskateak.destroy', ['erreskateak' => $rescue->id]) }}" method="POST" style="display: inline;">
                                         @csrf

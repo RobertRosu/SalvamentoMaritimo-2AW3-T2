@@ -11,11 +11,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RescuedPerson extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'country',
+        'genre',
+        'birth_date'
+    ];
+
+    protected $guarded = [
+        'id',
+        'rescue_id',
+        'doctor_id'
+    ];
+
     /** @use HasFactory<\Database\Factories\RescuedPersonFactory> */
     use HasFactory;
 
     public function rescue(){
-        return $this->hasOne(Rescue::class);
+        return $this->belongsTo(Rescue::class);
     }
 
     public function doctor(){

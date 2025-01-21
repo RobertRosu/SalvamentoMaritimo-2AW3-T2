@@ -16,7 +16,7 @@ class Doctor extends Model
     use HasFactory;
 
     public function travel(){
-        return $this->belongsTo(Travel::class);
+        return $this->hasMany(Travel::class);
     }
 
     public function rescued_people(){
