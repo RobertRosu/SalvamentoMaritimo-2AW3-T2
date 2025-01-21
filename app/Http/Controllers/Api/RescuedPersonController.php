@@ -89,15 +89,20 @@ class RescuedPersonController extends Controller
     public function update(Request $request, string $id)
     {
         try{
-            $resqued = RescuedPerson::create(
-                [
-                    "name" => $request->name,
-                    "country" => $request->country,
-                    "birth_date" => $request->birth_date,
-                    "doctor_id" => $request->doctor_id,
-                    "rescue_id" => $request->rescue_id
-                ]
-            );
+            $rescued = RescuedPerson::find($id);
+
+            if(!$rescued){
+                return response()->json(
+                    [
+                        "status" => "ERROR", 
+                        "message" => "Person not found", 
+                        "status_code" => 404
+                    ]
+                );
+            }
+
+            $rescued->fill($request->validated());
+            $rescued->save();
 
             return response()->json(
                 [
@@ -120,10 +125,10 @@ class RescuedPersonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
         try{
-            $rescued = ResquedPersona::find($id);
+            $rescued = RescuedPerson::find($id);
 
             if(!$rescued){
                 return response()->json(
@@ -134,6 +139,8 @@ class RescuedPersonController extends Controller
                     ]
                 );
             }
+
+            $rescued->delete();
 
             return response()->json(
                 [
