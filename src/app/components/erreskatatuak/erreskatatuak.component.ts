@@ -15,9 +15,17 @@ export class ErreskatatuakComponent implements OnInit{
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.getRescuedPeople();
+    // Verificar si el token generado está en sessionStorage
+    const storedToken = sessionStorage.getItem(this.authTokenKey);
+    this.isAuthenticated = !!storedToken; // Si hay un token, se considera autenticado
+  }
+
+  getRescuedPeople(){
     this.apiService.getRescuedPeople().subscribe({
       next: (response) => {
         this.data = response.response;
+        this.errefuxiatuak = [];
         if(Array.isArray(this.data)) {
           this.data.forEach(element =>{
             this.errefuxiatuak.push(
@@ -33,10 +41,7 @@ export class ErreskatatuakComponent implements OnInit{
           })
         }
       }
-    })
-    // Verificar si el token generado está en sessionStorage
-    const storedToken = sessionStorage.getItem(this.authTokenKey);
-    this.isAuthenticated = !!storedToken; // Si hay un token, se considera autenticado
+   })
   }
 
   getId(errefuxiatua: any): number{
@@ -68,15 +73,18 @@ export class ErreskatatuakComponent implements OnInit{
   
 
   editErrefuxiatua(errefuxiatua: Errefuxiatua) {
-    // Lógica para editar el registro
     this.selectedErrefuxiatua = errefuxiatua;
-    console.log('Editar:', errefuxiatua);
-    // Puedes abrir un modal o redirigir a otra página
   }
-  
   deleteErrefuxiatua(errefuxiatua: Errefuxiatua) {
-    // Lógica para eliminar el registro
-    console.log('Eliminar:', errefuxiatua);
+    
+    this.apiService.deleteRescuedPeople(errefuxiatua.id).subscribe(
+      response => {
+          this.getRescuedPeople();
+      },
+      error => {
+          console.error('Error al eliminar:', error);
+      }
+    );
   }
 
   validatePassword() {

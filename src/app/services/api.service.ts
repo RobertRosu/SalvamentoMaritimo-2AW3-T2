@@ -21,4 +21,8 @@ export class ApiService {
   getRescuedPeople(): Observable<any> {
     return this.http.get<any>(this.apiUrl + 'rescued-people');
   }
+
+  deleteRescuedPeople(id: number): Observable<any> {
+    return this.http.delete<any>(this.apiUrl + 'rescued-people/'+id);
+  }
 }
