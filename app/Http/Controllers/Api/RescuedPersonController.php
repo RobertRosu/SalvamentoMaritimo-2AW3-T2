@@ -17,7 +17,8 @@ class RescuedPersonController extends Controller
     public function index()
     {
         try{
-            $rescued = RescuedPerson::all();
+            $rescued = RescuedPerson::select('name', 'country', 'genre', 'birth_date', 'photo_src')->get();
+            
             return response()->json(
                 [
                     "status" => "OK",
