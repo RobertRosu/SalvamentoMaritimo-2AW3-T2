@@ -45,29 +45,19 @@
                     <input type="text" class="form-control" id="diagnostic" name="diagnostic" value="{{ $rescuedPerson->diagnostic }}" required>
                 </div>
 
-                <!-- argazkia -->
-                <div class="form-group">
-                    <label for="photo_src">Argazkia</label>
-                    <input type="file" class="form-control-file" id="photo_src" name="photo_src">
-                    @if ($rescuedPerson->photo_src)
-                        <img src="{{ asset('storage/' . $rescuedPerson->photo_src) }}" alt="argazkia" width="100">
-                    @endif
-                </div>
 
-                <!-- Aldaketa gordetzeko botoia -->
-                <button type="submit" class="btn btn-primary">Aldatu</button>
-            </form>
+
         </div>
 
         <!-- Eskuineko kolumna: Irudi eta atributuak ikusteko (ez editable) -->
         <div class="col-md-6">
             <!-- argazkia -->
             <div class="form-group">
-                <label for="photo">Argazkia</label>
+                <label for="photo">Argazkia</label><br>
                 @if ($rescuedPerson->photo_src)
-                    <img src="{{ asset('storage/app/public/img/' . $rescuedPerson->photo_src) }}" alt="argazkia" width="200">
+                    <img src="{{$rescuedPerson->photo_src}}" alt="argazkia" width="200">
                 @else
-                    <p>No hay foto disponible</p>
+                    <p>Ez dago argazkirik.</p>
                 @endif
             </div>
 
@@ -83,6 +73,9 @@
                 <input type="text" class="form-control" id="doctor_id" name="doctor_id" value="{{ $rescuedPerson->doctor_id }}" readonly>
             </div>
         </div>
+                        <!-- Aldaketa gordetzeko botoia -->
+                        <button type="submit" class="btn btn-primary">Aldatu</button>
+            </form>
     </div>
 </div>
 
