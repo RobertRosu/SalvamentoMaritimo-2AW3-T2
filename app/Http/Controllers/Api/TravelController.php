@@ -15,7 +15,7 @@ class TravelController extends Controller
     public function index()
     {
         try{
-            $travels = Travel::orderBy('start_date', 'desc')->get();
+            $travels = Travel::select('origen', 'destino', 'start_date', 'description')->orderBy('start_date', 'desc')->get();
 
             return response()->json(
                 [
