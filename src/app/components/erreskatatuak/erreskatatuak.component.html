@@ -16,11 +16,20 @@
     </section>
   </div>
   
-  <div class="w-100" *ngIf="isAuthenticated">
-    <button class="logout-button" (click)="logout()">Itxi saioa</button> <!-- Botón para cerrar sesión -->
-  
+  <div class="w-100 bg-white" *ngIf="isAuthenticated">
+    
+    <div class="d-flex">
+      <div class="p-2">
+        <button class="btn btn-success">Errefuxiatu berria</button>
+      </div>
+      <div class="ms-auto p-2">
+        <button class="btn btn-danger" (click)="logout()">Itxi saioa</button> <!-- Botón para cerrar sesión -->
+      </div>
+    </div>
+    
     <section id="filters">
       <form>
+        <label for="search"><h1>Izena</h1></label>
         <input type="text" id="search" placeholder="Izenaren arabera bilatu" [(ngModel)]="filtroak.izena" [ngModelOptions]="{standalone: true}">        
         <div id="filters_container">
           <div class="filter">
@@ -55,9 +64,56 @@
       </form>
     </section>
   
-    <section id="card_container">
-      <ng-container *ngFor="let errefuxiatua of errefuxiatuak | filterErrefuxiatuak: filtroak; trackBy:getId">
-        <app-errefuxiatua-card [datuak]="errefuxiatua"></app-errefuxiatua-card>
+    <section class="card_container">
+      <ng-container *ngFor="let errefuxiatua of errefuxiatuak | filterErrefuxiatuak: filtroak; trackBy: getId">
+        <div class="position-relative card_content">
+          <!-- datuak -->
+          <app-errefuxiatua-card [datuak]="errefuxiatua"></app-errefuxiatua-card>
+          <div class="cardButtons position-absolute p-2">
+            <!-- Botón de editar -->
+            <button  class="me-2 btn btn-primary" (click)="editErrefuxiatua(errefuxiatua)" data-bs-toggle="modal" data-bs-target="#errefuxiatuaModal">
+              <i class="bi bi-vector-pen text-white"></i>
+            </button>
+            <!-- Botón de eliminar -->
+            <button class="btn btn-danger" (click)="deleteErrefuxiatua(errefuxiatua)">
+              <i class="bi bi-trash-fill text-white"></i>
+            </button>
+          </div>
+        </div>
       </ng-container>
     </section>
   </div>
+ <!-- Modal -->
+<div
+class="modal fade"
+id="errefuxiatuaModal"
+tabindex="-1"
+aria-labelledby="errefuxiatuaModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="errefuxiatuaModalLabel">Editar Errefuxiatua</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <!-- Componente hijo -->
+      <app-form-update-errefuxiatua [errefuxiatua]="selectedErrefuxiatua"></app-form-update-errefuxiatua>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Cerrar
+      </button>
+      <button type="button" class="btn btn-primary">
+        Guardar cambios
+      </button>
+    </div>
+  </div>
+</div>
+</div>

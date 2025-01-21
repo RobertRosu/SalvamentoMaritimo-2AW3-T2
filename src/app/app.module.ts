@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ErrefuxiatuaCardComponent } from './components/errefuxiatua-card/errefuxiatua-card.component';
 import { FilterErrefuxiatuakPipe } from './pipes/filter-errefuxiatuak.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { FormUpdateErrefuxiatuaComponent } from './components/form-update-errefuxiatua/form-update-errefuxiatua.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     ErrefuxiatuaCardComponent,
     FilterErrefuxiatuakPipe,
+    FormUpdateErrefuxiatuaComponent,
   ],
   imports: [
     BrowserModule,

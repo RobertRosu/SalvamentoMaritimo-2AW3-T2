@@ -17,4 +17,8 @@ export class ApiService {
   getTravels(): Observable<any> {
     return this.http.get<any>(this.apiUrl + 'travels');
   }
+
+  getRescuedPeople(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + 'rescued-people');
+  }
 }

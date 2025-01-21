@@ -1,7 +1,7 @@
-<img src="./../../../assets/images/dummy.jpg" alt="image">
+<img [src]="datuak.imagePath == null ? '../../../../assets/images/dummy.jpg' : datuak.imagePath" alt="image">
 <div class="info">
-    <h2>{{datuak.izena}}</h2>
-    <p><span>Adina:</span> {{datuak.adina}}</p>
+    <h3 class="text-truncate">{{datuak.izena}}</h3>
+    <p><span>Jaiotze data:</span> {{datuak.adina}}</p>
     <p><span>Sexua:</span> {{datuak.sexua}}</p>
     <p><span>Naziotasuna:</span> {{datuak.naziotasuna}}</p>
 </div>
