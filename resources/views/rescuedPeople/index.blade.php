@@ -19,7 +19,7 @@
                                 <th>Sexua</th>
                                 <th class="d-none d-md-table-cell">Jaiotze-data</th>
                                 <th>Diagnostikoa</th>
-                                <th><button type="button" class="btn btn-info">Erregistro berria sortu</button></th>
+                                <th><a href="{{ route('erreskatatuak.create') }}" type="button" class="btn btn-info">Erregistro berria sortu</a></th>
 
 
 

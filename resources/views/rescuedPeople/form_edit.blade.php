@@ -11,7 +11,7 @@
     <div class="row">
         <!-- Ezkerreko kolumna: Editable formularioa -->
         <div class="col-md-6">
-            <form action="{{ route('erreskatatuak.update', ['erreskatatuak' => $rescuedPerson->id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('erreskatatuak.update', $rescuedPerson->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -36,7 +36,7 @@
                 <!-- Jaiotze Data -->
                 <div class="form-group">
                     <label for="birth_date">Jaiotze Data</label>
-                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ $rescuedPerson->birth_date }}" required>
+                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ \Carbon\Carbon::parse($rescuedPerson->birth_date)->toDateString() }}" required>
                 </div>
 
                 <!-- Diagnostikoa -->
@@ -45,29 +45,19 @@
                     <input type="text" class="form-control" id="diagnostic" name="diagnostic" value="{{ $rescuedPerson->diagnostic }}" required>
                 </div>
 
-                <!-- argazkia -->
-                <div class="form-group">
-                    <label for="photo_src">Argazkia</label>
-                    <input type="file" class="form-control-file" id="photo_src" name="photo_src">
-                    @if ($rescuedPerson->photo_src)
-                        <img src="{{ asset('storage/' . $rescuedPerson->photo_src) }}" alt="argazkia" width="100">
-                    @endif
-                </div>
 
-                <!-- Aldaketa gordetzeko botoia -->
-                <button type="submit" class="btn btn-primary">Aldatu</button>
-            </form>
+
         </div>
 
-        <!-- Eskuineko kolumna: Irudi eta atributuak ikusteko (ez editable) -->
+        <!-- Eskuineko zutabea: Irudi eta atributuak ikusteko (ezin dira aldatu) -->
         <div class="col-md-6">
             <!-- argazkia -->
             <div class="form-group">
-                <label for="photo">Argazkia</label>
+                <label for="photo">Argazkia</label><br>
                 @if ($rescuedPerson->photo_src)
-                    <img src="{{ asset('storage/app/public/img/' . $rescuedPerson->photo_src) }}" alt="argazkia" width="200">
+                    <img src="{{$rescuedPerson->photo_src}}" alt="argazkia" width="200">
                 @else
-                    <p>No hay foto disponible</p>
+                    <p>Ez dago argazkirik.</p>
                 @endif
             </div>
 
@@ -83,6 +73,10 @@
                 <input type="text" class="form-control" id="doctor_id" name="doctor_id" value="{{ $rescuedPerson->doctor_id }}" readonly>
             </div>
         </div>
+                        <!-- Aldaketa gordetzeko botoia -->
+                        <button type="submit" class="btn btn-primary">Aldaketak gorde</button>
+                        <a href="{{ route('erreskatatuak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
+            </form>
     </div>
 </div>
 
