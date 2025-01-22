@@ -35,7 +35,7 @@ class CrewMemberController extends Controller
         $crew_member_data['start_date'] = Carbon::parse(Carbon::now());
         CrewMember::create($crew_member_data);
 
-        return redirect()->route('langileak.index')->with('success', 'Langilea ongi gehitu da');
+        return redirect()->route('langileak.index')->with('success', 'Langilea ondo gehitu da');
     }
 
     /**

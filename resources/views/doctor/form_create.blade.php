@@ -12,6 +12,17 @@
     @csrf
     @method('POST')
 
+    @if ($errors->any())
+        <div class="alert alert-danger mt-2">
+            <h2>Arazoak</h2>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <!-- Campo Nombre -->
     <div class="form-group">
         <label for="name">Izena</label>

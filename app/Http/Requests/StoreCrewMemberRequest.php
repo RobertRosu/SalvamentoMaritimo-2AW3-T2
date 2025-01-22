@@ -38,7 +38,7 @@ class StoreCrewMemberRequest extends FormRequest
         return [
             'name.required' => 'Izena derrigorrezkoa da.',
             'email.required' => 'Email-a derrigorrezkoa da.',
-            'email.email' => 'Email-a baliozkoa izan behar da.',
+            'email.regex' => 'Email-a baliozkoa izan behar da.',
             'email.unique' => 'Email hau dagoeneko erregistratuta dago.',
             'rol.required' => 'Rol-a derrigorrezkoa da.',
             'rol.in' => 'Rol-a ez da baliozkoa.',
