@@ -45,6 +45,7 @@
 
     <!-- Botón para enviar el formulario y guardar los cambios -->
     <button type="submit" class="btn btn-primary">Aldaketak gorde</button>
+    <a href="{{ route('bidaiak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
 </form>
 
 @endsection

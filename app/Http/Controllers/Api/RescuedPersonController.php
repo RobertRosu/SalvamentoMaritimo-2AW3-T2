@@ -102,9 +102,20 @@ class RescuedPersonController extends Controller
                 );
             }
 
-            $rescued->fill($request->validated());
-            $rescued->save();
+            // Validar y actualizar los campos
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'birth_date' => 'required|date',
+                'genre' => 'required|string|max:255',
+                'country' => 'required|string|max:255',
+                'photo_src' => 'required|url|max:255',
+            ]);
 
+            // Llenar los datos actualizados
+            $rescued->update($validatedData);
+            // $rescued->fill($request->validated());
+            // $rescued->save();
+            
             return response()->json(
                 [
                     "status" => 'OK', 

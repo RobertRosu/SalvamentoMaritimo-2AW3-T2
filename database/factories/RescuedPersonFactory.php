@@ -42,15 +42,15 @@ class RescuedPersonFactory extends Factory
                 $endpoint = '';
                 
                 if($attributes['genre'] == 'Gizona'){
-                    $endpoint = 'boy';
+                    $endpoint = 'male';
                 }
 
                 if($attributes['genre'] == 'Emakumea'){
-                    $endpoint = 'girl';
+                    $endpoint = 'female';
                 }
 
-                // %40ko probabilitatea du argazkirik ez izatea
-                return fake()->optional(0.4, null)->randomElement(["https://avatar.iran.liara.run/public/$endpoint"]);
+                // %20ko probabilitatea du argazkirik ez izatea
+                return fake()->optional(0.2, null)->randomElement(["https://xsgames.co/randomusers/avatar.php?g=$endpoint"]);
             },         
         ];
     }
