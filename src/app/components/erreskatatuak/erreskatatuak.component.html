@@ -17,17 +17,15 @@
   </div>
   
   <div class="w-100 bg-white" *ngIf="isAuthenticated">
-    
-    <div class="d-flex">
-      <div class="p-2">
-        <button (click)="storeErrefuxiatua()" class="btn btn-success">Errefuxiatu berria</button>
-      </div>
-      <div class="ms-auto p-2">
-        <button class="btn btn-danger" (click)="logout()">Itxi saioa</button> <!-- Botón para cerrar sesión -->
-      </div>
-    </div>
-    
     <section id="filters">
+      <div class="d-flex">
+        <div class="p-2">
+          <button (click)="storeErrefuxiatua()" class="btn btn-success">Errefuxiatu berria</button>
+        </div>
+        <div class="ms-auto p-2">
+          <button class="btn btn-danger" (click)="logout()">Itxi saioa</button> <!-- Botón para cerrar sesión -->
+        </div>
+      </div>
       <form>
         <label for="search"><h1>Izena</h1></label>
         <input type="text" id="search" placeholder="Izenaren arabera bilatu" [(ngModel)]="filtroak.izena" [ngModelOptions]="{standalone: true}">        

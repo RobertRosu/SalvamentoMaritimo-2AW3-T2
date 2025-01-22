@@ -11,10 +11,14 @@
     #filters{
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: $header-elemets-sm-bg;
         column-gap: 20px;
         width: 100%;
         padding: 10px;
+
+        label{
+          color: white;
+        }
         
         #search{
           padding: 5px 10px;
@@ -58,7 +62,7 @@
                 margin-top: 10px;
                 outline:none;
                 border:none;
-                background-color: $header-bg;
+                background-color: $button-bg-secondary;
                 font-size:16px;
                 cursor:pointer;
                 border-radius: 10px;
@@ -66,7 +70,7 @@
 
                 &:hover{
                     color:$text-color-dark-selected;
-                    background-color: $header-elemets-sm-bg;
+                    background-color: $button-bg-secondary-hover;
                 }
             }
         }
@@ -90,26 +94,29 @@
   }
   
   .cardButtons {
-      position: absolute;
-      right: 0;
-      bottom: -50px;
-      opacity: 0;
-      visibility: hidden;
-      transition: 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      display: flex;
-      font-size: 0;
-      button{
-        border-radius: 50%;
-        padding:  0px 0px;
-        transition: padding 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      }
-  }
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ;
+    display: flex;
+    font-size: 0;
+    border-radius: 26px 0 0 0;
+    button{
+      border-radius: 50%;
+      border: 2px solid $button-bg-primary-hover;
+      padding:  0px 0px;
+      transition: padding 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+}
   
   .card_content:hover .cardButtons {
       bottom: 0;
       opacity: 1;
       visibility: visible;
       font-size: 1rem;
+      background-color: $button-bg-primary-hover;
       button{
         padding:  7px 12px;
         transition: padding 0.5s;

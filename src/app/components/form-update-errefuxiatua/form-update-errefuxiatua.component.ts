@@ -34,6 +34,8 @@ export class FormUpdateErrefuxiatuaComponent implements OnChanges {
     };
     this.apiService.putRescuedPeople( this.errefuxiatua.id, this.errefuxiatuaEng).subscribe(
       response => {
+        console.log(this.errefuxiatua.id, this.errefuxiatuaEng);
+        console.log(response);
         this.updateErrefuxiatuaInParent.emit(this.errefuxiatuaCopy);
         this.closeModal.emit(false);
         Swal.fire({

@@ -37,7 +37,8 @@ form#edit-errefuxiatua-form {
       transition: all 0.3s ease-in-out;
 
       &:focus {
-        box-shadow: 0 0 3px ;
+        box-shadow: 0 0 3px $header-elemets-sm-bg;
+        border: 2px solid $header-elemets-sm-bg;
         background-color: lighten($background-color, 5%);
       }
     }

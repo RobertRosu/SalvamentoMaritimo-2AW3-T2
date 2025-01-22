@@ -1,8 +1,8 @@
 <form id="edit-errefuxiatua-form" *ngIf="errefuxiatuaCopy">
-    <div class="image-container" *ngIf="errefuxiatuaCopy.imagePath">
-        <img [src]="errefuxiatuaCopy.imagePath" alt="Argazkia" />
+    <div class="image-container">
+        <img [src]="errefuxiatuaCopy.imagePath == null ? '../../../../assets/images/dummy.jpg' : errefuxiatuaCopy.imagePath" alt="Argazkia" />
         <div class="info">
-          <h3>{{ errefuxiatuaCopy.izena || 'Izena' }}</h3>
+          <h3 class="text-truncate">{{ errefuxiatuaCopy.izena || 'Izena' }}</h3>
           <p><span>Jaiotze data:</span> {{ errefuxiatuaCopy.adina || 'Data ez' }}</p>
           <p><span>Sexua:</span> {{ errefuxiatuaCopy.sexua || 'Sexua ez' }}</p>
           <p><span>Naziotasuna:</span> {{ errefuxiatuaCopy.naziotasuna || 'Naziotasuna ez' }}</p>
@@ -21,7 +21,7 @@
       <select id="gender" name="gender" class="form-control" [(ngModel)]="errefuxiatuaCopy.sexua">
         <option [value]="'Gizona'">Gizona</option>
         <option [value]="'Emakumea'">Emakumea</option>
-        <option [value]="'Bestea'">Bestea</option>
+        <option [value]="'Beste bat'">Beste bat</option>
       </select>
     </div>
     <div class="form-group">
