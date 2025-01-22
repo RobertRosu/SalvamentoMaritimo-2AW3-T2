@@ -22,9 +22,7 @@ class Rescue extends Model
         "end_time"
     ];
 
-    protected $guarded = [
-        "id"
-    ];
+    protected $guarded = ["id"];
 
     /** @use HasFactory<\Database\Factories\RescueFactory> */
     use HasFactory;

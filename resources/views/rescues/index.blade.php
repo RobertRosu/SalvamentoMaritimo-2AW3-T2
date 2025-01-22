@@ -8,6 +8,19 @@
 @stop
 
 @section('content')
+
+@if(session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger mt-3">
+        {{ session('error') }}
+    </div>
+@endif
+
 <section id="erreskateak" class="taula">
                 <div class="table-responsive">
                     <table class="table table-hover">
