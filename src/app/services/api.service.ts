@@ -22,6 +22,10 @@ export class ApiService {
     return this.http.get<any>(this.apiUrl + 'rescued-people');
   }
 
+  putRescuedPeople(id: number, data: any): Observable<any> {
+     return this.http.put<any>(this.apiUrl + 'rescued-people/'+id, data);
+  }
+
   deleteRescuedPeople(id: number): Observable<any> {
     return this.http.delete<any>(this.apiUrl + 'rescued-people/'+id);
   }

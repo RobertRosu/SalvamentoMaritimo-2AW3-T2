@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Errefuxiatua } from 'src/app/models/Errefuxiatua';
 import { ApiService } from '../../services/api.service';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-erreskatatuak',
@@ -75,19 +76,87 @@ export class ErreskatatuakComponent implements OnInit{
     Swal.fire("SweetAlert2 is working!");
   }
 
+  handleUpdateErrefuxiatua(updatedErrefuxiatua: any): void {
+    // Encuentra el objeto original y actualízalo
+    const index = this.errefuxiatuak.findIndex(e => e.id === updatedErrefuxiatua.id);
+    if (index !== -1) {
+      this.errefuxiatuak[index] = { ...updatedErrefuxiatua }; // Actualiza con los nuevos datos
+    }
+  }
+
   editErrefuxiatua(errefuxiatua: Errefuxiatua) {
     this.selectedErrefuxiatua = errefuxiatua;
   }
+
+  // Método para manejar el cierre del modal
+  handleCloseModal(hasChanges: boolean): void {
+    if (hasChanges) {
+      Swal.fire({
+        title: 'Aldaketak daude, gordetzen ez badituzu galduko dira.',
+        showCancelButton: true,
+        confirmButtonColor: '#ffc107',
+        cancelButtonColor: '#1f1f1f',
+        confirmButtonText: 'EZ GORDE',
+        cancelButtonText: 'ITZULI',
+        customClass: {
+          confirmButton: 'text-black',
+          popup: 'border border-3 border-warning rounded-4'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.selectedErrefuxiatua = null; // Limpiar la selección si se confirma salir
+          const closeModalButton = document.querySelector('[data-bs-dismiss="modal"]');
+          (closeModalButton as HTMLElement)?.click();
+        }
+      });
+    } else {
+      this.selectedErrefuxiatua = null; // Limpiar la selección al cerrar sin cambios
+      const closeModalButton = document.querySelector('[data-bs-dismiss="modal"]');
+      (closeModalButton as HTMLElement)?.click();
+    }
+  }
+
   deleteErrefuxiatua(errefuxiatua: Errefuxiatua) {
     
-    this.apiService.deleteRescuedPeople(errefuxiatua.id).subscribe(
-      response => {
-          this.getRescuedPeople();
-      },
-      error => {
-          console.error('Error al eliminar:', error);
+    Swal.fire({
+      title: "Honako hau ezabatzen ari zara: <b>" + errefuxiatua.izena + "</b>.",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#1f1f1f",
+      confirmButtonText: "EZABATU",
+      cancelButtonText: "EZEZTATU",
+      customClass: {
+        popup: 'border border-3 border-danger rounded-4'
       }
-    );
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.deleteRescuedPeople(errefuxiatua.id).subscribe(
+          
+          response => {
+              this.getRescuedPeople();
+              Swal.fire({
+                toast: true,
+                showConfirmButton: false,
+                timer: 5000,
+                title: "<b>" + errefuxiatua.izena + "</b> ezabatu da.",
+                icon: "success",
+                position: 'top',
+                customClass: {
+                  popup: 'border border-3 border-success rounded-pill shadow',
+                }
+              });
+          },
+          error => {
+              console.error('Error al eliminar:', error);
+              Swal.fire({
+                title: "Ups, Ezabatzean errore bat egon da!",
+                text: error,
+                icon: "error"
+              });
+          }
+        );
+      }
+    });
   }
 
   validatePassword() {
