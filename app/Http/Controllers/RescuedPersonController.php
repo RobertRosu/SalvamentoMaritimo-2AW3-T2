@@ -45,6 +45,8 @@ class RescuedPersonController extends Controller
         $rescuedPerson->diagnostic = $request->diagnostic;
         $rescuedPerson->rescue_id = $request->rescue_id;
         $rescuedPerson->doctor_id = $request->doctor_id;
+        $rescuedPerson->photo_src = $request->photo_src;
+
 
         $rescuedPerson->save();
 
@@ -80,7 +82,7 @@ class RescuedPersonController extends Controller
         $rescuedPerson->genre = $request->genre;
         $rescuedPerson->birth_date = $request->birth_date;
         $rescuedPerson->diagnostic = $request->diagnostic;
-        $rescuedPerson->photo_src = $rescuedPerson->photo_src;
+        $rescuedPerson->photo_src = $request->photo_src;
         $rescuedPerson->rescue_id = $rescuedPerson->rescue_id;
         $rescuedPerson->doctor_id = $rescuedPerson->doctor_id;
 

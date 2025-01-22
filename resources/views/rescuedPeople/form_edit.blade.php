@@ -51,16 +51,20 @@
 
         <!-- Eskuineko zutabea: Irudi eta atributuak ikusteko (ezin dira aldatu) -->
         <div class="col-md-6">
-            <!-- argazkia -->
-            <div class="form-group">
-                <label for="photo">Argazkia</label><br>
-                @if ($rescuedPerson->photo_src)
-                    <img src="{{$rescuedPerson->photo_src}}" alt="argazkia" width="200">
-                @else
-                    <p>Ez dago argazkirik.</p>
-                @endif
-            </div>
-
+<!-- argazkia -->
+<div class="form-group">
+    <label for="photo">Argazkia</label><br>
+    @if ($rescuedPerson->photo_src)
+        <img id="photo-preview" src="{{ $rescuedPerson->photo_src }}" alt="argazkia" width="200">
+    @else
+        <p>Ez dago argazkirik.</p>
+    @endif
+</div>
+        <!-- Argazkia SRC (Aldatu daiteke) -->
+        <div class="form-group">
+            <label for="photo_src">Argazkia (URL)</label>
+            <input type="text" class="form-control" id="photo_src" name="photo_src" value="{{ $rescuedPerson->photo_src }}">
+        </div>
             <!-- Rescue ID (Ez aldagarria) -->
             <div class="form-group">
                 <label for="rescue_id">Rescue ID</label>
@@ -79,5 +83,15 @@
             </form>
     </div>
 </div>
+<script>
+    // Accede a los elementos de la imagen y del campo de entrada
+    const photoInput = document.getElementById('photo_src');
+    const photoPreview = document.getElementById('photo-preview');
+    
+    // Actualiza la src de la imagen cuando el usuario cambia el valor del input
+    photoInput.addEventListener('input', function() {
+        photoPreview.src = photoInput.value;
+    });
+</script>
 
 @endsection

@@ -72,6 +72,7 @@
     <label for="erizaina_id">ID Erizaina</label>
     <input readonly type="text" class="form-control" id="erizaina_id" value="{{$nurse->id}} - {{$nurse->name}}">
 </div>
+<a href="{{ route('bidaiak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
 </form>
 
 @endsection
