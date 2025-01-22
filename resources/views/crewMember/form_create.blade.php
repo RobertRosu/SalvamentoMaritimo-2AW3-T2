@@ -7,7 +7,6 @@
     <h4 class="mt-4 text-dark">Kargatzen...</h4>
 @stop
 @section('content')
-<!-- Formulario de edición -->
 <form action="{{ route('langileak.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('POST')
@@ -23,19 +22,16 @@
         </div>
     @endif
 
-    <!-- Campo Nombre -->
     <div class="form-group">
         <label for="name">Izena<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="name" name="name">
     </div>
 
-   <!-- Campo Email -->
    <div class="form-group">
         <label for="email">Email-a<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="email" name="email">
    </div>
 
-   <!-- Campo Estado -->
     <div class="form-group">
         <label for="rol">Rol-a<span class="text-danger">*</span></label>
         <select class="form-control" id="rol" name="rol">
@@ -48,7 +44,6 @@
         </select>
     </div>
 
-    <!-- Botón para enviar el formulario y guardar los cambios -->
     <button type="submit" class="btn btn-primary">Erregistro berria sortu</button>
     <a href="{{ route('langileak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
 </form>

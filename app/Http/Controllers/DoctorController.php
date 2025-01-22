@@ -37,7 +37,7 @@ class DoctorController extends Controller
 
         Doctor::create($doctor_data);
 
-        return redirect()->route('medikuak.index')->with('success', 'Medikua ongi gehitu da');
+        return redirect()->route('medikuak.index')->with('success', 'Medikua ondo gehitu da');
     }
 
     /**
@@ -71,7 +71,7 @@ class DoctorController extends Controller
 
         $doctor->update($doctor_data);
 
-        return redirect()->route('medikuak.index')->with('success', 'Medikua eguneratu da');
+        return redirect()->route('medikuak.index')->with('success', 'Medikua ondo eguneratu da');
     }
 
     /**
@@ -79,7 +79,11 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        Doctor::where('id', $id)->delete();
-        return redirect()->route('medikuak.index');
+        try{
+            Doctor::where('id', $id)->delete();
+            return redirect()->route('medikuak.index')->with('success', 'Medikua ondo ezabatu da');    
+        }catch(\Exception $e){
+            return redirect()->route('medikuak.index')->with('error', $e);
+        }
     }
 }

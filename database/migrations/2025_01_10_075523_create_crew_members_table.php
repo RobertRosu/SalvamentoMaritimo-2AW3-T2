@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('rol');
-            $table->date('start_date');
+            $table->date('start_date')->default(Carbon::now());
             $table->enum('status', ['Aktibo', 'Inaktibo', 'Bajan'])->default('Aktibo');
             $table->date('stop_date')->nullable();
             $table->string('reason')->nullable();

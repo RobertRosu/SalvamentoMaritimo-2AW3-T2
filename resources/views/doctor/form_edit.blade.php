@@ -7,7 +7,6 @@
     <h4 class="mt-4 text-dark">Kargatzen...</h4>
 @stop
 @section('content')
-<!-- Formulario de edición -->
 <form action="{{ route('medikuak.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -23,27 +22,23 @@
         </div>
     @endif
 
-    <!-- Campo Nombre -->
     <div class="form-group">
-        <label for="name">Izena</label>
+        <label for="name">Izena<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="name" name="name" value="{{ $doctor->name }}" required>
     </div>
 
-    <!-- Campo Email -->
     <div class="form-group">
-        <label for="email">Email-a</label>
+        <label for="email">Email-a<span class="text-danger">*</span></label>
         <input type="email" class="form-control" id="email" name="email" value="{{ $doctor->email }}" required>
     </div>
 
-    <!-- Campo Fecha de fin -->
     <div class="form-group">
-        <label for="stop_date">Amaiera data</label>
+        <label for="stop_date">Amaiera data<span class="text-danger">*</span></label>
         <input type="date" class="form-control" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($doctor->stop_date)->toDateString() }}" required>
     </div>
 
-    <!-- Campo Estado -->
     <div class="form-group">
-        <label for="status">Egoera</label>
+        <label for="status">Egoera<span class="text-danger">*</span></label>
         <select class="form-control" id="status" name="status">
             <option value="Aktibo" {{$doctor->status == 'Aktibo' ? 'selected' : ''}}>Aktibo</option>
             <option value="Inaktibo" {{$doctor->status == 'Inaktibo' ? 'selected' : ''}}>Inaktibo</option>
@@ -51,13 +46,11 @@
         </select>
     </div>
 
-    <!-- Campo Razon -->
     <div class="form-group">
         <label for="reason">Arrazoia</label>
         <input type="text" class="form-control" id="reason" name="reason" value="{{ $doctor->reason }}">
     </div>
 
-    <!-- Botón para enviar el formulario y guardar los cambios -->
     <button type="submit" class="btn btn-primary">Aldaketak gorde</button>
     <a href="{{ route('medikuak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
 </form>

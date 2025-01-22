@@ -76,13 +76,11 @@ class CrewMemberController extends Controller
      */
     public function destroy($id)
     {
-        $crew_member=CrewMember::find($id);
-
-        if(!$crew_member){
-            return redirect()->route('langileak.index')->with('error', 'Crew member not found!');
+        try{
+            CrewMember::where('id', $id)->delete();
+            return redirect()->route('langileak.index')->with('success', 'Langilea ondo ezabatu da');    
+        }catch(\Exception $e){
+            return redirect()->route('langileak.index')->with('error', $e);
         }
-
-        $crew_member->delete();
-        return redirect()->route('langileak.index')->with('success', 'Crew member deleted successfully');
     }
 }

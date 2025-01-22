@@ -7,30 +7,36 @@
     <h4 class="mt-4 text-dark">Kargatzen...</h4>
 @stop
 @section('content')
-<!-- Formulario de edición -->
 <form action="{{ route('bidaiak.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('POST')
 
-    <!-- Campo Nombre -->
+    @if ($errors->any())
+        <div class="alert alert-danger mt-2">
+            <h2>Arazoak</h2>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="form-group">
-        <label for="origen">Irteera</label>
-        <input type="text" class="form-control" id="origen" name="origen" required>
+        <label for="origen">Irteera<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="origen" name="origen">
     </div>
 
-    <!-- Campo Email -->
     <div class="form-group">
-        <label for="destino">Helmuga</label>
-        <input type="text" class="form-control" id="destino" name="destino" required>
+        <label for="destino">Helmuga<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="destino" name="destino">
     </div>
 
-    <!-- Campo Email -->
     <div class="form-group">
-        <label for="description">Deskripzioa</label>
-        <textarea class="form-control" id="description" name="description" required></textarea>
+        <label for="description">Deskripzioa<span class="text-danger">*</span></label>
+        <textarea class="form-control" id="description" name="description"></textarea>
     </div>
 
-    <!-- Botón para enviar el formulario y guardar los cambios -->
     <button type="submit" class="btn btn-primary">Erregistro berria sortu</button>
     <a href="{{ route('bidaiak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
 </form>
