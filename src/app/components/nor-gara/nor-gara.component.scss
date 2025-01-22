@@ -1,181 +1,198 @@
 @import './../../../scss/colors';
 @import './../../../scss/mediaqueries';
 
-:host{
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+
+  // =========================
+  // Bideoaren edukiontzia
+  // =========================
+  #video_container {
     display: flex;
-    align-items: center;
+    position: relative;
     flex-direction: column;
     width: 100%;
-    overflow:hidden;
-    background-color: white;
+    height: calc(100vh - 74px);
+    min-height: 350px;
 
-    #video_container{
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      backdrop-filter: blur(5px);
+    }
+
+    // Bideoaren gaineko geruza
+    #video_overlay {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      color: white;
+      backdrop-filter: blur(5px);
+
+      .info {
         display: flex;
-        position:relative;
         flex-direction: column;
-        width: 100%;
+        justify-content: center;
+        width: 25%;
         height: calc(100vh - 74px);
         min-height: 350px;
+        padding: 15px 20px;
+        margin-left: 50px;
+        background-color: rgba(0, 0, 0, 0.5);
 
-        video{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            backdrop-filter: blur(5px);
+        h1 {
+          font-size: 34px;
+          letter-spacing: 1px;
         }
 
-        #video_overlay{
-            display: flex;
-            flex-direction: column;
-            position:absolute;
-            width: 100%;
-            height: 100%;
-            color:white;
-            backdrop-filter: blur(5px);
+        .info_paragraphs {
+          margin-top: 40px;
 
-            .info{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 25%;
-                height: calc(100vh - 74px);
-                min-height: 350px;
-                padding: 15px 20px;
-                margin-left: 50px;
-                background-color: rgba(0, 0, 0, 0.5);
-
-                h1{
-                    font-size: 34px;
-                    letter-spacing: 1px;
-                    
-                }
-
-                .info_paragraphs{
-                    margin-top: 40px;
-
-                    p{
-                        font-size: 20px;
-                        &:first-child{
-                            font-weight: bold;
-                        }
-
-                        &:last-child{
-                            margin-top: 20px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    #card_container{
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        width: 80%;
-        margin-top: 80px;
-        column-gap: 30px;
-
-        .card{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            color: $button-bg-secondary;
-            width: 100%;
-            border-radius:10px;
-            background: linear-gradient(350deg, rgba(5,0,89,1) 0%, rgba(9,9,121,1) 35%, rgba(2,173,208,1) 100%);
-            color:$text-color-dark-selected;
-
-            h1{
-                font-size: 40px;
-                font-weight: 700;
-            }
-
-            h2{
-                margin-top: 10px;
-            }
-        }
-    }
-
-    .ish_info{
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-        margin-top: 60px;
-        padding: 30px 0;
-
-        p{
-            margin-top: 20px;
+          p {
             font-size: 20px;
 
-            span{
-                font-weight: bold;
-                color: $button-bg-primary;
+            &:first-child {
+              font-weight: bold;
             }
-        }
 
-        .section_title{
-            font-size: 35px;
-            color: $button-bg-secondary;
+            &:last-child {
+              margin-top: 20px;
+            }
+          }
         }
+      }
     }
+  }
+
+  // =========================
+  // Txartel edukiontzia
+  // =========================
+  #card_container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 80%;
+    margin-top: 80px;
+    column-gap: 30px;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: $button-bg-secondary;
+      width: 100%;
+      border-radius: 10px;
+      background: linear-gradient(350deg, rgba(5, 0, 89, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(2, 173, 208, 1) 100%);
+      color: $text-color-dark-selected;
+
+      h1 {
+        font-size: 40px;
+        font-weight: 700;
+      }
+
+      h2 {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  // =========================
+  // Informazio gehigarria (ish_info)
+  // =========================
+  .ish_info {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 60px;
+    padding: 30px 0;
+
+    p {
+      margin-top: 20px;
+      font-size: 20px;
+
+      span {
+        font-weight: bold;
+        color: $button-bg-primary;
+      }
+    }
+
+    .section_title {
+      font-size: 35px;
+      color: $button-bg-secondary;
+    }
+  }
 }
 
-@media(max-width: $mq-medium){
-    :host{
-        #video_container{
-            #video_overlay{
-                .info{
-                    width: 60%;
-                    margin: 0;
-                    background-color: rgba(0, 0, 0, 0.2);
-                    padding: 10px;
+// ====================================================
+// ERRESPONSIBITATEA (MEDIA QUERIES)
+// ====================================================
 
-                    .info_paragraphs{
-                        font-size: 10px;
-                    }
-                }
-            }
-        }
+// Pantaila ertainetarako egokitzapena
+@media (max-width: $mq-medium) {
+  :host {
+    #video_container {
+      #video_overlay {
+        .info {
+          width: 60%;
+          margin: 0;
+          background-color: rgba(0, 0, 0, 0.2);
+          padding: 10px;
 
-        #card_container{
-            flex-direction: column;
-            column-gap: 0;
-            row-gap: 30px;
+          .info_paragraphs {
+            font-size: 10px;
+          }
         }
+      }
     }
+
+    #card_container {
+      flex-direction: column;
+      column-gap: 0;
+      row-gap: 30px;
+    }
+  }
 }
 
-@media(max-width: $mq-small){
-    :host{
-        #video_container{
-            #video_overlay{
-                .info{
-                    width: 100%;
-                    margin: 0;
-                    background-color: rgba(0, 0, 0, 0.2);
+// Pantaila txikietarako egokitzapena
+@media (max-width: $mq-small) {
+  :host {
+    #video_container {
+      #video_overlay {
+        .info {
+          width: 100%;
+          margin: 0;
+          background-color: rgba(0, 0, 0, 0.2);
 
-                    .info_paragraphs{
-                        font-size: 10px;
-                    }
-                }
-            }
+          .info_paragraphs {
+            font-size: 10px;
+          }
         }
-
-        #card_container{
-            flex-direction: column;
-            column-gap: 0;
-            row-gap: 30px;
-        }
-
-        .ish_info{
-            width: 90%;
-            p{
-                font-size: 18px;
-            }
-        }
+      }
     }
+
+    #card_container {
+      flex-direction: column;
+      column-gap: 0;
+      row-gap: 30px;
+    }
+
+    .ish_info {
+      width: 90%;
+
+      p {
+        font-size: 18px;
+      }
+    }
+  }
 }

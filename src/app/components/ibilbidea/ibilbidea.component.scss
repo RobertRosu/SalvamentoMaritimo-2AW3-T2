@@ -1,9 +1,54 @@
 @import '../../../scss/colors';
 
+// ====================================================
+// IBILBIDEAREN EDUKONTZI NAGUSIA
+// ====================================================
+.ibilbidea {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  // =========================
+  // SVG estilistikako
+  // =========================
+  svg {
+    z-index: 1; // SVG guztien azpian
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  // =========================
+  // Ontziarentzako estiloak
+  // =========================
+  #ship {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    z-index: 2; // Ontzia lerroaren azpian, baina SVGaren gainean
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// ====================================================
+// DENBORAREN LERROAREN ESTILOAK
+// ====================================================
 .timeline {
+  z-index: 10;
   border-left: 3px solid $button-bg-secondary;
   border-right: 3px solid $button-bg-secondary;
   background: #fefefee2;
+  background-image: url("../../../assets/svg/background.svg");
+  background-attachment: fixed;
   margin: 0 auto;
   letter-spacing: 0.2px;
   position: relative;
@@ -12,41 +57,51 @@
   padding: 50px;
   list-style: none;
   max-width: 50%;
-  background-image: url("../../../assets/svg/background.svg");
-  background-attachment: fixed;
 
-  // Responsividad para pantallas pequeñas
+  // Pantaila txikietarako egokitzapena
   @media (max-width: 991px) {
     max-width: 98%;
     padding: 25px;
   }
+
+  // =========================
+  // Izenburuak (h3)
+  // =========================
   h3 {
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 10px;
   }
 
-  p{
+  // =========================
+  // Paragrafoak (p)
+  // =========================
+  p {
     text-align: justify;
   }
 
+  // =========================
+  // Denboraren lerroko gertaerak
+  // =========================
   .event {
     border-bottom: 1px dashed $button-bg-secondary;
     padding-bottom: 25px;
     margin-bottom: 25px;
     position: relative;
 
-    // Responsividad para pantallas pequeñas
+    // Pantaila txikietarako egokitzapena
     @media (max-width: 991px) {
       padding-top: 30px;
     }
 
+    // Azken gertaera
     &:last-of-type {
       padding-bottom: 0;
       margin-bottom: 0;
       border: none;
     }
 
+    // Aurretik eta ondoren agertzen diren elementuak
     &::before,
     &::after {
       position: absolute;
@@ -54,6 +109,7 @@
       top: 0;
     }
 
+    // Gertaeraren data
     &::before {
       left: -170px;
       top: -4px;
@@ -65,7 +121,7 @@
       background-color: $button-bg-secondary;
       border-bottom: 3px solid $button-bg-secondary;
 
-      // Responsividad para pantallas pequeñas
+      // Pantaila txikietarako egokitzapena
       @media (max-width: 991px) {
         left: 0;
         text-align: left;
@@ -77,6 +133,7 @@
       }
     }
 
+    // Lerroko puntua
     &::after {
       -webkit-box-shadow: 0 0 0 3px $button-bg-secondary;
       box-shadow: 0 0 0 3px $button-bg-secondary;
@@ -88,51 +145,49 @@
       content: "";
       top: 5px;
 
-      // Responsividad para pantallas pequeñas
+      // Pantaila txikietarako egokitzapena
       @media (max-width: 991px) {
         left: -31px;
-        
       }
     }
 
-    @media (min-width: 992px) { // Responsividad para pantallas grandes, solo alterna de lado en grande
+    // Pantaila handietarako estiloak
+    @media (min-width: 992px) {
       &.left {
         .title {
           text-align: left;
           margin-left: 0;
           margin-right: auto;
         }
-  
+
         &::before {
-          left: -170px; // Posición a la izquierda
+          left: -170px; // Ezkerrean kokatua
           border-radius: 7px 0 0 7px;
         }
-  
+
         &::after {
-          left: -56px; // Punto en la línea para eventos a la izquierda
+          left: -56px; // Ezkerreko gertaerako puntua
         }
       }
-  
+
       &.right {
         .title {
           text-align: right;
           margin-right: 0;
           margin-left: auto;
         }
-  
+
         &::before {
           left: auto;
-          right: -170px; // Posición a la derecha
+          right: -170px; // Eskuinean kokatua
           border-radius: 0 7px 7px 0;
         }
-  
+
         &::after {
           left: auto;
-          right: -56px; // Punto en la línea para eventos a la derecha
+          right: -56px; // Eskuineko gertaerako puntua
         }
       }
-      
     }
-
   }
 }

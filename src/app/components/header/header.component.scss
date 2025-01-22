@@ -1,109 +1,129 @@
 @import './../../../scss/colors';
 @import './../../../scss/mediaqueries';
 
+// ====================================================
+// HEADER-AREN ESTILO NAGUSIAK
+// ====================================================
 :host {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background-color: $header-bg;
+  padding: 10px;
+
+  // Edukiontzi malgua
+  .flex-cont {
     display: flex;
-    position: sticky;
-    top:0;
-    z-index: 1;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-    background-color: $header-bg;
-    padding: 10px;
 
-    .flex-cont {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
+    // =========================
+    // Nabigazio-zerrenda
+    // =========================
+    ul {
+      display: flex;
+      list-style-type: none;
+      column-gap: 20px;
+      margin-right: 20px;
+      margin-bottom: 0;
 
-        ul {
-            display: flex;
-            list-style-type: none;
-            column-gap: 20px;
-            margin-right: 20px;
-            margin-bottom: 0;
+      li {
+        a {
+          color: $text-color-dark;
+          text-decoration: none;
+          padding: 10px;
+          border-radius: 10px;
+          transition: 0.2s;
+          font-size: 16px;
 
-            li {
-                a {
-                    color: $text-color-dark;
-                    text-decoration: none;
-                    padding: 10px;
-                    border-radius: 10px;
-                    transition: .2s;
-                    font-size: 16px;
-
-                    &:hover,
-                    &.active {
-                        background-color: $header-elemets-sm-bg;
-                        color:$text-color-dark-selected;
-                    }
-                }
-            }
+          &:hover,
+          &.active {
+            background-color: $header-elemets-sm-bg;
+            color: $text-color-dark-selected;
+          }
         }
+      }
     }
+  }
 
-    #user {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        width: 50px;
-        height: 50px;
-        font-size: 40px;
-        color: white;
-        cursor: pointer;
-    }
+  // =========================
+  // Erabiltzailearen ikonoa
+  // =========================
+  #user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+  }
 
-    #menu {
-        display: none;
-        width: 50px;
-        height: 50px;
-        font-size: 50px;
-        color: white;
-        cursor: pointer;
-    }
+  // =========================
+  // Menuaren ikonoa (hamburguesa)
+  // =========================
+  #menu {
+    display: none;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
+  }
 }
 
+// ====================================================
+// MEDIA QUERIES (ERRESPONSIBOA)
+// ====================================================
 @media (max-width: $mq-small) {
-    :host {
-        .flex-cont ul {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: $header-elemets-sm-bg;
-            column-gap: 0;
-            padding-left: 0;
+  :host {
+    // =========================
+    // Nabigazio-zerrenda erantzuna
+    // =========================
+    .flex-cont ul {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: $header-elemets-sm-bg;
+      column-gap: 0;
+      padding-left: 0;
 
-            &.opened {
-                display: flex;
-            }
+      &.opened {
+        display: flex;
+      }
 
-            li {
-                display: flex;
-                width: 100%;
+      li {
+        display: flex;
+        width: 100%;
 
-                a {
-                    width: 100%;
-                    border-radius: 0;
-                    padding: 15px 10px;
+        a {
+          width: 100%;
+          border-radius: 0;
+          padding: 15px 10px;
 
-                    &:hover,
-                    &.active {
-                        background-color: $header-bg;
-                    }
-                }
-            }
+          &:hover,
+          &.active {
+            background-color: $header-bg;
+          }
         }
-
-        #menu {
-            display: flex;
-            margin-right: 10px;
-        }
+      }
     }
+
+    // Mugikorrean ikusgai dagoen menuaren ikonoa
+    #menu {
+      display: flex;
+      margin-right: 10px;
+    }
+  }
 }

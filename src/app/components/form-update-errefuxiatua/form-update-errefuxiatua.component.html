@@ -1,44 +1,92 @@
-<form id="edit-errefuxiatua-form" *ngIf="errefuxiatuaCopy">
-    <div class="image-container">
-        <img [src]="errefuxiatuaCopy.imagePath == null ? '../../../../assets/images/dummy.jpg' : errefuxiatuaCopy.imagePath" alt="Argazkia" />
-        <div class="info">
-          <h3 class="text-truncate">{{ errefuxiatuaCopy.izena || 'Izena' }}</h3>
-          <p><span>Jaiotze data:</span> {{ errefuxiatuaCopy.adina || 'Data ez' }}</p>
-          <p><span>Sexua:</span> {{ errefuxiatuaCopy.sexua || 'Sexua ez' }}</p>
-          <p><span>Naziotasuna:</span> {{ errefuxiatuaCopy.naziotasuna || 'Naziotasuna ez' }}</p>
-        </div>
-      </div>
-    <div class="form-group">
-      <label for="name">Izena:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="errefuxiatuaCopy.izena" class="form-control" />
+<form id="edit-errefuxiatua-form" *ngIf="errefuxiatuaCopy" (ngSubmit)="updateErrefuxiatua()">
+  <div class="image-container">
+    <img [src]="errefuxiatuaCopy.imagePath == null ? '../../../../assets/images/dummy.jpg' : errefuxiatuaCopy.imagePath" alt="Argazkia" />
+    <div class="info">
+      <h3 class="text-truncate">{{ errefuxiatuaCopy.izena || 'Izena' }}</h3>
+      <p><span>Jaiotze data:</span> {{ errefuxiatuaCopy.adina || 'Data ez' }}</p>
+      <p><span>Sexua:</span> {{ errefuxiatuaCopy.sexua || 'Sexua ez' }}</p>
+      <p><span>Naziotasuna:</span> {{ errefuxiatuaCopy.naziotasuna || 'Naziotasuna ez' }}</p>
     </div>
-    <div class="form-group">
-      <label for="birthdate">Jaiotze data:</label>
-      <input type="date" id="birthdate" name="birthdate" [(ngModel)]="errefuxiatuaCopy.adina" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label for="gender">Sexua:</label>
-      <select id="gender" name="gender" class="form-control" [(ngModel)]="errefuxiatuaCopy.sexua">
-        <option [value]="'Gizona'">Gizona</option>
-        <option [value]="'Emakumea'">Emakumea</option>
-        <option [value]="'Beste bat'">Beste bat</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="nationality">Naziotasuna:</label>
-      <input type="text" id="nationality" name="nationality" [(ngModel)]="errefuxiatuaCopy.naziotasuna" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label for="imagePath">Argazkia (URL):</label>
-      <input type="url" id="imagePath" name="imagePath" [(ngModel)]="errefuxiatuaCopy.imagePath" class="form-control" />
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="exit()">
-        Itxi
-      </button>
-      <button type="button" class="btn btn-success" (click)="updateErrefuxiatua()">
-        Gorde aldaketak
-      </button>
-    </div>
-  </form>
+  </div>
   
+  <div class="form-group" [class.invalid]="!errefuxiatuaCopy.izena">
+    <label for="name">Izena:</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      [(ngModel)]="errefuxiatuaCopy.izena" 
+      class="form-control" 
+      required 
+      maxlength="255" 
+      pattern="^[^\s].*"
+    />
+    <div class="error-message" *ngIf="!errefuxiatuaCopy.izena">Izena beharrezkoa da eta ezin da hutsa izan.</div>
+  </div>
+
+  <div class="form-group" [class.invalid]="!errefuxiatuaCopy.adina">
+    <label for="birthdate">Jaiotze data:</label>
+    <input 
+      type="date" 
+      id="birthdate" 
+      name="birthdate" 
+      [(ngModel)]="errefuxiatuaCopy.adina" 
+      class="form-control" 
+      required 
+    />
+    <div class="error-message" *ngIf="!errefuxiatuaCopy.adina">Jaiotze data beharrezkoa da.</div>
+  </div>
+
+  <div class="form-group" [class.invalid]="!errefuxiatuaCopy.sexua">
+    <label for="gender">Sexua:</label>
+    <select 
+      id="gender" 
+      name="gender" 
+      class="form-control" 
+      [(ngModel)]="errefuxiatuaCopy.sexua" 
+      required
+    >
+      <option [value]="''" disabled selected>Hautatu bat</option>
+      <option [value]="'Gizona'">Gizona</option>
+      <option [value]="'Emakumea'">Emakumea</option>
+      <option [value]="'Beste bat'">Beste bat</option>
+    </select>
+    <div class="error-message" *ngIf="!errefuxiatuaCopy.sexua">Sexua hautatu behar da.</div>
+  </div>
+
+  <div class="form-group" [class.invalid]="!errefuxiatuaCopy.naziotasuna">
+    <label for="nationality">Naziotasuna:</label>
+    <input 
+      type="text" 
+      id="nationality" 
+      name="nationality" 
+      list="nationalities" 
+      [(ngModel)]="errefuxiatuaCopy.naziotasuna" 
+      class="form-control" 
+      required 
+    />
+    <datalist id="nationalities">
+      <option *ngFor="let nationality of nationalities" [value]="nationality"></option>
+    </datalist>
+    <div class="error-message" *ngIf="!errefuxiatuaCopy.naziotasuna">Naziotasuna beharrezkoa da.</div>
+  </div>
+
+  <div class="form-group" [class.invalid]="!errefuxiatuaCopy.imagePath">
+    <label for="imagePath">Argazkia (URL):</label>
+    <input 
+      type="url" 
+      id="imagePath" 
+      name="imagePath" 
+      [(ngModel)]="errefuxiatuaCopy.imagePath" 
+      class="form-control" 
+      required 
+      maxlength="255"
+    />
+    <div class="error-message" *ngIf="!errefuxiatuaCopy.imagePath">Argazkiaren URL baliozkoa izan behar da.</div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="exit()">Itxi</button>
+    <button type="submit" class="btn btn-success">Gorde aldaketak</button>
+  </div>
+</form>
