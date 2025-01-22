@@ -22,7 +22,11 @@ class StoreCrewMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:200',
+            'email' => 'required|email|unique:crew_members',
+            'rol' => 'required',
+            'start_date' => 'date',
         ];
     }
+
 }

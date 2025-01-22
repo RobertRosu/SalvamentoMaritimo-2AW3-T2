@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCrewMemberRequest extends FormRequest
@@ -21,8 +22,20 @@ class UpdateCrewMemberRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('id'); // Obtener el ID del miembro de la tripulación desde la ruta
+
         return [
-            //
+            'name' => 'required|max:200',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('crew_members', 'email')->ignore($id), // Ignorar el email actual
+            ],
+            'rol' => 'required',
+            'start_date' => 'date',
+            'stop_date' => 'nullable|date',  // Este es opcional
+            'status' => 'in:Aktibo,Inaktibo,Bajan',
+            'reason' => 'nullable|max:200',  // Este también es opcional
         ];
     }
 }

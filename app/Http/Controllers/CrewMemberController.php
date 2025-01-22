@@ -31,14 +31,11 @@ class CrewMemberController extends Controller
      */
     public function store(StoreCrewMemberRequest $request)
     {
-        $crewMember = new CrewMember;
-        $crewMember->name = $request->name;
-        $crewMember->email = $request->email;
-        $crewMember->rol = $request->rol;
+        $crew_member_data = $request->validated();
+        $crew_member_data['start_date'] = Carbon::parse(Carbon::now());
+        CrewMember::create($crew_member_data);
 
-        $crewMember->save();
-
-        return redirect()->route('langileak.index');
+        return redirect()->route('langileak.index')->with('success', 'New crew member created successfully');
     }
 
     /**
@@ -65,25 +62,28 @@ class CrewMemberController extends Controller
      */
     public function update(UpdateCrewMemberRequest $request, int $id)
     {
-        $crewMember = crewMember::find($id);
-
-        $crewMember->name = $request->name;
-        $crewMember->email = $request->email;
-        $crewMember->start_date = $crewMember->start_date;
-        $crewMember->stop_date = $request->stop_date;
-        $crewMember->status = $request->status;
-        $crewMember->reason = $request->reason;
-
-        $crewMember->save();
-        return redirect()->route('langileak.index');
+        $crew_member = crewMember::find($id);
+        $crew_member_data = $request->validated();
+        $crew_member_data['start_date'] = Carbon::parse(Carbon::now());
+        dd($crew_member_data);
+        
+       // $crew_member->update($crew_member_data);
+       // return redirect()->route('langileak.index')->with('success', 'Crew member updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $crew_member=CrewMember::where('id',$id)->delete();
-        return redirect()->route('langileak.index');
+        $crew_member=CrewMember::find($id);
+
+        if(!$crew_member){
+            return redirect()->route('langileak.index')->with('error', 'Crew member not found!');
+        }
+
+        $crew_member->delete();
+        return redirect()->route('langileak.index')->with('success', 'Crew member deleted successfully');
     }
 }

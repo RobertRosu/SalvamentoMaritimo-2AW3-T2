@@ -12,22 +12,33 @@
     @csrf
     @method('POST')
 
+    @if ($errors->any())
+        <div class="alert alert-danger mt-2">
+            <h2>Errors</h2>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <!-- Campo Nombre -->
     <div class="form-group">
-        <label for="name">Izena</label>
-        <input type="text" class="form-control" id="name" name="name" required>
+        <label for="name">Izena<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="name" name="name">
     </div>
 
    <!-- Campo Email -->
    <div class="form-group">
-        <label for="email">Email-a</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <label for="email">Email-a<span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="email" name="email">
    </div>
 
    <!-- Campo Estado -->
     <div class="form-group">
-        <label for="rol">Rol-a</label>
-        <select class="form-control" id="rol" name="rol" required>
+        <label for="rol">Rol-a<span class="text-danger">*</span></label>
+        <select class="form-control" id="rol" name="rol">
             <option value="Marinela">Marinela</option>
             <option value="Erizaina">Erizaina</option>
             <option value="Mekanikoa">Mekanikoa</option>

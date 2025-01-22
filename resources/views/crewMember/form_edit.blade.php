@@ -12,16 +12,27 @@
     @csrf
     @method('PUT')
 
+    @if ($errors->any())
+        <div class="alert alert-danger mt-2">
+            <h2>Errors</h2>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <!-- Campo Nombre -->
     <div class="form-group">
         <label for="name">Izena</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ $crewMember->name }}" required>
+        <input type="text" class="form-control" id="name" name="name" value="{{ $crewMember->name }}">
     </div>
 
     <!-- Campo Email -->
     <div class="form-group">
         <label for="email">Email-a</label>
-        <input type="email" class="form-control" id="email" name="email" value="{{ $crewMember->email }}" required>
+        <input type="text" class="form-control" id="email" name="email" value="{{ $crewMember->email }}">
     </div>
 
     <!-- Campo Estado -->
@@ -50,13 +61,13 @@
     <!-- Campo Razon -->
     <div class="form-group">
         <label for="reason">Arrazoia</label>
-        <input type="text" class="form-control" id="reason" name="reason" value="{{ $crewMember->reason }}">
+        <input type="text" class="form-control" id="reason" name="reason" value="{{ old('reason', $crewMember->reason ?? '') }}">
     </div>
 
     <!-- Campo Fecha de fin -->
     <div class="form-group">
         <label for="stop_date">Amaiera data</label>
-        <input type="date" class="form-control" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($crewMember->stop_date)->toDateString() }}" required>
+        <input type="date" class="form-control" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($crewMember->stop_date)->toDateString() }}">
     </div>
 
     <!-- Botón para enviar el formulario y guardar los cambios -->
