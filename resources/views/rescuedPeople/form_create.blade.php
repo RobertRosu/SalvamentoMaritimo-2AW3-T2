@@ -52,6 +52,11 @@
         <!-- Eskuineko zutabea -->
         <div class="col-md-6">
 
+        <!-- Argazkia -->
+        <div class="form-group">
+            <label for="diagnostic">Argazkia (URL)</label>
+            <input type="text" class="form-control" id="photo_src" name="photo_src">
+        </div>
 
         <!-- Rescue ID -->
         <div class="form-group">

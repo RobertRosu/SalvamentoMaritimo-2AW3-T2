@@ -38,7 +38,8 @@
     </div>
 
     <!-- Botón para enviar el formulario y guardar los cambios -->
-    <button type="submit" class="btn btn-primary">Aldaketak gorde</button>
+    <button type="submit" class="btn btn-primary">Erregistro berria sortu</button>
+    <a href="{{ route('langileak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
 </form>
 
 @endsection
