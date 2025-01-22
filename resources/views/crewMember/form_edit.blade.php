@@ -14,7 +14,7 @@
 
     @if ($errors->any())
         <div class="alert alert-danger mt-2">
-            <h2>Errors</h2>
+            <h2>Arazoak</h2>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -25,19 +25,19 @@
 
     <!-- Campo Nombre -->
     <div class="form-group">
-        <label for="name">Izena</label>
+        <label for="name">Izena<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="name" name="name" value="{{ $crewMember->name }}">
     </div>
 
     <!-- Campo Email -->
     <div class="form-group">
-        <label for="email">Email-a</label>
+        <label for="email">Email-a<span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="email" name="email" value="{{ $crewMember->email }}">
     </div>
 
     <!-- Campo Estado -->
     <div class="form-group">
-        <label for="rol">Rol-a</label>
+        <label for="rol">Rol-a<span class="text-danger">*</span></label>
         <select class="form-control" id="rol" name="rol">
             <option value="Marinela" {{$crewMember->rol == 'Marinela' ? 'selected' : ''}}>Marinela</option>
             <option value="Erizaina" {{$crewMember->rol == 'Erizaina' ? 'selected' : ''}}>Erizaina</option>
@@ -50,7 +50,7 @@
 
     <!-- Campo Estado -->
     <div class="form-group">
-        <label for="status">Egoera</label>
+        <label for="status">Egoera<span class="text-danger">*</span></label>
         <select class="form-control" id="status" name="status">
             <option value="Aktibo" {{$crewMember->status == 'Aktibo' ? 'selected' : ''}}>Aktibo</option>
             <option value="Inaktibo" {{$crewMember->status == 'Inaktibo' ? 'selected' : ''}}>Inaktibo</option>

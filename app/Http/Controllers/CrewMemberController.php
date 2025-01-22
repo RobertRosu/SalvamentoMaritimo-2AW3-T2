@@ -35,7 +35,7 @@ class CrewMemberController extends Controller
         $crew_member_data['start_date'] = Carbon::parse(Carbon::now());
         CrewMember::create($crew_member_data);
 
-        return redirect()->route('langileak.index')->with('success', 'New crew member created successfully');
+        return redirect()->route('langileak.index')->with('success', 'Langilea ongi gehitu da');
     }
 
     /**
@@ -65,10 +65,9 @@ class CrewMemberController extends Controller
         $crew_member = crewMember::find($id);
         $crew_member_data = $request->validated();
         $crew_member_data['start_date'] = Carbon::parse(Carbon::now());
-        dd($crew_member_data);
         
-       // $crew_member->update($crew_member_data);
-       // return redirect()->route('langileak.index')->with('success', 'Crew member updated successfully');
+        $crew_member->update($crew_member_data);
+        return redirect()->route('langileak.index')->with('success', 'Langilea eguneratu da');
     }
 
 
