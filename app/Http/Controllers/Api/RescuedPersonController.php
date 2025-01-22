@@ -17,7 +17,7 @@ class RescuedPersonController extends Controller
     public function index()
     {
         try{
-            $rescued = RescuedPerson::select('name', 'country', 'genre', 'birth_date', 'photo_src')->get();
+            $rescued = RescuedPerson::select('id', 'name', 'country', 'genre', 'birth_date', 'photo_src')->get();
             
             return response()->json(
                 [
@@ -102,9 +102,20 @@ class RescuedPersonController extends Controller
                 );
             }
 
-            $rescued->fill($request->validated());
-            $rescued->save();
+            // Validar y actualizar los campos
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'birth_date' => 'required|date',
+                'genre' => 'required|string|max:255',
+                'country' => 'required|string|max:255',
+                'photo_src' => 'required|url|max:255',
+            ]);
 
+            // Llenar los datos actualizados
+            $rescued->update($validatedData);
+            // $rescued->fill($request->validated());
+            // $rescued->save();
+            
             return response()->json(
                 [
                     "status" => 'OK', 

@@ -16,7 +16,8 @@ class RescuedPerson extends Model
         'name',
         'country',
         'genre',
-        'birth_date'
+        'birth_date',
+        'photo_src'
     ];
 
     protected $guarded = [
