@@ -28,7 +28,7 @@ class StoreDoctorRequest extends FormRequest
                 'unique:doctors,email',
                 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'
             ],
-            "stop_date" => "date|required",
+            "stop_date" => "date|required|after:today",
         ];
     }
 
@@ -45,6 +45,7 @@ class StoreDoctorRequest extends FormRequest
 
             'stop_date.required' => 'Amaiera data derrigorrezkoa da.',
             'stop_date.date' => 'Amaiera data baliozko data bat izan behar da.',
+            'stop_date.after' => 'Amaiera-data gaurkoa baino geroago izan behar da.'
         ];
     }
 }

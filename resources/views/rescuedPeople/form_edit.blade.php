@@ -28,20 +28,24 @@
 
                 <!-- Izena -->
                 <div class="form-group">
-                    <label for="name">Izena</label>
+                    <label for="name">Izena<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $rescuedPerson->name }}">
                 </div>
 
                 <!-- Herrialdea -->
                 <div class="form-group">
-                    <label for="country">Herrialdea</label>
+                    <label for="country">Herrialdea<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="country" name="country" value="{{ $rescuedPerson->country }}">
                 </div>
 
                 <!-- Generoa -->
                 <div class="form-group">
-                    <label for="genre">Generoa</label>
-                    <input type="text" class="form-control" id="genre" name="genre" value="{{ $rescuedPerson->genre }}">
+                    <label for="genre">Generoa<span class="text-danger">*</span></label>
+                    <select name="genre" id="genre" class="form-control">
+                        <option value="Gizona" {{$rescuedPerson->genre == 'Gizona' ? 'selected' : ''}}>Gizona</option>
+                        <option value="Emakumea" {{$rescuedPerson->genre == 'Emakumea' ? 'selected' : ''}}>Emakumea</option>
+                        <option value="Beste bat" {{$rescuedPerson->genre == 'Beste bat' ? 'selected' : ''}}>Beste bat</option>
+                    </select>
                 </div>
 
                 <!-- Jaiotze Data -->
@@ -78,13 +82,13 @@
         </div>
             <!-- Rescue ID (Ez aldagarria) -->
             <div class="form-group">
-                <label for="rescue_id">Rescue ID</label>
+                <label for="rescue_id">Rescue ID<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="rescue_id" name="rescue_id" value="{{ $rescuedPerson->rescue_id }}" readonly>
             </div>
 
             <!-- Doctor ID (Ez aldagarria) -->
             <div class="form-group">
-                <label for="doctor_id">Doctor ID</label>
+                <label for="doctor_id">Doctor ID<span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="doctor_id" name="doctor_id" value="{{ $rescuedPerson->doctor_id }}" readonly>
             </div>
         </div>

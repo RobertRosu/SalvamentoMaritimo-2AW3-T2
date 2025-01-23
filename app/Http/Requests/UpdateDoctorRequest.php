@@ -30,7 +30,7 @@ class UpdateDoctorRequest extends FormRequest
                 'unique:doctors,email,' . $this->route('medikuak'),
             ],
             'status' => 'nullable|string|in:Aktibo,Inaktibo,Bajan',
-            'stop_date' => 'nullable|date',
+            'stop_date' => 'required|date|after:today',
             'reason' => 'nullable|string|max:255',
         ];
     }
@@ -50,6 +50,7 @@ class UpdateDoctorRequest extends FormRequest
             'status.in' => 'Egoera baliozko aukera bat izan behar da: Aktibo, Inaktibo, Bajan.',
 
             'stop_date.date' => 'Amaiera data baliozko data bat izan behar da.',
+            'stop_date.after' => 'Amaiera-data gaurkoa baino geroago izan behar da.',
             
             'reason.string' => 'Arrazoia testu bat izan behar da.',
             'reason.max' => 'Arrazoia 255 karaktere baino gehiago ez izan behar du.',

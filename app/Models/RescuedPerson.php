@@ -16,6 +16,7 @@ class RescuedPerson extends Model
         'name',
         'country',
         'genre',
+        'diagnostic',
         'birth_date',
         'photo_src',
         'rescue_id',

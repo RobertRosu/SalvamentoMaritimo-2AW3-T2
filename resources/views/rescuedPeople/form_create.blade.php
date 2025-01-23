@@ -28,19 +28,19 @@
 
                 <!-- Izena -->
                 <div class="form-group">
-                    <label for="name">Izena</label>
+                    <label for="name">Izena<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="name" name="name">
                 </div>
 
                 <!-- Herrialdea -->
                 <div class="form-group">
-                    <label for="country">Herrialdea</label>
+                    <label for="country">Herrialdea<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="country" name="country">
                 </div>
 
                 <!-- Generoa -->
                 <div class="form-group">
-                    <label for="genre">Generoa</label>
+                    <label for="genre">Generoa<span class="text-danger">*</span></label>
                     <select name="genre" id="genre" class="form-control">
                         <option value="Gizona">Gizona</option>
                         <option value="Emakumea">Emakumea</option>
@@ -50,7 +50,7 @@
 
                 <!-- Jaiotze Data -->
                 <div class="form-group">
-                    <label for="birth_date">Jaiotze Data</label>
+                    <label for="birth_date">Jaiotze Data<span class="text-danger">*</span></label>
                     <input type="date" class="form-control" id="birth_date" name="birth_date" >
                 </div>
 
@@ -75,7 +75,7 @@
 
         <!-- Rescue ID -->
         <div class="form-group">
-            <label for="rescue_id">Rescue ID</label>
+            <label for="rescue_id">Rescue ID<span class="text-danger">*</span></label>
             <select class="form-control" id="rescue_id" name="rescue_id">
                 <option value="">Aukeratu erreskatearen ID-a</option>
                 @foreach($rescues as $rescue)
@@ -86,7 +86,7 @@
 
         <!-- Doctor ID -->
         <div class="form-group">
-            <label for="doctor_id">Doctor ID</label>
+            <label for="doctor_id">Doctor ID<span class="text-danger">*</span></label>
             <select class="form-control" id="doctor_id" name="doctor_id">
                 <option value="">Aukeratu medikuaren ID-a</option>
                 @foreach($doctors as $doctor)

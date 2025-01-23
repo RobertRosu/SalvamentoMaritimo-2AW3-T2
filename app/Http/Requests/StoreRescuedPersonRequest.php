@@ -26,8 +26,10 @@ class StoreRescuedPersonRequest extends FormRequest
             'country' => 'string|required|max:50',
             'genre' => 'required|in:Gizona,Emakumea,Beste bat',
             'birth_date' => 'nullable|date|before:today',
+            'diagnostic' => 'required|string|max:255',
             'rescue_id' => 'required|exists:rescues,id',
-            'doctor_id' => 'required|exists:doctors,id' 
+            'doctor_id' => 'required|exists:doctors,id',
+            'photo_src' => 'nullable|url'
         ];
     }
 
@@ -47,6 +49,10 @@ class StoreRescuedPersonRequest extends FormRequest
             
             'birth_date.date' => 'Data balioduna izan behar da.',
             'birth_date.before' => 'Jaiotze-data gaurkoa baino lehen izan behar da.',
+
+            'diagnostic.required' => 'Diagnostikoa derrigorrezkoa da.',
+            'diagnostic.string' => 'Diagnostikoa testu formatuan izan behar da.',
+            'diagnostic.max' => 'Diagnostikoa gehienez 255 karaktere izan ditzake.',
             
             'photo_src.required' => 'Argazkiaren URL-a derrigorrezkoa da.',
             'photo_src.url' => 'Argazkiaren URL-a baliozkoa izan behar da.',
