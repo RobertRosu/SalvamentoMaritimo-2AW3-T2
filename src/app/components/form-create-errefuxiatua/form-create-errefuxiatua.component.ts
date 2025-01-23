@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-form-create-errefuxiatua',
@@ -59,7 +59,7 @@ export class FormCreateErrefuxiatuaComponent {
     if (!this.isValidInput()) {
       return; // No hagas nada si no es válido
     }
-    
+
     if (this.isValidInput()) {
       const payload = {
         name: this.errefuxiatua.izena,
@@ -74,7 +74,6 @@ export class FormCreateErrefuxiatuaComponent {
 
       this.apiService.postRescuedPeople(payload).subscribe(
         response => {
-          console.log(response);
           this.errefuxiatuaCreated.emit(this.errefuxiatua);
           this.closeModal.emit(false);
           Swal.fire({

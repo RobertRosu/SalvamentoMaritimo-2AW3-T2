@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Errefuxiatua } from 'src/app/models/Errefuxiatua';
 import { ApiService } from '../../services/api.service';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 
 @Component({
@@ -47,7 +47,6 @@ export class ErreskatatuakComponent implements OnInit{
         }
         this.medikuak = response.response_doc;
         this.erreskateak = response.response_res;
-        console.log(this.medikuak, this.erreskateak);
       }
    })
   }
