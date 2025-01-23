@@ -49,8 +49,11 @@ class RescuedPersonFactory extends Factory
                     $endpoint = 'female';
                 }
 
+                if($attributes['genre'] == 'Beste bat'){
+                    $endpoint = rand(0, 1) ? 'male' : 'female';
+                }
                 // %20ko probabilitatea du argazkirik ez izatea
-                return fake()->optional(0.2, null)->randomElement(["https://xsgames.co/randomusers/avatar.php?g=$endpoint"]);
+                return fake()->optional(0.8, null)->randomElement(["https://xsgames.co/randomusers/avatar.php?g=$endpoint"]);
             },         
         ];
     }
