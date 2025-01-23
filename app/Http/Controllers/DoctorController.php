@@ -32,15 +32,12 @@ class DoctorController extends Controller
      */
     public function store(StoreDoctorRequest $request)
     {
-        $doctor = new Doctor;
-        $doctor->name = $request->name;
-        $doctor->email = $request->email;
-        $doctor->start_date = Carbon::parse(Carbon::now());
-        $doctor->stop_date = $request->stop_date;
+        $doctor_data = $request->validated();
+        $doctor_data['start_date'] = Carbon::now();
 
-        $doctor->save();
+        Doctor::create($doctor_data);
 
-        return redirect()->route('medikuak.index');
+        return redirect()->route('medikuak.index')->with('success', 'Medikua ondo gehitu da');
     }
 
     /**
@@ -69,15 +66,12 @@ class DoctorController extends Controller
     {
         $doctor = Doctor::find($id);
 
-        $doctor->name = $request->name;
-        $doctor->email = $request->email;
-        $doctor->start_date = $doctor->start_date;
-        $doctor->stop_date = $request->stop_date;
-        $doctor->status = $request->status;
-        $doctor->reason = $request->reason;
+        $doctor_data = $request->validated();
+        $doctor_data['start_date'] = Carbon::now();
 
-        $doctor->save();
-        return redirect()->route('medikuak.index');
+        $doctor->update($doctor_data);
+
+        return redirect()->route('medikuak.index')->with('success', 'Medikua ondo eguneratu da');
     }
 
     /**
@@ -85,7 +79,11 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        Doctor::where('id', $id)->delete();
-        return redirect()->route('medikuak.index');
+        try{
+            Doctor::where('id', $id)->delete();
+            return redirect()->route('medikuak.index')->with('success', 'Medikua ondo ezabatu da');    
+        }catch(\Exception $e){
+            return redirect()->route('medikuak.index')->with('error', $e);
+        }
     }
 }

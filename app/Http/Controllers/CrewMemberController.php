@@ -31,14 +31,11 @@ class CrewMemberController extends Controller
      */
     public function store(StoreCrewMemberRequest $request)
     {
-        $crewMember = new CrewMember;
-        $crewMember->name = $request->name;
-        $crewMember->email = $request->email;
-        $crewMember->rol = $request->rol;
+        $crew_member_data = $request->validated();
+        $crew_member_data['start_date'] = Carbon::parse(Carbon::now());
+        CrewMember::create($crew_member_data);
 
-        $crewMember->save();
-
-        return redirect()->route('langileak.index');
+        return redirect()->route('langileak.index')->with('success', 'Langilea ondo gehitu da');
     }
 
     /**
@@ -65,25 +62,25 @@ class CrewMemberController extends Controller
      */
     public function update(UpdateCrewMemberRequest $request, int $id)
     {
-        $crewMember = crewMember::find($id);
-
-        $crewMember->name = $request->name;
-        $crewMember->email = $request->email;
-        $crewMember->start_date = $crewMember->start_date;
-        $crewMember->stop_date = $request->stop_date;
-        $crewMember->status = $request->status;
-        $crewMember->reason = $request->reason;
-
-        $crewMember->save();
-        return redirect()->route('langileak.index');
+        $crew_member = crewMember::find($id);
+        $crew_member_data = $request->validated();
+        $crew_member_data['start_date'] = Carbon::parse(Carbon::now());
+        
+        $crew_member->update($crew_member_data);
+        return redirect()->route('langileak.index')->with('success', 'Langilea eguneratu da');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $crew_member=CrewMember::where('id',$id)->delete();
-        return redirect()->route('langileak.index');
+        try{
+            CrewMember::where('id', $id)->delete();
+            return redirect()->route('langileak.index')->with('success', 'Langilea ondo ezabatu da');    
+        }catch(\Exception $e){
+            return redirect()->route('langileak.index')->with('error', $e);
+        }
     }
 }

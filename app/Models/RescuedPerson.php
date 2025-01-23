@@ -16,14 +16,16 @@ class RescuedPerson extends Model
         'name',
         'country',
         'genre',
+        'diagnostic',
         'birth_date',
-        'photo_src'
+        'photo_src',
+        'rescue_id',
+        'doctor_id'
+
     ];
 
     protected $guarded = [
         'id',
-        'rescue_id',
-        'doctor_id'
     ];
 
     /** @use HasFactory<\Database\Factories\RescuedPersonFactory> */
