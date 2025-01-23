@@ -1,0 +1,165 @@
+<form id="add-errefuxiatua-form" (ngSubmit)="createErrefuxiatua()">
+  <!-- Vista previa de la imagen -->
+  <div class="image-container">
+    <img 
+      [src]="isOmitImageChecked || !errefuxiatua.imagePath ? '../../../../assets/images/dummy.jpg' : errefuxiatua.imagePath" 
+      alt="Argazkia" 
+    />
+    <div class="info">
+      <h3 class="text-truncate">{{ errefuxiatua.izena || 'Izena' }}</h3>
+      <p><span>Jaiotze data:</span> {{ errefuxiatua.adina || 'Data ez' }}</p>
+      <p><span>Sexua:</span> {{ errefuxiatua.sexua || 'Sexua ez' }}</p>
+      <p><span>Naziotasuna:</span> {{ errefuxiatua.naziotasuna || 'Naziotasuna ez' }}</p>
+    </div>
+  </div>
+
+  <!-- Campo: Izena -->
+  <div class="form-group" [class.invalid]="!errefuxiatua.izena && isSubmitted">
+    <label for="name">Izena:</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      [(ngModel)]="errefuxiatua.izena" 
+      class="form-control" 
+      required 
+      maxlength="255" 
+      pattern="^[^\s].*"
+    />
+    <div class="error-message" *ngIf="!errefuxiatua.izena && isSubmitted">Izena beharrezkoa da eta ezin da hutsa izan.</div>
+  </div>
+
+  <!-- Campo: Jaiotze data -->
+  <div class="form-group" [class.invalid]="!errefuxiatua.adina && isSubmitted">
+    <label for="birthdate">Jaiotze data:</label>
+    <input 
+      type="date" 
+      id="birthdate" 
+      name="birthdate" 
+      [(ngModel)]="errefuxiatua.adina" 
+      class="form-control" 
+      required 
+    />
+    <div class="error-message" *ngIf="!errefuxiatua.adina && isSubmitted">Jaiotze data beharrezkoa da.</div>
+  </div>
+
+  <!-- Campo: Sexua -->
+  <div class="form-group" [class.invalid]="!errefuxiatua.sexua && isSubmitted">
+    <label for="gender">Sexua:</label>
+    <select 
+      id="gender" 
+      name="gender" 
+      class="form-control" 
+      [(ngModel)]="errefuxiatua.sexua" 
+      required
+    >
+      <option [value]="''" disabled selected>Hautatu bat</option>
+      <option [value]="'Gizona'">Gizona</option>
+      <option [value]="'Emakumea'">Emakumea</option>
+      <option [value]="'Beste bat'">Beste bat</option>
+    </select>
+    <div class="error-message" *ngIf="!errefuxiatua.sexua && isSubmitted">Sexua hautatu behar da.</div>
+  </div>
+
+  <!-- Campo: Naziotasuna -->
+  <div class="form-group" [class.invalid]="!errefuxiatua.naziotasuna && isSubmitted">
+    <label for="nationality">Naziotasuna:</label>
+    <input 
+      type="text" 
+      id="nationality" 
+      name="nationality" 
+      list="nationalities" 
+      [(ngModel)]="errefuxiatua.naziotasuna" 
+      class="form-control" 
+      required 
+    />
+    <datalist id="nationalities">
+      <option *ngFor="let nationality of nationalities" [value]="nationality"></option>
+    </datalist>
+    <div class="error-message" *ngIf="!errefuxiatua.naziotasuna && isSubmitted">Naziotasuna beharrezkoa da.</div>
+  </div>
+
+  <!-- Campo: Argazkia (URL) con checkbox -->
+  <div class="form-group" [class.invalid]="!isOmitImageChecked && !isValidUrl(errefuxiatua.imagePath) && isSubmitted">
+    <label for="imagePath">Argazkia (URL):</label>
+    <div class="checkbox-container">
+      <input 
+        type="checkbox" 
+        id="omitImage" 
+        [(ngModel)]="isOmitImageChecked" 
+        [ngModelOptions]="{standalone: true}" 
+        (change)="handleOmitImageChange()"
+      />
+      <label for="omitImage">Ez gehitu irudi bat</label>
+    </div>
+    <input 
+      type="url" 
+      id="imagePath" 
+      name="imagePath" 
+      [(ngModel)]="errefuxiatua.imagePath" 
+      class="form-control" 
+      [disabled]="isOmitImageChecked" 
+      maxlength="255"
+    />
+    <div class="error-message" *ngIf="!isOmitImageChecked && !isValidUrl(errefuxiatua.imagePath) && isSubmitted">
+      Argazkiaren URL baliozkoa izan behar da (http://... edo https://...).
+    </div>
+  </div>
+
+  <!-- Campo: Medikua -->
+  <div class="form-group" [class.invalid]="!errefuxiatua.medikua && isSubmitted">
+    <label for="medikua">Mediku arduraduna:</label>
+    <select 
+      id="medikua" 
+      name="medikua" 
+      class="form-control" 
+      [(ngModel)]="errefuxiatua.medikua" 
+      required
+    >
+      <option [value]="''" disabled selected>Hautatu bat</option>
+      <option *ngFor="let mediku of medikuak" [value]="mediku.id">
+        {{ mediku.name }}
+      </option>
+    </select>
+    <div class="error-message" *ngIf="!errefuxiatua.medikua && isSubmitted">Mediku arduraduna hautatu behar da.</div>
+  </div>
+
+  <!-- Campo: Erreskatea -->
+  <div class="form-group" [class.invalid]="!errefuxiatua.erreskatea && isSubmitted">
+    <label for="erreskatea">Erreskate ID:</label>
+    <select 
+      id="erreskatea" 
+      name="erreskatea" 
+      class="form-control"
+      [(ngModel)]="errefuxiatua.erreskatea"  
+      required
+    >
+      <option [value]="''" disabled selected>Hautatu bat</option>
+      <option *ngFor="let erreskatea of erreskateak" [value]="erreskatea.id">
+        {{ erreskatea.id }}
+      </option>
+    </select>
+    <div class="error-message" *ngIf="!errefuxiatua.erreskatea && isSubmitted">Erreskate ID hautatu behar da.</div>
+  </div>
+
+  <!-- Campo: Izena -->
+  <div class="form-group" [class.invalid]="!errefuxiatua.diagnostikoa">
+    <label for="diagnostikoa">diagnostikoa:</label>
+    <input 
+      type="text" 
+      id="diagnostikoa" 
+      name="diagnostikoa" 
+      [(ngModel)]="errefuxiatua.diagnostikoa" 
+      class="form-control" 
+      required 
+      maxlength="255" 
+      pattern="^[^\s].*"
+    />
+    </div>
+
+  <!-- Footer -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Ezeztatu</button>
+    <button type="submit" class="btn btn-success">Sortu berria</button>
+  </div>
+</form>

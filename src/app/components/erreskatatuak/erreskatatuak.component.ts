@@ -13,6 +13,9 @@ export class ErreskatatuakComponent implements OnInit{
   
   data: any[] = [];
   errefuxiatuak: Errefuxiatua[] = []
+  medikuak: any[] = [];
+  erreskateak: any[] = [];
+  modalStatus: boolean = false;
 
   constructor(private apiService: ApiService) { }
 
@@ -37,13 +40,20 @@ export class ErreskatatuakComponent implements OnInit{
                 element.birth_date,
                 element.genre,
                 element.country,
-                element.photo_src
+                (element.photo_src && element.photo_src.includes('https://xsgames.co/randomusers/avatar.php?g=') && !element.photo_src.includes('&unique=')) ? `${element.photo_src}&unique=${Math.random()}` : element.photo_src,
               )
             )
           })
         }
+        this.medikuak = response.response_doc;
+        this.erreskateak = response.response_res;
+        console.log(this.medikuak, this.erreskateak);
       }
    })
+  }
+
+  trackById(index: number, item: Errefuxiatua): number {
+    return item.id; // Usa el ID único del refugiado como clave de seguimiento
   }
 
   getId(errefuxiatua: any): number{
@@ -72,8 +82,8 @@ export class ErreskatatuakComponent implements OnInit{
   showError: boolean = false;
   selectedErrefuxiatua: any;
 
-  storeErrefuxiatua(){
-    Swal.fire("SweetAlert2 is working!");
+  createErrefuxiatua(){
+    this.modalStatus = false;
   }
 
   handleUpdateErrefuxiatua(updatedErrefuxiatua: any): void {
@@ -85,6 +95,7 @@ export class ErreskatatuakComponent implements OnInit{
   }
 
   editErrefuxiatua(errefuxiatua: Errefuxiatua) {
+    this.modalStatus = true;
     this.selectedErrefuxiatua = errefuxiatua;
   }
 
@@ -117,7 +128,6 @@ export class ErreskatatuakComponent implements OnInit{
   }
 
   deleteErrefuxiatua(errefuxiatua: Errefuxiatua) {
-    
     Swal.fire({
       title: "Honako hau ezabatzen ari zara: <b>" + errefuxiatua.izena + "</b>.",
       showCancelButton: true,
@@ -130,31 +140,40 @@ export class ErreskatatuakComponent implements OnInit{
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        this.apiService.deleteRescuedPeople(errefuxiatua.id).subscribe(
-          
-          response => {
-              this.getRescuedPeople();
-              Swal.fire({
-                toast: true,
-                showConfirmButton: false,
-                timer: 5000,
-                title: "<b>" + errefuxiatua.izena + "</b> ezabatu da.",
-                icon: "success",
-                position: 'top',
-                customClass: {
-                  popup: 'border border-3 border-success rounded-pill shadow',
-                }
-              });
-          },
-          error => {
-              console.error('Error al eliminar:', error);
-              Swal.fire({
-                title: "Ups, Ezabatzean errore bat egon da!",
-                text: error,
-                icon: "error"
-              });
-          }
-        );
+        const cardElement = document.getElementById(`errefuxiatua-${errefuxiatua.id}`);
+        if (cardElement) {
+          // Añadir clase de animación
+          cardElement.classList.add('fade-out');
+          // Esperar a que termine la animación
+          setTimeout(() => {
+            this.apiService.deleteRescuedPeople(errefuxiatua.id).subscribe(
+              response => {
+                // Eliminar el elemento del array
+                this.errefuxiatuak = this.errefuxiatuak.filter(r => r.id !== errefuxiatua.id);
+                // Mostrar notificación de éxito
+                Swal.fire({
+                  toast: true,
+                  showConfirmButton: false,
+                  timer: 5000,
+                  title: "<b>" + errefuxiatua.izena + "</b> ezabatu da.",
+                  icon: "success",
+                  position: 'top',
+                  customClass: {
+                    popup: 'border border-3 border-success rounded-pill shadow',
+                  }
+                });
+              },
+              error => {
+                console.error('Error al eliminar:', error);
+                Swal.fire({
+                  title: "Ups, Ezabatzean errore bat egon da!",
+                  text: error,
+                  icon: "error"
+                });
+              }
+            );
+          }, 500); // Tiempo que dura la animación
+        }
       }
     });
   }

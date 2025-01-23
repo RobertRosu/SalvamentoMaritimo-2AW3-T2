@@ -213,6 +213,16 @@
 // ====================================================
 // ANIMAZIOAK
 // ====================================================
+.card_content {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  
+  &.fade-out {
+    background-color: #dc35465b !important;
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0px #007bff;

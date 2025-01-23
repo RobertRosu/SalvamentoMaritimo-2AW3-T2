@@ -20,7 +20,7 @@
     <section id="filters">
       <div class="d-flex">
         <div class="p-2">
-          <button (click)="storeErrefuxiatua()" class="btn btn-success">Errefuxiatu berria</button>
+          <button (click)="createErrefuxiatua()" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#errefuxiatuaModal">Errefuxiatu berria</button>
         </div>
         <div class="ms-auto p-2">
           <button class="btn btn-danger" (click)="logout()">Itxi saioa</button> <!-- Botón para cerrar sesión -->
@@ -63,16 +63,16 @@
     </section>
   
     <section class="card_container">
-      <ng-container *ngFor="let errefuxiatua of errefuxiatuak | filterErrefuxiatuak: filtroak; trackBy: getId">
-        <div class="position-relative card_content">
-          <!-- datuak -->
+      <ng-container *ngFor="let errefuxiatua of errefuxiatuak | filterErrefuxiatuak: filtroak; trackBy: trackById">
+        <div 
+          class="position-relative card_content" 
+          id="errefuxiatua-{{errefuxiatua.id}}"
+        >
           <app-errefuxiatua-card [datuak]="errefuxiatua"></app-errefuxiatua-card>
           <div class="cardButtons position-absolute p-2">
-            <!-- Botón de editar -->
-            <button  class="me-2 btn btn-primary" (click)="editErrefuxiatua(errefuxiatua)" data-bs-toggle="modal" data-bs-target="#errefuxiatuaModal">
+            <button class="me-2 btn btn-primary" (click)="editErrefuxiatua(errefuxiatua)" data-bs-toggle="modal" data-bs-target="#errefuxiatuaModal">
               <i class="bi bi-vector-pen text-white"></i>
             </button>
-            <!-- Botón de eliminar -->
             <button class="btn btn-danger" (click)="deleteErrefuxiatua(errefuxiatua)">
               <i class="bi bi-trash-fill text-white"></i>
             </button>
@@ -101,11 +101,17 @@ data-bs-keyboard="false"
     ></button>
     <div class="modal-body p-0">
       <!-- Componente hijo -->
-      <app-form-update-errefuxiatua
-    [errefuxiatua]="selectedErrefuxiatua"
-    (closeModal)="handleCloseModal($event)"
-    (updateErrefuxiatuaInParent)="handleUpdateErrefuxiatua($event)">
-    </app-form-update-errefuxiatua>
+      <app-form-create-errefuxiatua *ngIf="!modalStatus"
+      [medikuak]="medikuak"
+      [erreskateak]="erreskateak"
+      (closeModal)="handleCloseModal($event)"
+      (errefuxiatuaCreated)="getRescuedPeople()">
+      </app-form-create-errefuxiatua>
+      <app-form-update-errefuxiatua *ngIf="modalStatus"
+      [errefuxiatua]="selectedErrefuxiatua"
+      (closeModal)="handleCloseModal($event)"
+      (updateErrefuxiatuaInParent)="handleUpdateErrefuxiatua($event)">
+      </app-form-update-errefuxiatua>
     </div>
   </div>
 </div>

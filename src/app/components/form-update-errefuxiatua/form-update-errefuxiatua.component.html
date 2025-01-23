@@ -71,19 +71,32 @@
     <div class="error-message" *ngIf="!errefuxiatuaCopy.naziotasuna">Naziotasuna beharrezkoa da.</div>
   </div>
 
-  <div class="form-group" [class.invalid]="!errefuxiatuaCopy.imagePath">
-    <label for="imagePath">Argazkia (URL):</label>
+  <div class="form-group" [class.invalid]="!isOmitImageChecked && !isValidUrl(errefuxiatuaCopy.imagePath)">
+  <label for="imagePath">Argazkia (URL):</label>
+  <div class="checkbox-container">
     <input 
+      type="checkbox" 
+      id="omitImage" 
+      [(ngModel)]="isOmitImageChecked" 
+      name="omitImage"
+      (change)="handleOmitImageChange()"
+    />
+    <label for="omitImage">Ez gehitu irudi bat</label>
+  </div>
+  <input 
       type="url" 
       id="imagePath" 
-      name="imagePath" 
+      name="imagePath"
       [(ngModel)]="errefuxiatuaCopy.imagePath" 
       class="form-control" 
-      required 
+      [disabled]="isOmitImageChecked" 
       maxlength="255"
-    />
-    <div class="error-message" *ngIf="!errefuxiatuaCopy.imagePath">Argazkiaren URL baliozkoa izan behar da.</div>
+  />
+  <div class="error-message" *ngIf="!isOmitImageChecked && !isValidUrl(errefuxiatuaCopy.imagePath)">
+    Argazkiaren URL baliozkoa izan behar da (http://... edo https://...).
   </div>
+</div>
+  
 
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="exit()">Itxi</button>

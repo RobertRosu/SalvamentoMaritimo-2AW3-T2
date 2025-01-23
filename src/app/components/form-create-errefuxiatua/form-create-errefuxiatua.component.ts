@@ -1,21 +1,27 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-form-update-errefuxiatua',
-  templateUrl: './form-update-errefuxiatua.component.html',
-  styleUrls: ['./form-update-errefuxiatua.component.scss']
+  selector: 'app-form-create-errefuxiatua',
+  templateUrl: './form-create-errefuxiatua.component.html',
+  styleUrls: ['./form-create-errefuxiatua.component.scss']
 })
-export class FormUpdateErrefuxiatuaComponent implements OnChanges {
-
-  @Input() errefuxiatua: any;
+export class FormCreateErrefuxiatuaComponent {
+  @Input() medikuak: any;
+  @Input() erreskateak: any;
   @Output() closeModal = new EventEmitter<boolean>();
-  @Output() updateErrefuxiatuaInParent = new EventEmitter<any>();
-  errefuxiatuaCopy: any;
-  errefuxiatuaEng: any = {};
-  isOmitImageChecked: boolean = false;
-  urlSaveUpdating: string = "";
+  @Output() errefuxiatuaCreated = new EventEmitter<any>();
+
+  errefuxiatua: any = {
+    izena: '',
+    adina: '',
+    sexua: '',
+    naziotasuna: '',
+    imagePath: ''
+  };
+  isOmitImageChecked: boolean = false; // Estado del checkbox
+  isSubmitted: boolean = false;
   nationalities: string[] = [
     'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan',
     'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia',
@@ -39,52 +45,43 @@ export class FormUpdateErrefuxiatuaComponent implements OnChanges {
     'Yemen', 'Zambia', 'Zimbabwe'
   ];
 
+  
   constructor(private apiService: ApiService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['errefuxiatua'] && changes['errefuxiatua'].currentValue) {
-      this.errefuxiatuaCopy = { ...changes['errefuxiatua'].currentValue };
-    }
-  }
 
   handleOmitImageChange() {
     if (this.isOmitImageChecked) {
-      if(this.isOmitImageChecked){
-          this.urlSaveUpdating = this.errefuxiatuaCopy.imagePath;
-          this.errefuxiatuaCopy.imagePath = null
-      }
-    }else{
-      this.errefuxiatuaCopy.imagePath = this.urlSaveUpdating
-      this.urlSaveUpdating = "";
+      this.errefuxiatua.imagePath = null; // Establece el valor como null si se omite la imagen
     }
   }
 
-  isValidInput(): boolean {
-    return this.errefuxiatuaCopy.izena?.trim() &&
-      this.errefuxiatuaCopy.adina &&
-      this.errefuxiatuaCopy.sexua &&
-      this.errefuxiatuaCopy.naziotasuna?.trim() &&
-      (this.isOmitImageChecked || this.isValidUrl(this.errefuxiatuaCopy.imagePath));
-  }
-
-  updateErrefuxiatua() {
+  createErrefuxiatua() {
+    this.isSubmitted = true; // Marca el formulario como enviado
+    if (!this.isValidInput()) {
+      return; // No hagas nada si no es válido
+    }
+    
     if (this.isValidInput()) {
-      this.errefuxiatuaEng = {
-        name: this.errefuxiatuaCopy.izena,
-        birth_date: this.errefuxiatuaCopy.adina,
-        genre: this.errefuxiatuaCopy.sexua,
-        country: this.errefuxiatuaCopy.naziotasuna,
-        photo_src: this.isOmitImageChecked ? null : this.errefuxiatuaCopy.imagePath // Mandar null solo si está marcado
+      const payload = {
+        name: this.errefuxiatua.izena,
+        birth_date: this.errefuxiatua.adina,
+        genre: this.errefuxiatua.sexua,
+        country: this.errefuxiatua.naziotasuna,
+        photo_src: this.isOmitImageChecked ? null : this.errefuxiatua.imagePath, // Condición para la URL
+        doctor_id: this.errefuxiatua.medikua,
+        rescue_id: this.errefuxiatua.erreskatea,
+        diagnostic: this.errefuxiatua.diagnostikoa
       };
-      this.apiService.putRescuedPeople(this.errefuxiatua.id, this.errefuxiatuaEng).subscribe(
+
+      this.apiService.postRescuedPeople(payload).subscribe(
         response => {
-          this.updateErrefuxiatuaInParent.emit(this.errefuxiatuaCopy);
+          console.log(response);
+          this.errefuxiatuaCreated.emit(this.errefuxiatua);
           this.closeModal.emit(false);
           Swal.fire({
             toast: true,
             showConfirmButton: false,
             timer: 3000,
-            title: `<b>${this.errefuxiatuaCopy.izena}</b> aldatu da.`,
+            title: `<b>${this.errefuxiatua.izena}</b> sortu da.`,
             icon: 'success',
             position: 'top',
             customClass: {
@@ -93,12 +90,18 @@ export class FormUpdateErrefuxiatuaComponent implements OnChanges {
           });
         },
         error => {
-          console.error('Datuak eguneratzean errorea gertatu da.:', error);
+          console.error('Errorea sortzean:', error);
         }
       );
-    } else {
-      this.triggerShakeEffect();
     }
+  }
+
+  isValidInput(): boolean {
+    return this.errefuxiatua.izena?.trim() &&
+      this.errefuxiatua.adina &&
+      this.errefuxiatua.sexua &&
+      this.errefuxiatua.naziotasuna?.trim() &&
+      (this.isOmitImageChecked || this.isValidUrl(this.errefuxiatua.imagePath));
   }
 
   isValidUrl(url: string | null | undefined): boolean {
@@ -107,18 +110,7 @@ export class FormUpdateErrefuxiatuaComponent implements OnChanges {
     return urlRegex.test(url.trim());
   }
 
-  triggerShakeEffect() {
-    const invalidElements = document.querySelectorAll('.form-group.invalid');
-    invalidElements.forEach(element => {
-      element.classList.add('shake');
-      setTimeout(() => {
-        element.classList.remove('shake');
-      }, 300);
-    });
-  }
-
-  exit(): void {
-    const hasChanges = JSON.stringify(this.errefuxiatua) !== JSON.stringify(this.errefuxiatuaCopy);
-    this.closeModal.emit(hasChanges);
+  cancel() {
+    this.closeModal.emit(false);
   }
 }
