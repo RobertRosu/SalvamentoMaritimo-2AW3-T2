@@ -9,6 +9,13 @@ use App\Models\CrewMember;
 
 class CrewMemberController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:langileak.index')->only('index');
+        $this->middleware('can:langileak.update')->only('update');
+        $this->middleware('can:langileak.destroy')->only('destroy');
+        $this->middleware('can:langileak.create')->only('create');
+        $this->middleware('can:langileak.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      */

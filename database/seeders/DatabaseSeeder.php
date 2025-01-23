@@ -8,6 +8,9 @@ use App\Models\CrewMember;
 use App\Models\RescuedPerson;
 use App\Models\Rescue;
 use App\Models\Travel;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,7 +23,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(22)->create();
+        $this->call(RoleSeeder::class);
+        User::create([
+            'name'=>'Jon Zabala',
+            'email'=>'jon@gmail.com',
+            'email_verified_at' => now(),
+            'password'=> Hash::make('password'),
+            'remember_token' => Str::random(10)
+        ])->assignRole('Admin');
+        User::create([
+            'name'=>'Robert Rosu',
+            'email'=>'robert@gmail.com',
+            'email_verified_at' => now(),
+            'password'=> Hash::make('password'),
+            'remember_token' => Str::random(10)
+        ])->assignRole('Admin');
+        User::create([
+            'name'=>'Ander Patino',
+            'email'=>'ander@gmail.com',
+            'email_verified_at' => now(),
+            'password'=> Hash::make('password'),
+            'remember_token' => Str::random(10)
+        ])->assignRole('Admin');
+
+        User::factory(22)->create()->each(function ($user) {
+            $user->assignRole('Viewer');
+        });
+
+
         Doctor::factory(14)->create();
 
         CrewMember::factory(20)->create();

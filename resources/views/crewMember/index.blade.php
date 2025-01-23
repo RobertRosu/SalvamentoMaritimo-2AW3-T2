@@ -19,7 +19,11 @@
                                 <th>Rol-a</th>
                                 <th class="d-none d-md-table-cell">Hasiera-data</th>
                                 <th>Egoera</th>
+                                
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('langileak.create')
                                 <th><a href="{{ route('langileak.create') }}" type="submit" class="btn btn-info">Erregistro berria sortu</a></th>
+                                @endcan
 
 
 
@@ -37,6 +41,9 @@
                                 <td>{{$crew_member->rol}}</td>
                                 <td>{{$crew_member->start_date}}</td>
                                 <td>{{$crew_member->status}}</td>
+
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('langileak.destroy')
                                 <td>
                                 <a href="{{ route('langileak.edit', ['langileak' => $crew_member->id]) }}" class="btn btn-primary">Aldatu</a>
 
@@ -46,6 +53,7 @@
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
                                 </td>
+                                @endcan
 
                             </tr>
                             @empty

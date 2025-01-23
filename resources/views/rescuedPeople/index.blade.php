@@ -19,8 +19,10 @@
                                 <th>Sexua</th>
                                 <th class="d-none d-md-table-cell">Jaiotze-data</th>
                                 <th>Diagnostikoa</th>
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('erreskatatuak.create')
                                 <th><a href="{{ route('erreskatatuak.create') }}" type="button" class="btn btn-info">Erregistro berria sortu</a></th>
-
+                                @endcan
 
 
                             </tr>
@@ -37,6 +39,8 @@
                                 <td>{{$rescued_person->genre}}</td>
                                 <td>{{$rescued_person->birth_date}}</td>
                                 <td>{{$rescued_person->diagnostic}}</td>
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('erreskatatuak.destroy')
                                 <td>
                                 <a href="{{ route('erreskatatuak.edit', ['erreskatatuak' => $rescued_person->id]) }}" class="btn btn-primary">Aldatu</a>
                                     <!-- <form action="{{ route('erreskatatuak.update', ['erreskatatuak' => $rescued_person->id]) }}" method="POST" style="display: inline;">
@@ -51,6 +55,7 @@
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
                                 </td>
+                                @endcan
 
                             </tr>
                             @empty
