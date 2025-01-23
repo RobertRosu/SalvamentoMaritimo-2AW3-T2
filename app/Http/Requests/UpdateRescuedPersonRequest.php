@@ -29,7 +29,7 @@ class UpdateRescuedPersonRequest extends FormRequest
             'diagnostic' => 'required|string|max:255',
             'rescue_id' => 'required|exists:rescues,id',
             'doctor_id' => 'required|exists:doctors,id',
-            'photo_src' => 'nullable|url'
+            'photo_src' => 'nullable'
         ];
     }
 
@@ -64,7 +64,7 @@ class UpdateRescuedPersonRequest extends FormRequest
             'doctor_id.exists' => 'Doktore identifikadorea ez da existitzen.',
 
             'photo_src.nullable' => 'Argazkiaren URL-a hutsik egon daiteke.',
-            'photo_src.url' => 'Argazkiaren URL-a baliozkoa izan behar da.'
+            // 'photo_src.url' => 'Argazkiaren URL-a baliozkoa izan behar da.'
         ];
     }
 }

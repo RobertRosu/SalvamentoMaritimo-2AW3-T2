@@ -62,24 +62,28 @@
 
 
 
-        </div>
+            </div>
 
-        <!-- Eskuineko zutabea: Irudi eta atributuak ikusteko (ezin dira aldatu) -->
-        <div class="col-md-6">
-<!-- argazkia -->
-<div class="form-group">
-    <label for="photo">Argazkia</label><br>
-    @if ($rescuedPerson->photo_src)
-        <img id="photo-preview" src="{{ $rescuedPerson->photo_src }}" alt="argazkia" width="200">
-    @else
-        <p>Ez dago argazkirik.</p>
-    @endif
-</div>
-        <!-- Argazkia SRC (Aldatu daiteke) -->
-        <div class="form-group">
-            <label for="photo_src">Argazkia (URL)</label>
-            <input type="text" class="form-control" id="photo_src" name="photo_src" value="{{ $rescuedPerson->photo_src }}">
-        </div>
+            <!-- Eskuineko zutabea: Irudi eta atributuak ikusteko (ezin dira aldatu) -->
+            <div class="col-md-6">
+
+            <!-- argazkia -->
+            <div class="form-group">
+                <label for="photo">Argazkia</label><br>
+                @if ($rescuedPerson->photo_src)
+                <img src="{{ asset('storage/images/' . $rescuedPerson->photo_src) }}" alt="{{ $rescuedPerson->photo_src }}" width="200">
+                    <!-- <img id="photo-preview" src="{{ $rescuedPerson->photo_src }}" alt="argazkia" width="200"> -->
+                @else
+                    <p>Ez dago argazkirik.</p>
+                @endif
+            </div>
+            <!-- Argazkia SRC (Aldatu daiteke) -->
+            <div class="form-group">
+                <label for="photo_src">Argazkia</label>
+                <input type="file" id="photo_src" name="photo_src">
+                <!-- <input type="text" class="form-control" id="photo_src" name="photo_src" value="{{ $rescuedPerson->photo_src }}"> -->
+            </div>
+
             <!-- Rescue ID (Ez aldagarria) -->
             <div class="form-group">
                 <label for="rescue_id">Rescue ID<span class="text-danger">*</span></label>

@@ -45,8 +45,10 @@ class RescuedPersonController extends Controller
     public function store(StoreRescuedPersonRequest $request)
     {
         $rescued_person_data = $request->validated();
+        $path = $request->file('file')->store('images', 'public');
+        $rescued_person_data->photo_src = basename($path);
         RescuedPerson::create($rescued_person_data);
-
+        $rescued_person_data->save();
         return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo gehitu da');    
     }
 
@@ -75,7 +77,17 @@ class RescuedPersonController extends Controller
     {
         $rescued_person = RescuedPerson::findOrFail($id);
         $rescued_person_data = $request->validated();
+        if ($request->hasFile('file')) {
+            // Delete the old image
+            if ($rescued_person_data->photo_src) {
+                Storage::disk('public')->delete('images/' . $rescued_person_data->photo_src);
+                // return 'deleted';
+            }
+            $path = $request->file('file')->store('images', 'public');
+            $rescued_person_data->photo_src = basename($path); // Only store the filename
+        }
         $rescued_person->update($rescued_person_data);
+        
 
         return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo eguneratu da');    
     }
