@@ -44,20 +44,11 @@ class RescuedPersonController extends Controller
      */
     public function store(StoreRescuedPersonRequest $request)
     {
-        $rescuedPerson = new RescuedPerson;
-        $rescuedPerson->name = $request->name;
-        $rescuedPerson->country = $request->country;
-        $rescuedPerson->genre = $request->genre;
-        $rescuedPerson->birth_date = $request->birth_date;
-        $rescuedPerson->diagnostic = $request->diagnostic;
-        $rescuedPerson->rescue_id = $request->rescue_id;
-        $rescuedPerson->doctor_id = $request->doctor_id;
-        $rescuedPerson->photo_src = $request->photo_src;
+        $rescued_person_data = $request->validated();
+        RescuedPerson::create($rescued_person_data);
 
-
-        $rescuedPerson->save();
-
-        return redirect()->route('erreskatatuak.index');    }
+        return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo gehitu da');    
+    }
 
     /**
      * Display the specified resource.
@@ -82,20 +73,11 @@ class RescuedPersonController extends Controller
      */
     public function update(UpdateRescuedPersonRequest $request, int $id)
     {
-        $rescuedPerson = RescuedPerson::find($id);
+        $rescued_person = RescuedPerson::findOrFail($id);
+        $rescued_person_data = $request->validated();
+        $rescued_person->update($rescued_person_data);
 
-        $rescuedPerson->name = $request->name;
-        $rescuedPerson->country = $request->country;
-        $rescuedPerson->genre = $request->genre;
-        $rescuedPerson->birth_date = $request->birth_date;
-        $rescuedPerson->diagnostic = $request->diagnostic;
-        $rescuedPerson->photo_src = $request->photo_src;
-        $rescuedPerson->rescue_id = $rescuedPerson->rescue_id;
-        $rescuedPerson->doctor_id = $rescuedPerson->doctor_id;
-
-
-        $rescuedPerson->save();
-        return redirect()->route('erreskatatuak.index');    
+        return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo eguneratu da');    
     }
 
     /**
@@ -103,7 +85,11 @@ class RescuedPersonController extends Controller
      */
     public function destroy($id)
     {
-        $rescuedPerson=RescuedPerson::where('id',$id)->delete();
-        return redirect()->route('erreskatatuak.index');
+        try{
+            $rescuedPerson=RescuedPerson::where('id',$id)->delete();
+            return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo ezabatu da');    
+        }catch(\Exception $e){
+            return redirect()->route('erreskatatuak.index')->with('error', $e); 
+        }
     }
 }

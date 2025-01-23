@@ -39,8 +39,9 @@ class RescueController extends Controller
      */
     public function store(StoreRescueRequest $request)
     {
-        Rescue::create($request->validated());
-        return redirect()->route('erreskateak.index');
+        $rescue_data= $request->validated();
+        Rescue::create($rescue_data);
+        return redirect()->route('erreskateak.index')->with('success', 'Erreskatea ondo gehitu da');
     }
 
     /**
@@ -67,10 +68,10 @@ class RescueController extends Controller
     public function update(UpdateRescueRequest $request, int $id)
     {
         $rescue = Rescue::findOrFail($id);
-        $rescue->fill($request->validated());
-        $rescue->save();
+        $rescue_data = $request->validated();
+        $rescue->update($rescue_data);
         
-        return redirect()->route('erreskateak.index');
+        return redirect()->route('erreskateak.index')->with('success', 'Erreskatea ondo eguneratu da');
     }
 
     /**
@@ -78,7 +79,11 @@ class RescueController extends Controller
      */
     public function destroy($id)
     {
-        $rescue=Rescue::where('id',$id)->delete();
-        return redirect()->route('erreskateak.index');
+        try{
+            $rescue=Rescue::where('id',$id)->delete();
+            return redirect()->route('erreskateak.index')->with('success', 'Erreskatea ondo ezabatu da');    
+        }catch(\Exception $e){
+            return redirect()->route('erreskateak.index')->with('error', $e);
+        }
     }
 }

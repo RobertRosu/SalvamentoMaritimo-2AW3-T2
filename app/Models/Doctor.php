@@ -12,6 +12,19 @@ use Illuminate\Database\Eloquent\Relations\BelongstTo;
 
 class Doctor extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'email',
+        'rol',
+        'start_date',
+        'status',
+        'stop_date',
+        'reason'
+    ];
+
+    protected $guarded = ['id'];
+
     /** @use HasFactory<\Database\Factories\DoctorFactory> */
     use HasFactory;
 

@@ -22,9 +22,30 @@ class StoreDoctorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required",
-            "email" => "required",
-            "stop_date" => "required",
+            "name" => "string|required|max:100",
+            "email" => [
+                'required',
+                'unique:doctors,email',
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'
+            ],
+            "stop_date" => "date|required|after:today",
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Izena derrigorrezkoa da.',
+            'name.string' => 'Izena testu bat izan behar da.',
+            'name.max' => 'Izena 100 karaktere baino gehiago ez izan behar du.',
+
+            'email.required' => 'Email-a derrigorrezkoa da.',
+            'email.unique' => 'Email hau dagoeneko erregistratuta dago.',
+            'email.regex' => 'Email-a baliozko formatua izan behar du.',
+
+            'stop_date.required' => 'Amaiera data derrigorrezkoa da.',
+            'stop_date.date' => 'Amaiera data baliozko data bat izan behar da.',
+            'stop_date.after' => 'Amaiera-data gaurkoa baino geroago izan behar da.'
         ];
     }
 }

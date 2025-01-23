@@ -50,30 +50,29 @@ class TravelController extends Controller
             $lastTravel['marinela_3_id']
         ];
 
-        $travel = new Travel;
+        $travel_data = $request->validated();
 
-        $travel->origen = $request->origen;
-        $travel->destino = $request->destino;
-        $travel->doctor_id = Doctor::whereNotIn('status', ['Aktibo', 'Bajan'])->where('id', '!=', $lastTravel['doctor_id'])->inRandomOrder()->value('id');
-        $travel->kapitaina_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Kapitaina')->where('id', '!=', $lastTravel['kapitaina_id'])->inRandomOrder()->value('id');
-        $travel->makinen_arduraduna_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Makinen arduraduna')->where('id', '!=', $lastTravel['makinen_arduraduna_id'])->inRandomOrder()->value('id');
-        $travel->mekanikoa_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Mekanikoa')->where('id', '!=', $lastTravel['mekanikoa_id'])->inRandomOrder()->value('id');
-        $travel->zubiko_ofiziala_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Zubiko ofiziala')->where('id', '!=', $lastTravel['zubiko_ofiziala_id'])->inRandomOrder()->value('id');
+        $travel_data['doctor_id'] = Doctor::whereNotIn('status', ['Aktibo', 'Bajan'])->where('id', '!=', $lastTravel['doctor_id'])->inRandomOrder()->value('id');
+        $travel_data['kapitaina_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Kapitaina')->where('id', '!=', $lastTravel['kapitaina_id'])->inRandomOrder()->value('id');
+        $travel_data['makinen_arduraduna_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Makinen arduraduna')->where('id', '!=', $lastTravel['makinen_arduraduna_id'])->inRandomOrder()->value('id');
+        $travel_data['mekanikoa_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Mekanikoa')->where('id', '!=', $lastTravel['mekanikoa_id'])->inRandomOrder()->value('id');
+        $travel_data['zubiko_ofiziala_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Zubiko ofiziala')->where('id', '!=', $lastTravel['zubiko_ofiziala_id'])->inRandomOrder()->value('id');
 
-        $travel->marinela_1_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
-        $excludedSailorIds[] = $travel->marinela_1_id;
+        $travel_data['marinela_1_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
+        $excludedSailorIds[] = $travel_data['marinela_1_id'];
 
-        $travel->marinela_2_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
-        $excludedSailorIds[] = $travel->marinela_2_id;
+        $travel_data['marinela_2_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
+        $excludedSailorIds[] = $travel_data['marinela_2_id'];
 
-        $travel->marinela_3_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
+        $travel_data['marinela_3_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Marinela')->whereNotIn('id', $excludedSailorIds)->inRandomOrder()->value('id');
         
-        $travel->erizaina_id = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Erizaina')->where('id', '!=', $lastTravel['erizaina_id'])->inRandomOrder()->value('id');
-        $travel->start_date = Carbon::parse(Carbon::now());
-        $travel->description = $request->description;
+        $travel_data['erizaina_id'] = CrewMember::whereNotIn('status', ['Aktibo', 'Bajan'])->where('rol', 'Erizaina')->where('id', '!=', $lastTravel['erizaina_id'])->inRandomOrder()->value('id');
 
-        $travel->save();
-        return redirect()->route('bidaiak.index');
+        $travel_data['start_date'] = Carbon::now();
+
+        Travel::create($travel_data);
+        
+        return redirect()->route('bidaiak.index')->with('success', 'Bidaia ondo gehitu da');
 
     }
 
@@ -161,31 +160,46 @@ class TravelController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateTravelRequest $request, int $id)
-    {
-        $travel = Travel::findOrFail($id);
+{
+    $travel = Travel::findOrFail($id);
+    $travel_data = $request->validated();
 
-        if($travel->marinela_1_id == $travel->marinela_2_id && $travel->marinela_1_id == $travel->marinela_3_id){
-            $travel->marinela_1_id = CrewMember::where('rol', 'Marinela')->whereNotIn('status', ['Aktibo', 'Bajan'])->whereNotInt('marinela_1_id', [$travel->marinela_2_id, $travel->marinela_3_id])->inRandomOrder()->first()->value('id');
-        }
-
-        if($travel->marinela_2_id == $travel->marinela_1_id && $travel->marinela_2_id == $travel->marinela_3_id){
-            $travel->marinela_2_id = CrewMember::where('rol', 'Marinela')->whereNotIn('status', ['Aktibo', 'Bajan'])->whereNotInt('marinela_2_id', [$travel->marinela_1_id, $travel->marinela_3_id])->inRandomOrder()->first()->value('id');
-        }
-
-        if($travel->marinela_3_id == $travel->marinela_1_id && $travel->marinela_3_id == $travel->marinela_2_id){
-            $travel->marinela_3_id = CrewMember::where('rol', 'Marinela')->whereNotIn('status', ['Aktibo', 'Bajan'])->whereNotInt('marinela_3_id', [$travel->marinela_2_id, $travel->marinela_1_id])->inRandomOrder()->first()->value('id');
-        }
-        
-        $travel->update($request->validated());
-        return redirect()->route('bidaiak.index');
+    if ($travel_data['marinela_1_id'] == $travel_data['marinela_2_id'] && $travel_data['marinela_1_id'] == $travel_data['marinela_3_id']) {
+        $travel_data['marinela_1_id'] = CrewMember::where('rol', 'Marinela')
+            ->whereNotIn('status', ['Aktibo', 'Bajan'])
+            ->whereNotIn('id', [$travel_data['marinela_2_id'], $travel_data['marinela_3_id']])
+            ->inRandomOrder()->first()->value('id');
     }
+
+    if ($travel_data['marinela_2_id'] == $travel_data['marinela_1_id'] && $travel_data['marinela_2_id'] == $travel_data['marinela_3_id']) {
+        $travel_data['marinela_2_id'] = CrewMember::where('rol', 'Marinela')
+            ->whereNotIn('status', ['Aktibo', 'Bajan'])
+            ->whereNotIn('id', [$travel_data['marinela_1_id'], $travel_data['marinela_3_id']])
+            ->inRandomOrder()->first()->value('id');
+    }
+
+    if ($travel_data['marinela_3_id'] == $travel_data['marinela_2_id'] && $travel_data['marinela_3_id'] == $travel_data['marinela_1_id']) {
+        $travel_data['marinela_3_id'] = CrewMember::where('rol', 'Marinela')
+            ->whereNotIn('status', ['Aktibo', 'Bajan'])
+            ->whereNotIn('id', [$travel_data['marinela_2_id'], $travel_data['marinela_1_id']])
+            ->inRandomOrder()->first()->value('id');
+    }
+
+    $travel->update($travel_data);
+
+    return redirect()->route('bidaiak.index')->with('success', 'Bidaia ondo eguneratu da');
+}
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        $bidaia=Travel::where('id',$id)->delete();
-        return redirect()->route('bidaiak.index');
+        try{
+            Travel::where('id', $id)->delete();
+            return redirect()->route('bidaiak.index')->with('success', 'Bidaia ondo ezabatu da');    
+        }catch(\Exception $e){
+            return redirect()->route('bidaiak.index')->with('error', $e);
+        }
     }
 }
