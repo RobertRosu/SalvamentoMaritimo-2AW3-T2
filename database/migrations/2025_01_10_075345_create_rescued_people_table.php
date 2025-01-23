@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('country');
             $table->string('genre');
-            $table->date('birth_date');
+            $table->date('birth_date')->nullable();
             $table->foreignId('rescue_id')->constrained()->onDelete('cascade');
             $table->foreignId('doctor_id');
-            $table->string('diagnostic');
+            $table->string('diagnostic')->nullable();
             $table->string('photo_src')->nullable();
             $table->timestamps();
 

@@ -32,6 +32,8 @@ class Travel extends Model
         'description'
     ];
 
+    protected $guarded = ['id'];
+
     // Travel <--> Doctor
     public function doctor(){
         return $this->belongsTo(Doctor::class, 'doctor_id');

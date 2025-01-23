@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Relations\BelongstTo;
 
 class CrewMember extends Model
 {
+
+    protected $fillable = ['name', 'email', 'start_date', 'stop_date', 'status', 'reason', 'rol'];
+    protected $guarded = ['id'];
+
     /** @use HasFactory<\Database\Factories\CrewMemberFactory> */
     use HasFactory;
 
