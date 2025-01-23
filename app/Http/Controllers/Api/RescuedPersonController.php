@@ -18,13 +18,17 @@ class RescuedPersonController extends Controller
     {
         try{
             $rescued = RescuedPerson::select('id', 'name', 'country', 'genre', 'birth_date', 'photo_src')->get();
+            $doctors = Doctor::select('id', 'name')->orderBy("id")->get();
+            $rescues = Rescue::select('id',)->orderBy("id")->get();
             
             return response()->json(
                 [
                     "status" => "OK",
                     "message" => "Rescued people data retrieved successfully",
                     "status_code" => 200,
-                    "response" => $rescued                    
+                    "response" => $rescued,
+                    "response_doc" => $doctors,
+                    "response_res" => $rescues                   
                 ]
             );
 
@@ -50,12 +54,17 @@ class RescuedPersonController extends Controller
             $resqued = RescuedPerson::create(
                 [
                     "name" => $request->name,
-                    "country" => $request->country,
                     "birth_date" => $request->birth_date,
-                    "doctor_id" => Doctor::where('id', '!=', $lastTravel->doctor_id)->first()->id,
-                    "rescue_id" => Rescue::where('id', '!=', $lastTravel->rescue_id)->first()->id
+                    "genre" => $request->genre,
+                    "country" => $request->country,
+                    "photo_src" => $request->photo_src,
+                    "doctor_id" => $request->doctor_id,
+                    "rescue_id" => $request->rescue_id,
+                    "diagnostic" => $request->diagnostic
                 ]
             );
+
+            $resqued->save();
 
             return response()->json(
                 [
@@ -108,7 +117,7 @@ class RescuedPersonController extends Controller
                 'birth_date' => 'required|date',
                 'genre' => 'required|string|max:255',
                 'country' => 'required|string|max:255',
-                'photo_src' => 'required|url|max:255',
+                'photo_src' => 'nullable|url',
             ]);
 
             // Llenar los datos actualizados
