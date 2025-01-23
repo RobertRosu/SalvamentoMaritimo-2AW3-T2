@@ -10,6 +10,13 @@ use App\Models\Doctor;
 
 class DoctorController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:medikuak.index')->only('index');
+        $this->middleware('can:medikuak.update')->only('update');
+        $this->middleware('can:medikuak.destroy')->only('destroy');
+        $this->middleware('can:medikuak.create')->only('create');
+        $this->middleware('can:medikuak.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      */

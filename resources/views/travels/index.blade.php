@@ -30,8 +30,12 @@
                                 <th>Irteera</th>
                                 <th class="d-none d-md-table-cell">Helmuga</th>
                                 <th>Data</th>
-                                <th><a href="{{ route('bidaiak.create') }}" type="button" class="btn btn-info">Erregistro berria sortu</a></th>
-
+                                <th>
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('bidaiak.create')
+                                <a href="{{ route('bidaiak.create') }}" type="button" class="btn btn-info">Erregistro berria sortu</a>
+                                @endcan
+                                </th>
 
 
                             </tr>
@@ -49,6 +53,8 @@
                                 <td>
                                 <a href="{{ route('bidaiak.show', ['bidaiak' => $travel->id]) }}" class="btn btn-secondary">Xehetasunak</a>
 
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('bidaiak.destroy')
                                 <a href="{{ route('bidaiak.edit', $travel) }}" class="btn btn-primary">Aldatu</a>
 
                                     <form action="{{ route('bidaiak.destroy', ['bidaiak' => $travel->id]) }}" method="POST" style="display: inline;">
@@ -56,6 +62,8 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
+                                @endcan
+
                                 </td>
 
                             </tr>

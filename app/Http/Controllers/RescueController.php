@@ -9,6 +9,13 @@ use App\Models\Travel;
 
 class RescueController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:erreskateak.index')->only('index');
+        $this->middleware('can:erreskateak.update')->only('update');
+        $this->middleware('can:erreskateak.destroy')->only('destroy');
+        $this->middleware('can:erreskateak.create')->only('create');
+        $this->middleware('can:erreskateak.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      */

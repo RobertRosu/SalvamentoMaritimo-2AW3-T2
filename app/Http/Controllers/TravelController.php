@@ -11,6 +11,15 @@ use App\Models\CrewMember;
 
 class TravelController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:bidaiak.index')->only('index');
+        $this->middleware('can:bidaiak.update')->only('update');
+        $this->middleware('can:bidaiak.destroy')->only('destroy');
+        $this->middleware('can:bidaiak.create')->only('create');
+        $this->middleware('can:bidaiak.edit')->only('edit');
+        $this->middleware('can:bidaiak.show')->only('show');
+
+    }
     /**
      * Display a listing of the resource.
      */

@@ -31,8 +31,10 @@
                                 <th class="d-none d-md-table-cell">Erreskatatu kopurua</th>
                                 <th>Hasiera</th>
                                 <th>Amaiera</th>
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('erreskateak.create')
                                 <th><a href="{{route('erreskateak.create')}}" class="btn btn-info">Erregistro berria sortu</a></th>
-
+                                @endcan
 
 
                             </tr>
@@ -48,6 +50,8 @@
                                 <td>{{$rescue->numero_rescatados}}</td>
                                 <td>{{$rescue->start_time}}</td>
                                 <td>{{$rescue->end_time}}</td>
+                                <!-- Rolaren baimenen arabera botoiak ezkutatu -->
+                                @can('erreskateak.destroy')
                                 <td>
                                 <a href="{{ route('erreskateak.edit', $rescue->id) }}" class="btn btn-primary">Aldatu</a>
 
@@ -57,6 +61,7 @@
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
                                 </td>
+                                @endcan
 
                             </tr>
                             @empty

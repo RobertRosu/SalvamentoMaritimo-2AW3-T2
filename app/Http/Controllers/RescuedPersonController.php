@@ -12,6 +12,13 @@ use App\Models\Doctor;
 
 class RescuedPersonController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:erreskatatuak.index')->only('index');
+        $this->middleware('can:erreskatatuak.update')->only('update');
+        $this->middleware('can:erreskatatuak.destroy')->only('destroy');
+        $this->middleware('can:erreskatatuak.create')->only('create');
+        $this->middleware('can:erreskatatuak.edit')->only('edit');
+    }
     /**
      * Display a listing of the resource.
      */
