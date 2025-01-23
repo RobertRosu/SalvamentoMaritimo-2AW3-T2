@@ -37,20 +37,24 @@ class RescuedPersonController extends Controller
      */
     public function store(StoreRescuedPersonRequest $request)
     {
-        $rescuedPerson = new RescuedPerson;
-        $rescuedPerson->name = $request->name;
-        $rescuedPerson->country = $request->country;
-        $rescuedPerson->genre = $request->genre;
-        $rescuedPerson->birth_date = $request->birth_date;
-        $rescuedPerson->diagnostic = $request->diagnostic;
-        $rescuedPerson->rescue_id = $request->rescue_id;
-        $rescuedPerson->doctor_id = $request->doctor_id;
-        $rescuedPerson->photo_src = $request->photo_src;
+        // $rescuedPerson = new RescuedPerson;
+        // $rescuedPerson->name = $request->name;
+        // $rescuedPerson->country = $request->country;
+        // $rescuedPerson->genre = $request->genre;
+        // $rescuedPerson->birth_date = $request->birth_date;
+        // $rescuedPerson->diagnostic = $request->diagnostic;
+        // $rescuedPerson->rescue_id = $request->rescue_id;
+        // $rescuedPerson->doctor_id = $request->doctor_id;
+        // $rescuedPerson->photo_src = $request->photo_src;
 
 
-        $rescuedPerson->save();
+        // $rescuedPerson->save();
 
-        return redirect()->route('erreskatatuak.index');    }
+        $rescued_person_data = $request->validated();
+        // dd($rescued_person_data);
+        RescuedPerson::create($rescued_person_data);
+        return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo gehitu da');    
+    }
 
     /**
      * Display the specified resource.

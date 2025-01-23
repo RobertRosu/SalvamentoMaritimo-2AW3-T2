@@ -15,34 +15,45 @@
                 @csrf
                 @method('PUT')
 
+                @if ($errors->any())
+                <div class="alert alert-danger mt-2">
+                    <h2>Arazoak</h2>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
                 <!-- Izena -->
                 <div class="form-group">
                     <label for="name">Izena</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $rescuedPerson->name }}" required>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $rescuedPerson->name }}">
                 </div>
 
                 <!-- Herrialdea -->
                 <div class="form-group">
                     <label for="country">Herrialdea</label>
-                    <input type="text" class="form-control" id="country" name="country" value="{{ $rescuedPerson->country }}" required>
+                    <input type="text" class="form-control" id="country" name="country" value="{{ $rescuedPerson->country }}">
                 </div>
 
                 <!-- Generoa -->
                 <div class="form-group">
                     <label for="genre">Generoa</label>
-                    <input type="text" class="form-control" id="genre" name="genre" value="{{ $rescuedPerson->genre }}" required>
+                    <input type="text" class="form-control" id="genre" name="genre" value="{{ $rescuedPerson->genre }}">
                 </div>
 
                 <!-- Jaiotze Data -->
                 <div class="form-group">
                     <label for="birth_date">Jaiotze Data</label>
-                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ \Carbon\Carbon::parse($rescuedPerson->birth_date)->toDateString() }}" required>
+                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ \Carbon\Carbon::parse($rescuedPerson->birth_date)->toDateString() }}">
                 </div>
 
                 <!-- Diagnostikoa -->
                 <div class="form-group">
                     <label for="diagnostic">Diagnostikoa</label>
-                    <input type="text" class="form-control" id="diagnostic" name="diagnostic" value="{{ $rescuedPerson->diagnostic }}" required>
+                    <input type="text" class="form-control" id="diagnostic" name="diagnostic" value="{{ $rescuedPerson->diagnostic }}">
                 </div>
 
 

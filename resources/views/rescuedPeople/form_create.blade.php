@@ -15,34 +15,49 @@
             @csrf
             @method('POST')
 
+            @if ($errors->any())
+            <div class="alert alert-danger mt-2">
+                <h2>Arazoak</h2>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
                 <!-- Izena -->
                 <div class="form-group">
                     <label for="name">Izena</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name">
                 </div>
 
                 <!-- Herrialdea -->
                 <div class="form-group">
                     <label for="country">Herrialdea</label>
-                    <input type="text" class="form-control" id="country" name="country" required>
+                    <input type="text" class="form-control" id="country" name="country">
                 </div>
 
                 <!-- Generoa -->
                 <div class="form-group">
                     <label for="genre">Generoa</label>
-                    <input type="text" class="form-control" id="genre" name="genre" required>
+                    <select name="genre" id="genre" class="form-control">
+                        <option value="Gizona">Gizona</option>
+                        <option value="Emakumea">Emakumea</option>
+                        <option value="Beste bat">Beste bat</option>
+                    </select>
                 </div>
 
                 <!-- Jaiotze Data -->
                 <div class="form-group">
                     <label for="birth_date">Jaiotze Data</label>
-                    <input type="date" class="form-control" id="birth_date" name="birth_date"  required>
+                    <input type="date" class="form-control" id="birth_date" name="birth_date" >
                 </div>
 
                 <!-- Diagnostikoa -->
                 <div class="form-group">
                     <label for="diagnostic">Diagnostikoa</label>
-                    <input type="text" class="form-control" id="diagnostic" name="diagnostic"  required>
+                    <input type="text" class="form-control" id="diagnostic" name="diagnostic" >
                 </div>
 
 
@@ -61,7 +76,7 @@
         <!-- Rescue ID -->
         <div class="form-group">
             <label for="rescue_id">Rescue ID</label>
-            <select class="form-control" id="rescue_id" name="rescue_id" required>
+            <select class="form-control" id="rescue_id" name="rescue_id">
                 <option value="">Aukeratu erreskatearen ID-a</option>
                 @foreach($rescues as $rescue)
                     <option value="{{ $rescue->id }}">{{ $rescue->id }}</option>
@@ -72,7 +87,7 @@
         <!-- Doctor ID -->
         <div class="form-group">
             <label for="doctor_id">Doctor ID</label>
-            <select class="form-control" id="doctor_id" name="doctor_id" required>
+            <select class="form-control" id="doctor_id" name="doctor_id">
                 <option value="">Aukeratu medikuaren ID-a</option>
                 @foreach($doctors as $doctor)
                     <option value="{{ $doctor->id }}">{{ $doctor->id }} - {{ $doctor->name }}</option>
