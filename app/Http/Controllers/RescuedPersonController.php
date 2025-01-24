@@ -64,9 +64,10 @@ class RescuedPersonController extends Controller
     public function show(int $id)
     {
         $rescuedPerson = RescuedPerson::find($id);
+        $rescue = Rescue::find($rescuedPerson->rescue_id);
+        $doctor = Doctor::find($rescuedPerson->doctor_id);
 
-
-        return view('rescuedPeople.details', compact('rescuedPerson'));
+        return view("rescuedPeople.details", compact('rescuedPerson', 'rescue', 'doctor'));
     }
 
     /**

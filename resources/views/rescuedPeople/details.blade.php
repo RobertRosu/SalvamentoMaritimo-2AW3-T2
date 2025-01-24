@@ -7,6 +7,17 @@
     <h4 class="mt-4 text-dark">Kargatzen...</h4>
 @stop
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger mt-3">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="container">
     <div class="row">
         <!-- Ezkerreko kolumna: Editable formularioa -->
@@ -89,6 +100,14 @@
             <div class="form-group">
                 <label for="doctor_id">Doctor ID</label>
                 <input type="text" class="form-control" id="doctor_id" name="doctor_id" value="{{ $rescuedPerson->doctor_id }}" readonly>
+            </div>
+            <div class="form-group">
+                <h3>Mediku arduraduna:</h3>
+                <a href="{{ route('medikuak.show' , ['medikuak' => $doctor->id]) }}">{{$doctor->name}}</a>
+            </div>
+            <div class="form-group">
+                <h3>Erreskatea:</h3>
+                <a href="{{ route('erreskateak.show' , ['erreskateak' => $rescue->id]) }}">#{{$rescue->id}}</a>
             </div>
         </div>
                         <!-- Aldaketa gordetzeko botoia -->
