@@ -62,7 +62,7 @@ export class ErreskatatuakComponent implements OnInit{
   filtroak = {
     izena: '',
     sexua: '0',
-    adina: 0,
+    adina: '',
     naziotasuna: '0'
   };
 
@@ -70,7 +70,7 @@ export class ErreskatatuakComponent implements OnInit{
     this.filtroak = {
       izena: '',
       sexua: '0',
-      adina: 0,
+      adina: '',
       naziotasuna: '0',
     };
   }
