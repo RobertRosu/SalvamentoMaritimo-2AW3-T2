@@ -24,17 +24,17 @@
 
     <div class="form-group">
         <label for="origen">Irteera<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="origen" name="origen" value="{{ $travel->origen }}">
+        <input type="text" class="form-control @error('origen') border-danger @enderror" id="origen" name="origen" value="{{ $travel->origen }}">
     </div>
 
     <div class="form-group">
         <label for="destino">Helmuga<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="destino" name="destino" value="{{ $travel->destino }}">
+        <input type="text" class="form-control @error('destino') border-danger @enderror" id="destino" name="destino" value="{{ $travel->destino }}">
     </div>
 
     <div class="form-group">
         <label for="description">Deskripzioa<span class="text-danger">*</span></label>
-        <textarea class="form-control" id="description" name="description">{{ $travel->description }}</textarea>
+        <textarea class="form-control @error('description') border-danger @enderror" id="description" name="description">{{ $travel->description }}</textarea>
     </div>
 
     @foreach($crew as $crew_data)

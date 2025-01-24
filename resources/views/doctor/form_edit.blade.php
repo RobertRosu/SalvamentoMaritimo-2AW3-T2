@@ -24,17 +24,17 @@
 
     <div class="form-group">
         <label for="name">Izena<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ $doctor->name }}" required>
+        <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{ $doctor->name }}">
     </div>
 
     <div class="form-group">
         <label for="email">Email-a<span class="text-danger">*</span></label>
-        <input type="email" class="form-control" id="email" name="email" value="{{ $doctor->email }}" required>
+        <input type="email" class="form-control @error('email') border-danger @enderror" id="email" name="email" value="{{ $doctor->email }}" required>
     </div>
 
     <div class="form-group">
         <label for="stop_date">Amaiera data<span class="text-danger">*</span></label>
-        <input type="date" class="form-control" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($doctor->stop_date)->toDateString() }}" required>
+        <input type="date" class="form-control @error('stop_date') border-danger @enderror" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($doctor->stop_date)->toDateString() }}" required>
     </div>
 
     <div class="form-group">
@@ -48,7 +48,7 @@
 
     <div class="form-group">
         <label for="reason">Arrazoia</label>
-        <input type="text" class="form-control" id="reason" name="reason" value="{{ $doctor->reason }}">
+        <input type="text" class="form-control @error('reason') border-danger @enderror" id="reason" name="reason" value="{{ $doctor->reason }}">
     </div>
 
     <button type="submit" class="btn btn-primary">Aldaketak gorde</button>
