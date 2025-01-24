@@ -22,8 +22,8 @@
         </div>
     @endif
 
-    <section class="table-container mt-4">
-        <div class="card shadow">
+    <section class="table-container mt-4 pt-3">
+        <div class="card">
             <div class="card-header bg-dark text-white d-flex justify-content-end align-items-center">
                 @can('medikuak.create')
                     <a href="{{ route('medikuak.create') }}" class="btn btn-success">Mediku berria sortu</a>

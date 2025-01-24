@@ -22,8 +22,8 @@
         </div>
     @endif
 
-    <section id="erreskateak" class="table-container mt-4">
-        <div class="card shadow">
+    <section id="erreskateak" class="table-container mt-4 pt-3">
+        <div class="card">
             <div class="card-header bg-dark text-white d-flex justify-content-end align-items-center">
                 @can('erreskateak.create')
                     <a href="{{ route('erreskateak.create') }}" class="btn btn-success">Erreskate berria sortu</a>

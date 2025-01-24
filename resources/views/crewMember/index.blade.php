@@ -22,8 +22,8 @@
         </div>
     @endif
 
-    <section id="langileak" class="table-container mt-4">
-        <div class="card shadow">
+    <section id="langileak" class="table-container mt-4 pt-3">
+        <div class="card">
             <div class="card-header bg-dark text-white d-flex justify-content-end align-items-center">
                 @can('langileak.create')
                     <a href="{{ route('langileak.create') }}" class="btn btn-success">Langile berria sortu</a>
