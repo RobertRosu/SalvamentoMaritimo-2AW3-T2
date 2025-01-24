@@ -29,50 +29,50 @@
 </div>
 
 <div class="form-group">
-    <label for="doctor_id">ID Doktorea</label>
-    <input readonly type="text" class="form-control" id="doctor_id" value="{{$doctor->id}} - {{$doctor->name}}">
+    <label for="doctor_id">Doktorea</label><br>
+    <a href="{{ route('medikuak.show' , ['medikuak' => $doctor->id]) }}">{{$doctor->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="kapitaina_id">ID Kapitaina</label>
-    <input readonly type="text" class="form-control" id="kapitaina_id" value="{{$captain->id}} - {{$captain->name}}">
+    <label for="kapitaina_id">Kapitaina</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $captain->id]) }}">{{$captain->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="makinen_arduraduna_id">ID Makinen arduraduna</label>
-    <input readonly type="text" class="form-control" id="makinen_arduraduna_id" value="{{$machine_manager->id}} - {{$machine_manager->name}}">
+    <label for="makinen_arduraduna_id">Makinen arduraduna</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $machine_manager->id]) }}">{{$machine_manager->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="mekanikoa_id">ID Mekanikoa</label>
-    <input readonly type="text" class="form-control" id="mekanikoa_id" value="{{$mechanic->id}} - {{$mechanic->name}}">
+    <label for="mekanikoa_id">Mekanikoa</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $mechanic->id]) }}">{{$mechanic->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="zubiko_ofiziala_id">ID Zubiko ofiziala</label>
-    <input readonly type="text" class="form-control" id="zubiko_ofiziala_id" value="{{$bridge_officer->id}} - {{$bridge_officer->name}}">
+    <label for="zubiko_ofiziala_id">Zubiko ofiziala</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $bridge_officer->id]) }}">{{$bridge_officer->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="marinela_1_id">ID Marinela 1</label>
-    <input readonly type="text" class="form-control" id="marinela_1_id" value="{{$sailor_1->id}} - {{$sailor_1->name}}">
+    <label for="marinela_1_id">Marinela 1</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $sailor_1->id]) }}">{{$sailor_1->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="marinela_2_id">ID Marinela 2</label>
-    <input readonly type="text" class="form-control" id="marinela_2_id" value="{{$sailor_2->id}} - {{$sailor_2->name}}">
+    <label for="marinela_2_id">Marinela 2</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $sailor_2->id]) }}">{{$sailor_2->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="marinela_3_id">ID Marinela 3</label>
-    <input readonly type="text" class="form-control" id="marinela_3_id" value="{{$sailor_3->id}} - {{$sailor_3->name}}">
+    <label for="marinela_3_id">Marinela 3</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $sailor_3->id]) }}">{{$sailor_3->name}}</a>
 </div>
 
 <div class="form-group">
-    <label for="erizaina_id">ID Erizaina</label>
-    <input readonly type="text" class="form-control" id="erizaina_id" value="{{$nurse->id}} - {{$nurse->name}}">
+    <label for="erizaina_id">Erizaina</label><br>
+    <a href="{{ route('langileak.show' , ['langileak' => $nurse->id]) }}">{{$nurse->name}}</a>
 </div>
-<a href="{{ route('bidaiak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
+<a href="{{ route('bidaiak.index') }}" type="button" class="btn btn-danger">Atzera</a>
 </form>
 
 @endsection
