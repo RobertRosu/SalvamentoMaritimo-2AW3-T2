@@ -37,24 +37,24 @@ class RescuedPersonFactory extends Factory
                 return null; // En caso de que no haya un travel_id o doctor_id
             },
             'diagnostic' => fake()->randomElement(['Deshidratazioa', 'Desnutrizioa', 'Osasuntsu']),
-            'photo_src' => function (array $attributes) {
+            // 'photo_src' => function (array $attributes) {
                 
-                $endpoint = '';
+            //     $endpoint = '';
                 
-                if($attributes['genre'] == 'Gizona'){
-                    $endpoint = 'male';
-                }
+            //     if($attributes['genre'] == 'Gizona'){
+            //         $endpoint = 'male';
+            //     }
 
-                if($attributes['genre'] == 'Emakumea'){
-                    $endpoint = 'female';
-                }
+            //     if($attributes['genre'] == 'Emakumea'){
+            //         $endpoint = 'female';
+            //     }
 
-                if($attributes['genre'] == 'Beste bat'){
-                    $endpoint = rand(0, 1) ? 'male' : 'female';
-                }
-                // %20ko probabilitatea du argazkirik ez izatea
-                return fake()->optional(0.8, null)->randomElement(["https://xsgames.co/randomusers/avatar.php?g=$endpoint"]);
-            },         
+            //     if($attributes['genre'] == 'Beste bat'){
+            //         $endpoint = rand(0, 1) ? 'male' : 'female';
+            //     }
+            //     // %20ko probabilitatea du argazkirik ez izatea
+            //     return fake()->optional(0.8, null)->randomElement(["https://xsgames.co/randomusers/avatar.php?g=$endpoint"]);
+            // },         
         ];
     }
 }

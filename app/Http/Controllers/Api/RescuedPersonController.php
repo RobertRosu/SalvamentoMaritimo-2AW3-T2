@@ -57,7 +57,7 @@ class RescuedPersonController extends Controller
                     "birth_date" => $request->birth_date,
                     "genre" => $request->genre,
                     "country" => $request->country,
-                    "photo_src" => $request->photo_src,
+                    //"photo_src" => $request->photo_src,
                     "doctor_id" => $request->doctor_id,
                     "rescue_id" => $request->rescue_id,
                     "diagnostic" => $request->diagnostic
@@ -117,7 +117,7 @@ class RescuedPersonController extends Controller
                 'birth_date' => 'required|date',
                 'genre' => 'required|string|max:255',
                 'country' => 'required|string|max:255',
-                'photo_src' => 'nullable|url',
+                //'photo_src' => 'nullable|url',
             ]);
 
             // Llenar los datos actualizados
