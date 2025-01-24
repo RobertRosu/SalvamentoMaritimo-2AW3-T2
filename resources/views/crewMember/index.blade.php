@@ -57,6 +57,7 @@
                                 <td>
                                 <a href="{{ route('langileak.show', ['langileak' => $crew_member->id]) }}" class="btn btn-secondary">Xehetasunak</a>
 
+
                                 @can('langileak.destroy')
 
                                 <a href="{{ route('langileak.edit', ['langileak' => $crew_member->id]) }}" class="btn btn-primary">Aldatu</a>
