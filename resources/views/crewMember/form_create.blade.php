@@ -24,17 +24,17 @@
 
     <div class="form-group">
         <label for="name">Izena<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name">
     </div>
 
    <div class="form-group">
         <label for="email">Email-a<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="email" name="email">
+        <input type="text" class="form-control @error('email') border-danger @enderror" id="email" name="email">
    </div>
 
     <div class="form-group">
         <label for="rol">Rol-a<span class="text-danger">*</span></label>
-        <select class="form-control" id="rol" name="rol">
+        <select class="form-control @error('rol') border-danger @enderror" id="rol" name="rol">
             <option value="Marinela">Marinela</option>
             <option value="Erizaina">Erizaina</option>
             <option value="Mekanikoa">Mekanikoa</option>

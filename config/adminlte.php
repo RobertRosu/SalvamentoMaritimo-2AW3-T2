@@ -300,21 +300,21 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type' => 'navbar-search',
-            'text' => 'Bilatu',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type' => 'navbar-search',
+        //     'text' => 'Bilatu',
+        //     'topnav_right' => true,
+        // ],
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'Bilatu',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'Bilatu',
+        // ],
         [
             'text' => 'blog',
             'url' => 'admin/blog',

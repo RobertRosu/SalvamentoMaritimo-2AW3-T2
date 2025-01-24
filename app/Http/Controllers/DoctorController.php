@@ -95,7 +95,7 @@ class DoctorController extends Controller
             Doctor::where('id', $id)->delete();
             return redirect()->route('medikuak.index')->with('success', 'Medikua ondo ezabatu da');    
         }catch(\Exception $e){
-            return redirect()->route('medikuak.index')->with('error', $e);
+            return redirect()->route('medikuak.index')->with('error', 'Errorea: medikua ez da ezabatu');
         }
     }
 }

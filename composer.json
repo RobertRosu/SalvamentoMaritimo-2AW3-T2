@@ -16,7 +16,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.6",
-        "spatie/laravel-permission": "^6.10"
+        "spatie/laravel-permission": "^6.10",
+        "twbs/bootstrap-icons": "^1.11"
     },
     "require-dev": {
         "beyondcode/laravel-er-diagram-generator": "^4.0",

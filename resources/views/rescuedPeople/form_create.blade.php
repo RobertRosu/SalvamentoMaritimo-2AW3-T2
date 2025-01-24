@@ -29,13 +29,13 @@
                 <!-- Izena -->
                 <div class="form-group">
                     <label for="name">Izena<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
+                    <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{old('name')}}">
                 </div>
 
                 <!-- Herrialdea -->
                 <div class="form-group">
                     <label for="country">Herrialdea<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="country" name="country" value="{{old('country')}}">
+                    <input type="text" class="form-control @error('country') border-danger @enderror" id="country" name="country" value="{{old('country')}}">
                 </div>
 
                 <!-- Generoa -->
@@ -51,13 +51,13 @@
                 <!-- Jaiotze Data -->
                 <div class="form-group">
                     <label for="birth_date">Jaiotze Data<span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{old('birth_date')}}">
+                    <input type="date" class="form-control @error('birth_date') border-danger @enderror" id="birth_date" name="birth_date" value="{{old('birth_date')}}">
                 </div>
 
                 <!-- Diagnostikoa -->
                 <div class="form-group">
                     <label for="diagnostic">Diagnostikoa</label>
-                    <input type="text" class="form-control" id="diagnostic" name="diagnostic" value="{{old('diagnostic')}}">
+                    <input type="text" class="form-control @error('diagnostic') border-danger @enderror" id="diagnostic" name="diagnostic" value="{{old('diagnostic')}}">
                 </div>
 
 
@@ -76,7 +76,7 @@
         <!-- Rescue ID -->
         <div class="form-group">
             <label for="rescue_id">Rescue ID<span class="text-danger">*</span></label>
-            <select class="form-control" id="rescue_id" name="rescue_id" value="{{old('rescue_id')}}">
+            <select class="form-control @error('rescue_id') border-danger @enderror" id="rescue_id" name="rescue_id" value="{{old('rescue_id')}}">
                 <option value="">Aukeratu erreskatearen ID-a</option>
                 @foreach($rescues as $rescue)
                     <option value="{{ $rescue->id }}">{{ $rescue->id }}</option>
@@ -87,7 +87,7 @@
         <!-- Doctor ID -->
         <div class="form-group">
             <label for="doctor_id">Doctor ID<span class="text-danger">*</span></label>
-            <select class="form-control" id="doctor_id" name="doctor_id" value="{{old('doctor_id')}}">
+            <select class="form-control @error('doctor_id') border-danger @enderror" id="doctor_id" name="doctor_id" value="{{old('doctor_id')}}">
                 <option value="">Aukeratu medikuaren ID-a</option>
                 @foreach($doctors as $doctor)
                     <option value="{{ $doctor->id }}">{{ $doctor->id }} - {{ $doctor->name }}</option>

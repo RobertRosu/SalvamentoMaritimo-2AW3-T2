@@ -24,17 +24,17 @@
 
     <div class="form-group">
         <label for="name">Izena<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name">
     </div>
 
     <div class="form-group">
         <label for="email">Email-a<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="email" name="email">
+        <input type="text" class="form-control @error('email') border-danger @enderror" id="email" name="email">
     </div>
 
     <div class="form-group">
         <label for="stop_date">Amaiera data<span class="text-danger">*</span></label>
-        <input type="date" class="form-control" id="stop_date" name="stop_date">
+        <input type="date" class="form-control @error('stop_date') border-danger @enderror" id="stop_date" name="stop_date">
     </div>
 
     <button type="submit" class="btn btn-primary">Erregistro berria sortu</button>

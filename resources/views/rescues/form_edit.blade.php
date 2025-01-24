@@ -26,7 +26,7 @@
     <!-- Campo Nombre -->
     <div class="form-group">
         <label for="travel_id">ID travel</label>
-        <select name="travel_id" id="travel_id" class="form-control">
+        <select name="travel_id" id="travel_id" class="form-control @error('travel_id') border-danger @enderror">
             @foreach($travels as $travel)
                 <option value="{{$travel->id}}" {{$travel->id == $rescue->travel_id ? 'selected' : ''}}>{{$travel->id}}</option>
             @endforeach
@@ -36,18 +36,18 @@
     <!-- Campo Email -->
     <div class="form-group">
         <label for="numero_rescatados">Erreskatatuen kopurua</label>
-        <input type="number" min="1" value="{{ $rescue->numero_rescatados }}" class="form-control" id="numero_rescatados" name="numero_rescatados">
+        <input type="number" min="1" value="{{ $rescue->numero_rescatados }}" class="form-control @error('numero_rescatados') border-danger @enderror" id="numero_rescatados" name="numero_rescatados">
     </div>
 
     <!-- Campo Fecha de fin -->
     <div class="form-group">
         <label for="start_time">Hasiera ordua</label>
-        <input type="time" value="{{ $rescue->start_time }}" class="form-control" id="start_time" name="start_time">
+        <input type="time" value="{{ $rescue->start_time }}" class="form-control @error('start_time') border-danger @enderror" id="start_time" name="start_time">
     </div>
 
     <div class="form-group">
         <label for="end_time">Amaiera ordua</label>
-        <input type="time" value="{{ $rescue->end_time }}" class="form-control" id="end_time" name="end_time">
+        <input type="time" value="{{ $rescue->end_time }}" class="form-control @error('end_time') border-danger @enderror" id="end_time" name="end_time">
     </div>
 
     <!-- Botón para enviar el formulario y guardar los cambios -->

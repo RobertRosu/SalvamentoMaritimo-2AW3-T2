@@ -26,7 +26,7 @@
     <!-- Campo Nombre -->
     <div class="form-group">
         <label for="travel_id">ID travel</label>
-        <select name="travel_id" id="travel_id" class="form-control">
+        <select name="travel_id" id="travel_id" class="form-control @error('travel_id') border-danger @enderror">
             <option value="0" selected>-- Bidaia id bat aukeratu --</option>
             @foreach($travels as $travel)
                 <option value="{{$travel->id}}">{{$travel->id}}</option>
@@ -37,18 +37,18 @@
     <!-- Campo Email -->
     <div class="form-group">
         <label for="numero_rescatados">Erreskatatuen kopurua</label>
-        <input type="number" min="1" value="1" class="form-control" id="numero_rescatados" name="numero_rescatados">
+        <input type="number" min="1" value="1" class="form-control @error('numero_rescatados') border-danger @enderror" id="numero_rescatados" name="numero_rescatados">
     </div>
 
     <!-- Campo Fecha de fin -->
     <div class="form-group">
         <label for="start_time">Hasiera ordua</label>
-        <input type="time" class="form-control" id="start_time" name="start_time">
+        <input type="time" class="form-control @error('start_time') border-danger @enderror" id="start_time" name="start_time">
     </div>
 
     <div class="form-group">
         <label for="end_time">Amaiera ordua</label>
-        <input type="time" class="form-control" id="end_time" name="end_time">
+        <input type="time" class="form-control @error('end_time') border-danger @enderror" id="end_time" name="end_time">
     </div>
 
     <!-- Botón para enviar el formulario y guardar los cambios -->
