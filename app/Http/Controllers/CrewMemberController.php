@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Http\Requests\StoreCrewMemberRequest;
 use App\Http\Requests\UpdateCrewMemberRequest;
 use App\Models\CrewMember;
+use App\Models\Travel;
 
 class CrewMemberController extends Controller
 {
@@ -50,8 +51,26 @@ class CrewMemberController extends Controller
      */
     public function show(int $id)
     {
-        $crewMember = CrewMember::findOrFail($id);
+        $columns = [
+            'kapitaina_id',
+            'makinen_arduraduna_id',
+            'mekanikoa_id',
+            'zubiko_ofiziala_id',
+            'marinela_1_id',
+            'marinela_2_id',
+            'marinela_3_id',
+            'erizaina_id'
+        ];
+    
         
+        $query = Travel::query();
+
+        foreach ($columns as $column) {
+            $query->orWhere($column, $id);
+        }
+        
+        $crewMember_travels = $query->get(['id', 'origen', 'destino']);
+        // dd($crewMember_travels);
         return view('crewMember.details', compact('crewMember'));
     }
 
