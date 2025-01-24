@@ -15,4 +15,5 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('rescued-people', RescuedPersonController::class);
 Route::apiResource('travels', TravelController::class);
-Route::get('/common/public-numbers', [CommonController::class, 'public_numbers'])->name('common');
+Route::get('/common/public-numbers', [CommonController::class, 'public_numbers'])->name('common.public_numbers');
+Route::get('/common/countries', [CommonController::class, 'countries'])->name('common.countries');
