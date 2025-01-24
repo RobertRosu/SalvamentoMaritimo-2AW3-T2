@@ -99,15 +99,15 @@ export class FormCreateErrefuxiatuaComponent {
     return this.errefuxiatua.izena?.trim() &&
       this.errefuxiatua.adina &&
       this.errefuxiatua.sexua &&
-      this.errefuxiatua.naziotasuna?.trim() &&
-      (this.isOmitImageChecked || this.isValidUrl(this.errefuxiatua.imagePath));
+      this.errefuxiatua.naziotasuna?.trim() //&&
+      //(this.isOmitImageChecked || this.isValidUrl(this.errefuxiatua.imagePath));
   }
 
-  isValidUrl(url: string | null | undefined): boolean {
-    if (!url) return false;
-    const urlRegex = /^(https?:\/\/)[^\s$.?#].[^\s]*$/;
-    return urlRegex.test(url.trim());
-  }
+  // isValidUrl(url: string | null | undefined): boolean {
+  //   if (!url) return false;
+  //   const urlRegex = /^(https?:\/\/)[^\s$.?#].[^\s]*$/;
+  //   return urlRegex.test(url.trim());
+  // }
 
   cancel() {
     this.closeModal.emit(false);
