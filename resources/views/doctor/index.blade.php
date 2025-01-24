@@ -59,8 +59,10 @@
                                 <td>{{$doctor->reason}}</td>
 
                                 <!-- Rolaren baimenen arabera botoiak ezkutatu -->
-                                @can('medikuak.destroy')
                                 <td>
+                                <a href="{{ route('medikuak.show', ['medikuak' => $doctor->id]) }}" class="btn btn-secondary">Xehetasunak</a>
+                                @can('medikuak.destroy')
+
                                 <a href="{{ route('medikuak.edit', $doctor->id) }}" class="btn btn-primary">Aldatu</a>
                                     <!-- <form action="{{ route('erreskatatuak.update', ['erreskatatuak' => $doctor->id]) }}" method="POST" style="display: inline;">
                                         @csrf
@@ -73,8 +75,9 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
+                                    @endcan
+
                                 </td>
-                                @endcan
 
                             </tr>
                             @empty

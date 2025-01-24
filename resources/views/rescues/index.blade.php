@@ -51,8 +51,11 @@
                                 <td>{{$rescue->start_time}}</td>
                                 <td>{{$rescue->end_time}}</td>
                                 <!-- Rolaren baimenen arabera botoiak ezkutatu -->
-                                @can('erreskateak.destroy')
                                 <td>
+                                <a href="{{ route('erreskateak.show', ['erreskateak' => $rescue->id]) }}" class="btn btn-secondary">Xehetasunak</a>
+
+                                @can('erreskateak.destroy')
+
                                 <a href="{{ route('erreskateak.edit', $rescue->id) }}" class="btn btn-primary">Aldatu</a>
 
                                     <form action="{{ route('erreskateak.destroy', ['erreskateak' => $rescue->id]) }}" method="POST" style="display: inline;">
@@ -60,8 +63,9 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
+                                    @endcan
+
                                 </td>
-                                @endcan
 
                             </tr>
                             @empty
