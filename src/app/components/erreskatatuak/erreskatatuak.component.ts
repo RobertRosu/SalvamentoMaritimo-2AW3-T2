@@ -42,7 +42,7 @@ export class ErreskatatuakComponent implements OnInit{
                 element.birth_date,
                 element.genre,
                 element.country,
-                (element.photo_src && element.photo_src.includes('https://xsgames.co/randomusers/avatar.php?g=') && !element.photo_src.includes('&unique=')) ? `${element.photo_src}&unique=${Math.random()}` : element.photo_src,
+                element.photo_src ? `http://192.168.24.120/storage/images/${element.photo_src}` : element.photo_src,
               )
             )
           })

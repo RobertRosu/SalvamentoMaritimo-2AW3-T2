@@ -63,8 +63,8 @@ export class FormUpdateErrefuxiatuaComponent implements OnChanges {
     return this.errefuxiatuaCopy.izena?.trim() &&
       this.errefuxiatuaCopy.adina &&
       this.errefuxiatuaCopy.sexua &&
-      this.errefuxiatuaCopy.naziotasuna?.trim() &&
-      (this.isOmitImageChecked || this.isValidUrl(this.errefuxiatuaCopy.imagePath));
+      this.errefuxiatuaCopy.naziotasuna?.trim()// &&
+      //this.errefuxiatuaCopy.imagePath;
   }
 
   updateErrefuxiatua() {
@@ -74,7 +74,7 @@ export class FormUpdateErrefuxiatuaComponent implements OnChanges {
         birth_date: this.errefuxiatuaCopy.adina,
         genre: this.errefuxiatuaCopy.sexua,
         country: this.errefuxiatuaCopy.naziotasuna,
-        photo_src: this.isOmitImageChecked ? null : this.errefuxiatuaCopy.imagePath // Mandar null solo si está marcado
+        //photo_src: this.errefuxiatuaCopy.imagePath // Mandar null solo si está marcado
       };
       this.apiService.putRescuedPeople(this.errefuxiatua.id, this.errefuxiatuaEng).subscribe(
         response => {
@@ -101,11 +101,11 @@ export class FormUpdateErrefuxiatuaComponent implements OnChanges {
     }
   }
 
-  isValidUrl(url: string | null | undefined): boolean {
-    if (!url) return false;
-    const urlRegex = /^(https?:\/\/)[^\s$.?#].[^\s]*$/;
-    return urlRegex.test(url.trim());
-  }
+  // isValidUrl(url: string | null | undefined): boolean {
+  //   if (!url) return false;
+  //   const urlRegex = /^(https?:\/\/)[^\s$.?#].[^\s]*$/;
+  //   return urlRegex.test(url.trim());
+  // }
 
   triggerShakeEffect() {
     const invalidElements = document.querySelectorAll('.form-group.invalid');

@@ -2,7 +2,7 @@
   <!-- Vista previa de la imagen -->
   <div class="image-container">
     <img 
-      [src]="isOmitImageChecked || !errefuxiatua.imagePath ? '../../../../assets/images/dummy.jpg' : errefuxiatua.imagePath" 
+      [src]="!errefuxiatua.imagePath ? '../../../../assets/images/dummy.jpg' : errefuxiatua.imagePath" 
       alt="Argazkia" 
     />
     <div class="info">
@@ -80,18 +80,9 @@
   </div>
 
   <!-- Campo: Argazkia (URL) con checkbox -->
-  <div class="form-group" [class.invalid]="!isOmitImageChecked && !isValidUrl(errefuxiatua.imagePath) && isSubmitted">
+   <!-- CAMPO OCULTADO, INVESTIGANDO COMO AÑADIR ESTA OPCION CORRECTAMENTE -->
+  <!-- <div class="form-group" [class.invalid]="!isOmitImageChecked && !isValidUrl(errefuxiatua.imagePath) && isSubmitted">
     <label for="imagePath">Argazkia (URL):</label>
-    <div class="checkbox-container">
-      <input 
-        type="checkbox" 
-        id="omitImage" 
-        [(ngModel)]="isOmitImageChecked" 
-        [ngModelOptions]="{standalone: true}" 
-        (change)="handleOmitImageChange()"
-      />
-      <label for="omitImage">Ez gehitu irudi bat</label>
-    </div>
     <input 
       type="url" 
       id="imagePath" 
@@ -104,7 +95,7 @@
     <div class="error-message" *ngIf="!isOmitImageChecked && !isValidUrl(errefuxiatua.imagePath) && isSubmitted">
       Argazkiaren URL baliozkoa izan behar da (http://... edo https://...).
     </div>
-  </div>
+  </div> -->
 
   <!-- Campo: Medikua -->
   <div class="form-group" [class.invalid]="!errefuxiatua.medikua && isSubmitted">
@@ -142,7 +133,7 @@
     <div class="error-message" *ngIf="!errefuxiatua.erreskatea && isSubmitted">Erreskate ID hautatu behar da.</div>
   </div>
 
-  <!-- Campo: Izena -->
+  <!-- Campo: Diagnostikoa -->
   <div class="form-group" [class.invalid]="!errefuxiatua.diagnostikoa">
     <label for="diagnostikoa">diagnostikoa:</label>
     <input 
