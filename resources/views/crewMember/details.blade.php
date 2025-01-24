@@ -45,14 +45,24 @@
 
 <div class="form-group">
     <label for="travels">Egindako bidaiak</label>
-    <ul>
-        @foreach($crewMember_travels as $travel)
-            <a href="{{route('bidaiak.show', $travel->id)}}">{{$travel->origen}}-{{$travel->destino}}</a>
-        @endforeach
+    @if($travels->isEmpty())
+        <div class="alert alert-info mt-3">
+        <i class="bi bi-info-circle mr-2"></i>
+            Ez dago bidairik
+        </div>
+        @else
+            <ul>
+                @foreach($travels as $travel)
+                    <a href="{{ route('bidaiak.show', $travel->id) }}">
+                        {{ $travel->origen }} - {{ $travel->destino }}
+                    </a><br>
+                @endforeach
+            </ul>
+        @endif
     </ul>
 </div>
 
 <a href="{{ route('bidaiak.index') }}" type="button" class="ml-2 btn btn-danger">Atzera</a>
 </form>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 @endsection

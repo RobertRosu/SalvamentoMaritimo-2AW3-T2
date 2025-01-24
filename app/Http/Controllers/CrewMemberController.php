@@ -51,27 +51,19 @@ class CrewMemberController extends Controller
      */
     public function show(int $id)
     {
-        $columns = [
-            'kapitaina_id',
-            'makinen_arduraduna_id',
-            'mekanikoa_id',
-            'zubiko_ofiziala_id',
-            'marinela_1_id',
-            'marinela_2_id',
-            'marinela_3_id',
-            'erizaina_id'
-        ];
-    
-        
-        $query = Travel::query();
+        $crewMember = CrewMember::findOrFail($id);
 
-        foreach ($columns as $column) {
-            $query->orWhere($column, $id);
-        }
-        
-        $crewMember_travels = $query->get(['id', 'origen', 'destino']);
-        // dd($crewMember_travels);
-        return view('crewMember.details', compact('crewMember'));
+        $travels = Travel::where('kapitaina_id', $id)
+        ->orWhere('makinen_arduraduna_id', $id)
+        ->orWhere('mekanikoa_id', $id)
+        ->orWhere('zubiko_ofiziala_id', $id)
+        ->orWhere('marinela_1_id', $id)
+        ->orWhere('marinela_2_id', $id)
+        ->orWhere('marinela_3_id', $id)
+        ->orWhere('erizaina_id', $id)
+        ->get(['id', 'origen', 'destino']);
+
+        return view('crewMember.details', compact('crewMember', 'travels'));
     }
 
     /**
