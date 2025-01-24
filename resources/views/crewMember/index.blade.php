@@ -56,6 +56,7 @@
                                 <!-- Rolaren baimenen arabera botoiak ezkutatu -->
                                 @can('langileak.destroy')
                                 <td>
+                                <a href="{{ route('langileak.show', ['langileak' => $crew_member->id]) }}" class="btn btn-secondary">Xehetasunak</a>
                                 <a href="{{ route('langileak.edit', ['langileak' => $crew_member->id]) }}" class="btn btn-primary">Aldatu</a>
 
                                     <form action="{{ route('langileak.destroy', ['langileak' => $crew_member->id]) }}" method="POST" style="display: inline;">
