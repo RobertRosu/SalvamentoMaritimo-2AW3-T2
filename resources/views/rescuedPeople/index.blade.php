@@ -55,6 +55,8 @@
                                 <!-- Rolaren baimenen arabera botoiak ezkutatu -->
                                 @can('erreskatatuak.destroy')
                                 <td>
+                                <a href="{{ route('erreskatatuak.show', ['erreskatatuak' => $rescued_person->id]) }}" class="btn btn-secondary">Xehetasunak</a>
+
                                 <a href="{{ route('erreskatatuak.edit', ['erreskatatuak' => $rescued_person->id]) }}" class="btn btn-primary">Aldatu</a>
                                     <!-- <form action="{{ route('erreskatatuak.update', ['erreskatatuak' => $rescued_person->id]) }}" method="POST" style="display: inline;">
                                         @csrf

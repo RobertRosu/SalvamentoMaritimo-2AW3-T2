@@ -29,7 +29,7 @@ class StoreRescuedPersonRequest extends FormRequest
             'diagnostic' => 'required|string|max:255',
             'rescue_id' => 'required|exists:rescues,id',
             'doctor_id' => 'required|exists:doctors,id',
-            'photo_src' => 'nullable|url'
+            'photo_src' => 'nullable'
         ];
     }
 
@@ -53,10 +53,7 @@ class StoreRescuedPersonRequest extends FormRequest
             'diagnostic.required' => 'Diagnostikoa derrigorrezkoa da.',
             'diagnostic.string' => 'Diagnostikoa testu formatuan izan behar da.',
             'diagnostic.max' => 'Diagnostikoa gehienez 255 karaktere izan ditzake.',
-            
-            'photo_src.required' => 'Argazkiaren URL-a derrigorrezkoa da.',
-            'photo_src.url' => 'Argazkiaren URL-a baliozkoa izan behar da.',
-            
+
             'rescue_id.required' => 'Salbamendu identifikadorea derrigorrezkoa da.',
             'rescue_id.exists' => 'Salbamendu identifikadorea ez da existitzen.',
             

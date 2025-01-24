@@ -29,19 +29,19 @@
                 <!-- Izena -->
                 <div class="form-group">
                     <label for="name">Izena<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
                 </div>
 
                 <!-- Herrialdea -->
                 <div class="form-group">
                     <label for="country">Herrialdea<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="country" name="country">
+                    <input type="text" class="form-control" id="country" name="country" value="{{old('country')}}">
                 </div>
 
                 <!-- Generoa -->
                 <div class="form-group">
                     <label for="genre">Generoa<span class="text-danger">*</span></label>
-                    <select name="genre" id="genre" class="form-control">
+                    <select name="genre" id="genre" class="form-control" value="{{old('genre')}}">
                         <option value="Gizona">Gizona</option>
                         <option value="Emakumea">Emakumea</option>
                         <option value="Beste bat">Beste bat</option>
@@ -51,13 +51,13 @@
                 <!-- Jaiotze Data -->
                 <div class="form-group">
                     <label for="birth_date">Jaiotze Data<span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="birth_date" name="birth_date" >
+                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{old('birth_date')}}">
                 </div>
 
                 <!-- Diagnostikoa -->
                 <div class="form-group">
                     <label for="diagnostic">Diagnostikoa</label>
-                    <input type="text" class="form-control" id="diagnostic" name="diagnostic" >
+                    <input type="text" class="form-control" id="diagnostic" name="diagnostic" value="{{old('diagnostic')}}">
                 </div>
 
 
@@ -69,14 +69,14 @@
 
         <!-- Argazkia -->
         <div class="form-group">
-            <label for="diagnostic">Argazkia (URL)</label>
-            <input type="text" class="form-control" id="photo_src" name="photo_src">
+            <label for="diagnostic">Argazkia</label><br>
+            <input type="file" id="photo_src" name="photo_src">
         </div>
 
         <!-- Rescue ID -->
         <div class="form-group">
             <label for="rescue_id">Rescue ID<span class="text-danger">*</span></label>
-            <select class="form-control" id="rescue_id" name="rescue_id">
+            <select class="form-control" id="rescue_id" name="rescue_id" value="{{old('rescue_id')}}">
                 <option value="">Aukeratu erreskatearen ID-a</option>
                 @foreach($rescues as $rescue)
                     <option value="{{ $rescue->id }}">{{ $rescue->id }}</option>
@@ -87,7 +87,7 @@
         <!-- Doctor ID -->
         <div class="form-group">
             <label for="doctor_id">Doctor ID<span class="text-danger">*</span></label>
-            <select class="form-control" id="doctor_id" name="doctor_id">
+            <select class="form-control" id="doctor_id" name="doctor_id" value="{{old('doctor_id')}}">
                 <option value="">Aukeratu medikuaren ID-a</option>
                 @foreach($doctors as $doctor)
                     <option value="{{ $doctor->id }}">{{ $doctor->id }} - {{ $doctor->name }}</option>

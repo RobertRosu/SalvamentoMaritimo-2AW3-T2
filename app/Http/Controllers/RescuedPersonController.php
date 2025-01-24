@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateRescuedPersonRequest;
 use App\Models\RescuedPerson;
 use App\Models\Rescue;
 use App\Models\Doctor;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class RescuedPersonController extends Controller
@@ -45,19 +47,26 @@ class RescuedPersonController extends Controller
     public function store(StoreRescuedPersonRequest $request)
     {
         $rescued_person_data = $request->validated();
-        $path = $request->file('file')->store('images', 'public');
-        $rescued_person_data->photo_src = basename($path);
+
+        $path = $request->file('photo_src')->store('images', 'public');
+
+        $rescued_person_data['photo_src'] = basename($path);
+
         RescuedPerson::create($rescued_person_data);
-        $rescued_person_data->save();
-        return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo gehitu da');    
+
+        return redirect()->route('erreskatatuak.index')->with('success', 'Erreskatatua ondo gehitu da');
+   
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(RescuedPerson $rescuedPerson)
+    public function show(int $id)
     {
-        //
+        $rescuedPerson = RescuedPerson::find($id);
+
+
+        return view('rescuedPeople.details', compact('rescuedPerson'));
     }
 
     /**
@@ -77,15 +86,20 @@ class RescuedPersonController extends Controller
     {
         $rescued_person = RescuedPerson::findOrFail($id);
         $rescued_person_data = $request->validated();
-        if ($request->hasFile('file')) {
-            // Delete the old image
-            if ($rescued_person_data->photo_src) {
-                Storage::disk('public')->delete('images/' . $rescued_person_data->photo_src);
-                // return 'deleted';
+    
+        // Verifica si hay una nueva foto
+        if ($request->hasFile('photo_src')) {
+            // Eliminar la foto antigua si existe
+            if (isset($rescued_person_data['photo_src']) && $rescued_person_data['photo_src']) {
+                Storage::disk('public')->delete('images/' . $rescued_person_data['photo_src']);
             }
-            $path = $request->file('file')->store('images', 'public');
-            $rescued_person_data->photo_src = basename($path); // Only store the filename
+    
+            // Guardar la nueva imagen
+            $path = $request->file('photo_src')->store('images', 'public');
+            $rescued_person_data['photo_src'] = basename($path); // Guardar solo el nombre del archivo
         }
+    
+        // Actualiza la base de datos con los nuevos datos
         $rescued_person->update($rescued_person_data);
         
 
