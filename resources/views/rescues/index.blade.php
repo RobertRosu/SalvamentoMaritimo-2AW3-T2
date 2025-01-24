@@ -62,8 +62,9 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
+                                    @endcan
+
                                 </td>
-                                @endcan
 
                             </tr>
                             @empty

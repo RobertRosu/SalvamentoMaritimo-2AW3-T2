@@ -76,4 +76,37 @@ class CommonController extends Controller
             );
         }
     }
+
+    public function countries(){
+        try{
+            $countries = RescuedPerson::select('country')->distinct()->pluck('country');
+
+            if(!$countries){
+                return response()->json(
+                    [
+                        'status' => 'ERROR',
+                        'message' => 'Countries not found',
+                        'status_code' => 404
+                    ]
+                );
+            }
+
+            return response()->json(
+                [
+                    'status' => 'OK',
+                    'message' => 'Countries retrieved successfully',
+                    'response' => $countries,
+                    'status_code' => 200
+                ]
+            );
+        }catch(\Exception $e){
+            return response()->json(
+                [
+                    'status' => 'ERROR',
+                    'message' => $e,
+                    'status_code' => 500
+                ]
+            );
+        }
+    }
 }
