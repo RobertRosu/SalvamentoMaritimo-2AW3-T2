@@ -53,9 +53,9 @@
                                 <td>{{$rescued_person->birth_date}}</td>
                                 <td>{{$rescued_person->diagnostic}}</td>
                                 <!-- Rolaren baimenen arabera botoiak ezkutatu -->
-                                @can('erreskatatuak.destroy')
                                 <td>
                                 <a href="{{ route('erreskatatuak.show', ['erreskatatuak' => $rescued_person->id]) }}" class="btn btn-secondary">Xehetasunak</a>
+                                @can('erreskatatuak.destroy')
 
                                 <a href="{{ route('erreskatatuak.edit', ['erreskatatuak' => $rescued_person->id]) }}" class="btn btn-primary">Aldatu</a>
                                     <!-- <form action="{{ route('erreskatatuak.update', ['erreskatatuak' => $rescued_person->id]) }}" method="POST" style="display: inline;">
@@ -69,8 +69,9 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Ezabatu</button>
                                     </form>
+                                    @endcan
+
                                 </td>
-                                @endcan
 
                             </tr>
                             @empty

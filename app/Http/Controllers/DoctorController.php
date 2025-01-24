@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
+use App\Models\Travel;
+
 // use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -50,10 +52,13 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Doctor $doctor)
+    public function show(int $id)
     {
-        //
-    }
+        $doctor = Doctor::find($id);
+        $travels = Travel::where('doctor_id', $id)->get(['id', 'start_date', 'origen', 'destino']);
+
+
+        return view('doctor.details', compact('doctor', 'travels'));    }
 
     /**
      * Show the form for editing the specified resource.
