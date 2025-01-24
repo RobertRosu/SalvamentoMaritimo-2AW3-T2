@@ -15,12 +15,14 @@ export class ErreskatatuakComponent implements OnInit{
   errefuxiatuak: Errefuxiatua[] = []
   medikuak: any[] = [];
   erreskateak: any[] = [];
+  errefuxiatuak_herriak = [];
   modalStatus: boolean = false;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.getRescuedPeople();
+    this.getRescuedPeopleCountries();
     // Verificar si el token generado está en sessionStorage
     const storedToken = sessionStorage.getItem(this.authTokenKey);
     this.isAuthenticated = !!storedToken; // Si hay un token, se considera autenticado
@@ -49,6 +51,13 @@ export class ErreskatatuakComponent implements OnInit{
         this.erreskateak = response.response_res;
       }
    })
+  }
+
+  getRescuedPeopleCountries(){
+    this.apiService.getRescuedPeopleCountries().subscribe(data => {
+      this.errefuxiatuak_herriak = data.response
+      console.log(this.errefuxiatuak_herriak)
+    })
   }
 
   trackById(index: number, item: Errefuxiatua): number {

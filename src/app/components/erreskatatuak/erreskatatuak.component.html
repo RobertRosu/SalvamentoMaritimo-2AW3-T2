@@ -49,11 +49,10 @@
           <div class="filter">
             <label for="naziotasuna"><h1>Naziotasuna</h1></label>
             <select id="naziotasuna" #naziotasuna [(ngModel)]="filtroak.naziotasuna" [ngModelOptions]="{standalone: true}">
-              <option value="0">Aukeratu naziotasun bat</option>
-              <option value="Senegal">Senegal</option>
-              <option value="Nigeria">Nigeria</option>
-              <option value="Maroko">Maroko</option>
-              <option value="N/A">N/A</option>
+              <option value="0" selected>Aukeratu naziotasun bat</option>
+              <ng-container *ngFor="let herria of errefuxiatuak_herriak">
+                <option [value]="herria">{{herria}}</option>
+              </ng-container>
             </select>
           </div>
         </div>

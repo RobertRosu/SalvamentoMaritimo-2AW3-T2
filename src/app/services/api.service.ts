@@ -33,4 +33,8 @@ export class ApiService {
   deleteRescuedPeople(id: number): Observable<any> {
     return this.http.delete<any>(this.apiUrl + 'rescued-people/'+id);
   }
+
+  getRescuedPeopleCountries(){
+    return this.http.get<any>(this.apiUrl + 'common/countries/')
+  }
 }
