@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRescueRequest;
 use App\Http\Requests\UpdateRescueRequest;
 use App\Models\Rescue;
+use App\Models\RescuedPerson;
 use App\Models\Travel;
 
 class RescueController extends Controller
@@ -47,9 +48,15 @@ class RescueController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Rescue $rescue)
+    public function show(int $id)
     {
-        //
+        $rescue = Rescue::find($id);
+
+        $travel = Travel::find($rescue->travel_id, ['id', 'origen', 'destino']);
+        $rescuedPerson = RescuedPerson::where('rescue_id', '=', $rescue->id)->get(['id', 'name']);
+
+        return view('rescues.details', compact('rescue', 'travel', 'rescuedPerson'));
+
     }
 
     /**
