@@ -48,15 +48,17 @@ class CrewMemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CrewMember $crewMember)
+    public function show(int $id)
     {
-        //
+        $crewMember = CrewMember::findOrFail($id);
+        
+        return view('crewMember.details', compact('crewMember'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $crewMember = CrewMember::findOrFail($id);
         $crewMember->start_date = Carbon::parse($crewMember->start_date);
