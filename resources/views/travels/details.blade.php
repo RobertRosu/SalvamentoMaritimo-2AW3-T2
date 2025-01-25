@@ -3,76 +3,97 @@
 @section('title', 'Bidaiak')
 
 @section('preloader')
-    <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
-    <h4 class="mt-4 text-dark">Kargatzen...</h4>
+    <div class="text-center">
+        <i class="fas fa-4x fa-spin fa-spinner text-secondary"></i>
+        <h4 class="mt-4 text-dark">Kargatzen...</h4>
+    </div>
 @stop
+
 @section('content')
+    <div class="container pt-3">
+        <div class="card w-75 mx-auto">
+            <div class="card-header bg-dark text-white pl-2">
+                <h5 class="mb-0">
+                    <a href="{{ route('bidaiak.index') }}" class="btn btn-secondary rounded-pill">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    &nbsp;&nbsp;Bidaiaren Xehetasunak
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <h6 class="font-weight-bold">Irteera:</h6>
+                        <p>{{ $travel->origen }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="font-weight-bold">Helmuga:</h6>
+                        <p>{{ $travel->destino }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="font-weight-bold">Hasiera data:</h6>
+                        <p>{{ $travel->start_date }}</p>
+                    </div>
+                </div>
 
-<div class="form-group">
-    <label for="origen">Irteera</label>
-    <input readonly type="text" class="form-control" id="origen" name="origen" value="{{ $travel->origen }}">
-</div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <h6 class="font-weight-bold">Deskribapena:</h6>
+                        <p>{{ $travel->description }}</p>
+                    </div>
+                </div><hr>
+                <h3>Tripulazioa</h3><br>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Kapitaina:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $captain->id]) }}">{{ $captain->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Mekanikoa:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $mechanic->id]) }}">{{ $mechanic->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Zubiko ofiziala:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $bridge_officer->id]) }}">{{ $bridge_officer->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Marinela 1:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $sailor_1->id]) }}">{{ $sailor_1->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Makinen arduraduna:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $machine_manager->id]) }}">{{ $machine_manager->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Marinela 2:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $sailor_2->id]) }}">{{ $sailor_2->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Doktorea:</h6>
+                        <a href="{{ route('medikuak.show', ['medikuak' => $doctor->id]) }}">{{ $doctor->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="font-weight-bold">Marinela 3:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $sailor_3->id]) }}">{{ $sailor_3->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                </div>
 
-<div class="form-group">
-    <label for="destino">Helmuga</label>
-    <input readonly type="text" class="form-control" id="destino" name="destino" value="{{ $travel->destino }}">
-</div>
-
-<div class="form-group">
-    <label for="start_date">Hasiera data</label>
-    <input readonly type="text" class="form-control" id="start_date" value="{{$travel->start_date}}">
-</div>
-
-<div class="form-group">
-    <label for="description">Deskribapena</label>
-    <textarea readonly type="text" class="form-control" id="description">{{$travel->description}}</textarea>
-</div>
-
-<div class="form-group">
-    <label for="doctor_id">Doktorea</label><br>
-    <a href="{{ route('medikuak.show' , ['medikuak' => $doctor->id]) }}">{{$doctor->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="kapitaina_id">Kapitaina</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $captain->id]) }}">{{$captain->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="makinen_arduraduna_id">Makinen arduraduna</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $machine_manager->id]) }}">{{$machine_manager->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="mekanikoa_id">Mekanikoa</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $mechanic->id]) }}">{{$mechanic->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="zubiko_ofiziala_id">Zubiko ofiziala</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $bridge_officer->id]) }}">{{$bridge_officer->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="marinela_1_id">Marinela 1</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $sailor_1->id]) }}">{{$sailor_1->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="marinela_2_id">Marinela 2</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $sailor_2->id]) }}">{{$sailor_2->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="marinela_3_id">Marinela 3</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $sailor_3->id]) }}">{{$sailor_3->name}}</a>
-</div>
-
-<div class="form-group">
-    <label for="erizaina_id">Erizaina</label><br>
-    <a href="{{ route('langileak.show' , ['langileak' => $nurse->id]) }}">{{$nurse->name}}</a>
-</div>
-<a href="{{ route('bidaiak.index') }}" type="button" class="btn btn-danger">Atzera</a>
-</form>
-
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <h6 class="font-weight-bold">Erizaina:</h6>
+                        <a href="{{ route('langileak.show', ['langileak' => $nurse->id]) }}">{{ $nurse->name }} <i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
