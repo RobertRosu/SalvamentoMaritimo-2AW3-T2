@@ -38,31 +38,31 @@
 
                     <div class="form-group">
                         <label for="name">Izena<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{ $doctor->name }}">
+                        <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{ old('name', $doctor->name) }}">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email-a<span class="text-danger">*</span></label>
-                        <input type="email" class="form-control @error('email') border-danger @enderror" id="email" name="email" value="{{ $doctor->email }}" required>
+                        <input type="text" class="form-control @error('email') border-danger @enderror" id="email" name="email" value="{{ old('email', $doctor->email) }}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="stop_date">Amaiera data<span class="text-danger">*</span></label>
-                        <input type="date" class="form-control @error('stop_date') border-danger @enderror" id="stop_date" name="stop_date" value="{{ \Carbon\Carbon::parse($doctor->stop_date)->toDateString() }}" required>
+                        <input type="date" class="form-control @error('stop_date') border-danger @enderror" id="stop_date" name="stop_date" value="{{ old('stop_date', \Carbon\Carbon::parse($doctor->stop_date)->toDateString()) }}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="status">Egoera<span class="text-danger">*</span></label>
                         <select class="form-control @error('status') border-danger @enderror" id="status" name="status">
-                            <option value="Aktibo" {{ $doctor->status == 'Aktibo' ? 'selected' : '' }}>Aktibo</option>
-                            <option value="Inaktibo" {{ $doctor->status == 'Inaktibo' ? 'selected' : '' }}>Inaktibo</option>
-                            <option value="Bajan" {{ $doctor->status == 'Bajan' ? 'selected' : '' }}>Bajan</option>
+                            <option value="Aktibo" {{ old('status', $doctor->status) == 'Aktibo' ? 'selected' : '' }}>Aktibo</option>
+                            <option value="Inaktibo" {{ old('status', $doctor->status) == 'Inaktibo' ? 'selected' : '' }}>Inaktibo</option>
+                            <option value="Bajan" {{ old('status', $doctor->status) == 'Bajan' ? 'selected' : '' }}>Bajan</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="reason">Arrazoia</label>
-                        <input type="text" class="form-control @error('reason') border-danger @enderror" id="reason" name="reason" value="{{ $doctor->reason }}">
+                        <input type="text" class="form-control @error('reason') border-danger @enderror" id="reason" name="reason" value="{{ old('reason', $doctor->reason) }}">
                     </div>
 
                     <div class="d-flex justify-content-end">

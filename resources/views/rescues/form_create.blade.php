@@ -39,27 +39,27 @@
                         <div class="form-group col-6">
                             <label for="travel_id">ID travel<span class="text-danger">*</span></label>
                             <select name="travel_id" id="travel_id" class="form-control @error('travel_id') border-danger @enderror">
-                                <option value="0" selected>-- Bidaia id bat aukeratu --</option>
+                                <option value="0">-- Bidaia id bat aukeratu --</option>
                                 @foreach($travels as $travel)
-                                    <option value="{{$travel->id}}">{{$travel->id}}</option>
+                                    <option value="{{old('travel_id', $travel->id)}}">{{$travel->id}}</option>
                                 @endforeach
                             </select>
                         </div>
     
                         <div class="form-group col-6">
                             <label for="numero_rescatados">Erreskatatuen kopurua<span class="text-danger">*</span></label>
-                            <input type="number" min="1" value="1" class="form-control @error('numero_rescatados') border-danger @enderror" id="numero_rescatados" name="numero_rescatados">
+                            <input type="number" class="form-control @error('numero_rescatados') border-danger @enderror" id="numero_rescatados" name="numero_rescatados" value="{{ old('numero_rescatados', 1) }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="start_time">Hasiera ordua<span class="text-danger">*</span></label>
-                            <input type="time" class="form-control @error('start_time') border-danger @enderror" id="start_time" name="start_time">
+                            <input type="time" class="form-control @error('start_time') border-danger @enderror" id="start_time" name="start_time" value="{{ old('start_time') }}">
                         </div>
     
                         <div class="form-group col-6">
                             <label for="end_time">Amaiera ordua<span class="text-danger">*</span></label>
-                            <input type="time" class="form-control @error('end_time') border-danger @enderror" id="end_time" name="end_time">
+                            <input type="time" class="form-control @error('end_time') border-danger @enderror" id="end_time" name="end_time" value="{{ old('end_time') }}">
                         </div>
                     </div>
 

@@ -37,17 +37,17 @@
 
                     <div class="form-group">
                         <label for="origen">Irteera<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('origen') border-danger @enderror" id="origen" name="origen">
+                        <input type="text" class="form-control @error('origen') border-danger @enderror" id="origen" name="origen" value="{{ old('origen') }}">
                     </div>
 
                     <div class="form-group">
                         <label for="destino">Helmuga<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('destino') border-danger @enderror" id="destino" name="destino">
+                        <input type="text" class="form-control @error('destino') border-danger @enderror" id="destino" name="destino" value="{{ old('destino') }}">
                     </div>
 
                     <div class="form-group">
                         <label for="description">Deskripzioa<span class="text-danger">*</span></label>
-                        <textarea class="form-control @error('description') border-danger @enderror" id="description" name="description"></textarea>
+                        <textarea class="form-control @error('description') border-danger @enderror" id="description" name="description">{{ old('description', '')}}</textarea>
                     </div>
 
                     <div class="d-flex justify-content-end">

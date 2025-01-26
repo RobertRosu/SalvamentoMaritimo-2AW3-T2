@@ -48,9 +48,10 @@ class RescuedPersonController extends Controller
     {
         $rescued_person_data = $request->validated();
 
-        $path = $request->file('photo_src')->store('images', 'public');
-
-        $rescued_person_data['photo_src'] = basename($path);
+        if($request->file('photo_src')){
+            $path = $request->file('photo_src')->store('images', 'public');
+            $rescued_person_data['photo_src'] = basename($path);
+        }
 
         RescuedPerson::create($rescued_person_data);
 

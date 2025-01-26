@@ -38,26 +38,25 @@
 
                     <div class="form-group">
                         <label for="origen">Irteera<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('origen') border-danger @enderror" id="origen" name="origen" value="{{ $travel->origen }}">
+                        <input type="text" class="form-control @error('origen') border-danger @enderror" id="origen" name="origen" value="{{ old('origen', $travel->origen) }}">
                     </div>
 
                     <div class="form-group">
                         <label for="destino">Helmuga<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('destino') border-danger @enderror" id="destino" name="destino" value="{{ $travel->destino }}">
+                        <input type="text" class="form-control @error('destino') border-danger @enderror" id="destino" name="destino" value="{{ old('destino', $travel->destino) }}">
                     </div>
 
                     <div class="form-group">
                         <label for="description">Deskripzioa<span class="text-danger">*</span></label>
-                        <textarea class="form-control @error('description') border-danger @enderror" id="description" name="description" rows="4">{{ $travel->description }}</textarea>
+                        <textarea class="form-control @error('description') border-danger @enderror" id="description" name="description" rows="4">{{ old('description', $travel->description) }}</textarea>
                     </div>
 
                     @foreach($crew as $crew_data)
                         <div class="form-group">
                             <label for="{{ $crew_data['col'] }}">ID {{ str_replace(['_id', '_'], " ", $crew_data['col']) }}<span class="text-danger">*</span></label>
                             <select name="{{ $crew_data['col'] }}" id="{{ $crew_data['col'] }}" class="form-control @error($crew_data['col']) border-danger @enderror">
-                                <option value="{{ $crew_data['current']->id }}" selected>{{ $crew_data['current']->id }} - {{ $crew_data['current']->name }}</option>
                                 @foreach($crew_data['list'] as $member)
-                                    <option value="{{ $member->id }}">{{ $member->id }} - {{ $member->name }}</option>
+                                    <option value="{{ $member->id }}" {{ old($crew_data['col']) == $member->id ? 'selected' : ''}}>{{ $member->id }} - {{$member->name }}</option>
                                 @endforeach
                             </select>
                         </div>

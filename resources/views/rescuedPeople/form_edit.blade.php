@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label for="photo">Argazkia</label><br>
                                 @if ($rescuedPerson->photo_src)
-                                    <img src="{{ asset('storage/images/' . $rescuedPerson->photo_src) }}" alt="{{ $rescuedPerson->name }}" width="200">
+                                    <img src="{{ asset('storage/app/public/images/' . old('photo', $rescuedPerson->photo_src)) }}" alt="{{ old('name', $rescuedPerson->name) }}" width="200">
                                 @else
                                     <p>Ez dago argazkirik.</p>
                                 @endif
@@ -49,37 +49,37 @@
 
                             <div class="form-group">
                                 <label for="photo_src">Aukeratu argazkia</label>
-                                <input class="form-control p-0 border-0" type="file" id="photo_src" name="photo_src" style="font-size: 12px;">
+                                <input class="form-control p-0 border-0" type="file" id="photo_src" name="photo_src" style="font-size: 12px;" value="">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="name">Izena<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{ $rescuedPerson->name }}">
+                                <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{ old('name', $rescuedPerson->name) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="country">Herrialdea<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('country') border-danger @enderror" id="country" name="country" value="{{ $rescuedPerson->country }}">
+                                <input type="text" class="form-control @error('country') border-danger @enderror" id="country" name="country" value="{{ old('country', $rescuedPerson->country) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="genre">Generoa<span class="text-danger">*</span></label>
                                 <select name="genre" id="genre" class="form-control @error('genre') border-danger @enderror">
-                                    <option value="Gizona" {{ $rescuedPerson->genre == 'Gizona' ? 'selected' : '' }}>Gizona</option>
-                                    <option value="Emakumea" {{ $rescuedPerson->genre == 'Emakumea' ? 'selected' : '' }}>Emakumea</option>
-                                    <option value="Beste bat" {{ $rescuedPerson->genre == 'Beste bat' ? 'selected' : '' }}>Beste bat</option>
+                                    <option value="Gizona" {{ old('genre', $rescuedPerson->genre) == 'Gizona' ? 'selected' : '' }}>Gizona</option>
+                                    <option value="Emakumea" {{ old('genre', $rescuedPerson->genre) == 'Emakumea' ? 'selected' : '' }}>Emakumea</option>
+                                    <option value="Beste bat" {{ old('genre', $rescuedPerson->genre) == 'Beste bat' ? 'selected' : '' }}>Beste bat</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="birth_date">Jaiotze Data</label>
-                                <input type="date" class="form-control @error('birth_date') border-danger @enderror" id="birth_date" name="birth_date" value="{{ \Carbon\Carbon::parse($rescuedPerson->birth_date)->toDateString() }}">
+                                <input type="date" class="form-control @error('birth_date') border-danger @enderror" id="birth_date" name="birth_date" value="{{ old('birth_date', \Carbon\Carbon::parse($rescuedPerson->birth_date)->toDateString()) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="diagnostic">Diagnostikoa</label>
-                                <input type="text" class="form-control @error('diagnostic') border-danger @enderror" id="diagnostic" name="diagnostic" value="{{ $rescuedPerson->diagnostic }}">
+                                <input type="text" class="form-control @error('diagnostic') border-danger @enderror" id="diagnostic" name="diagnostic" value="{{ old('diagnostic', $rescuedPerson->diagnostic) }}">
                             </div>
                         </div>
 

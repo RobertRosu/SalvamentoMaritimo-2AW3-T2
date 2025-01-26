@@ -58,7 +58,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="birth_date">Jaiotze Data<span class="text-danger">*</span></label>
+                                <label for="birth_date">Jaiotze Data</label>
                                 <input type="date" class="form-control @error('birth_date') border-danger @enderror" id="birth_date" name="birth_date" value="{{ old('birth_date') }}">
                             </div>
 
@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <label for="rescue_id">Rescue ID<span class="text-danger">*</span></label>
                                 <select class="form-control @error('rescue_id') border-danger @enderror" id="rescue_id" name="rescue_id">
-                                    <option value="">Aukeratu erreskatearen ID-a</option>
+                                    <option value="0">Aukeratu erreskatearen ID-a</option>
                                     @foreach($rescues as $rescue)
                                         <option value="{{ $rescue->id }}" {{ old('rescue_id') == $rescue->id ? 'selected' : '' }}>{{ $rescue->id }}</option>
                                     @endforeach
@@ -94,7 +94,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="photo_src">Argazkia</label>
-                            <input type="file" id="photo_src" name="photo_src" class="form-control-file">
+                            <input type="file" id="photo_src" name="photo_src" class="form-control-file" value="{{ old('photo_src') }}">
                         </div>
                     </div>
 
