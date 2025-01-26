@@ -37,23 +37,23 @@
 
                     <div class="form-group">
                         <label for="name">Izena<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name">
+                        <input type="text" class="form-control @error('name') border-danger @enderror" id="name" name="name" value="{{ old('name') }}">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email-a<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('email') border-danger @enderror" id="email" name="email">
+                        <input type="text" class="form-control @error('email') border-danger @enderror" id="email" name="email" value="{{ old('email') }}">
                     </div>
 
                     <div class="form-group">
                         <label for="rol">Rol-a<span class="text-danger">*</span></label>
-                        <select class="form-control @error('rol') border-danger @enderror" id="rol" name="rol">
-                            <option value="Marinela">Marinela</option>
-                            <option value="Erizaina">Erizaina</option>
-                            <option value="Mekanikoa">Mekanikoa</option>
-                            <option value="Makinen arduraduna">Makinen arduraduna</option>
-                            <option value="Zubiko ofiziala">Zubiko ofiziala</option>
-                            <option value="Kapitaina">Kapitaina</option>
+                        <select class="form-control @error('rol') border-danger @enderror" id="rol" name="rol" value="{{ old('rol')}}">
+                            <option {{ old('rol') == 'Marinela' ? 'selected' : '' }} value="Marinela">Marinela</option>
+                            <option {{ old('rol') == 'Erizaina' ? 'selected' : '' }} value="Erizaina">Erizaina</option>
+                            <option {{ old('rol') == 'Mekanikoa' ? 'selected' : '' }} value="Mekanikoa">Mekanikoa</option>
+                            <option {{ old('rol') == 'Makinen arduraduna' ? 'selected' : '' }} value="Makinen arduraduna">Makinen arduraduna</option>
+                            <option {{ old('rol') == 'Zubiko ofiziala' ? 'selected' : '' }} value="Zubiko ofiziala">Zubiko ofiziala</option>
+                            <option {{ old('rol') == 'Kapitaina' ? 'selected' : '' }} value="Kapitaina">Kapitaina</option>
                         </select>
                     </div>
 
